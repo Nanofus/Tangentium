@@ -1,0 +1,2 @@
+# Tangential
+Strategiapeli ohjelmoinnin harjoitustyönä
