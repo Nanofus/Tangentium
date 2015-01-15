@@ -7,6 +7,8 @@ aseensa vahinkomäärän verran, ottaen kuitenkin huomioon toisen vahinkotyyppiv
 ja eri aseet tekevät eri tyyppistä vahinkoa. Aseita voi kuitenkin kantaa vain yhtä kerralla, joten pelaajan on poimittava maasta
 vaihtoehtoisia aseita kohdatessaan erilaisia vihollisia.
 
+Pelaajan tulee selvitä satunnaisgeneroidun sokkelon läpi tulematta mörköjen syömäksi.
+
 ### Käyttäjät: Pelaaja
 
 #### Pelaajan toiminnot:
