@@ -7,7 +7,9 @@ aseensa vahinkomäärän verran, ottaen kuitenkin huomioon toisen vahinkotyyppiv
 ja eri aseet tekevät eri tyyppistä vahinkoa. Aseita voi kuitenkin kantaa vain yhtä kerralla, joten pelaajan on poimittava maasta
 vaihtoehtoisia aseita kohdatessaan erilaisia vihollisia.
 
-Pelaajan tulee selvitä satunnaisgeneroidun sokkelon läpi tulematta mörköjen syömäksi.
+Pelikenttä on satunnaisgeneroitu labyrintti, jonka läpi pelaajan tulee päästä. Seinien läpi ei siis voi kulkea. Välillä pelaaja kohtaa tallennuspisteitä, joissa pelaajan tilanne tallennetaan tiedostoon ja joka voidaan palauttaa.
+
+Pelaajan tulee selvitä sokkelon läpi tulematta mörköjen syömäksi.
 
 ### Käyttäjät: Pelaaja
 
