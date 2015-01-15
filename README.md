@@ -1,4 +1,2 @@
 # Tangential
-Strategiapeli ohjelmoinnin harjoitustyönä
-
-Testi, testi
+## Roolipeli ohjelmoinnin harjoitustyönä
