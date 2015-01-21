@@ -60,7 +60,7 @@ public class Game {
             int x = random.nextInt(level.GetWidth());
             int y = random.nextInt(level.GetHeight());
 
-            if (!level.GetTile(x, y).isWall()) {
+            if (level.GetTile(x, y).GetType()!=TileType.WALL) {
                 SpawnItem(x,y);
                 items--;
             }
@@ -110,7 +110,7 @@ public class Game {
             int x = random.nextInt(level.GetWidth());
             int y = random.nextInt(level.GetHeight());
 
-            if (!level.GetTile(x, y).isWall()) {
+            if (level.GetTile(x, y).GetType()!=TileType.WALL) {
                 SpawnEnemy(x,y);
                 enemies--;
             }
@@ -146,7 +146,7 @@ public class Game {
                     }
                 }
                 if (!charChosen) {
-                    if (level.GetTile(i, j).isWall()) {
+                    if (level.GetTile(i, j).GetType()==TileType.WALL) {
                         System.out.print('X');
                     } else {
                         System.out.print('.');
