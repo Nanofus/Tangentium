@@ -1,7 +1,7 @@
 package fi.nano.tangential.gameLogic.entities;
 
 import fi.nano.tangential.gameLogic.Entity;
-import fi.nano.tangential.gameLogic.ItemType;
+import fi.nano.tangential.gameLogic.DamageType;
 import fi.nano.tangential.gameLogic.Position;
 
 /**
@@ -11,9 +11,9 @@ import fi.nano.tangential.gameLogic.Position;
 public class Item extends Entity {
 
     private int power = 1;
-    private ItemType type = ItemType.SLASH; //The types are SLASH, PIERCE, CRUSH, BURN, FREEZE and ARCANE
+    private DamageType type = DamageType.SLASH; //The types are SLASH, PIERCE, CRUSH, BURN, FREEZE and ARCANE
 
-    public Item(int x, int y, String name, int power, ItemType type) {
+    public Item(int x, int y, String name, int power, DamageType type) {
         super(x,y,name);
 
         this.power = power;
