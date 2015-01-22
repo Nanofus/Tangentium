@@ -12,7 +12,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        Game game = new Game(50,50,12,12);
+        Game game = new Game(100,100,50,50);
         
     }
     
