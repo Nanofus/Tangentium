@@ -1,11 +1,7 @@
 package fi.nano.tangential;
 
-import fi.nano.tangential.gameLogic.entities.Item;
-import fi.nano.tangential.gameLogic.entities.Actor;
-import fi.nano.tangential.gameLogic.Position;
 import fi.nano.tangential.gameLogic.*;
 import java.io.FileNotFoundException;
-import java.util.*;
 
 public class Game {
 
@@ -14,15 +10,23 @@ public class Game {
     public Game(String levelName) {
         System.out.println("\nGenerating game from file...");
         
-        ReadLevel(levelName);
+        //SIIRRÄ LUKUVASTUU OMALLE LUOKALLEEN
         
-        System.out.println("\nGenerated level:\n----\n");
+        boolean successfullyLoaded = ReadLevel(levelName);
         
-        System.out.println(level);
-        
-        System.out.println("\n----");
+        if (successfullyLoaded) {
+            System.out.println("\nGenerated level:\n----\n");
 
-        System.out.println("\nStarting game.");
+            System.out.println(level);
+
+            System.out.println("\n----");
+
+            System.out.println("\nStarting game.");
+        } else {
+            System.out.println("Level could not be loaded! Exiting...");
+            
+            System.exit(1);
+        }
     }
     
     public Game(int width, int height, int enemies, int items) {
@@ -39,16 +43,20 @@ public class Game {
         System.out.println("\nStarting game.");
     }
     
-    private void ReadLevel(String levelName) {
+    private boolean ReadLevel(String levelName) {
         try {
             level = new Level(levelName);
+            return true;
         } catch (FileNotFoundException e) {
-            System.out.println("Level could not be loaded! Exiting...");
-            System.exit(1);
+            return false;
         }
     }
 
     private void GenerateLevel(int width, int height, int enemies, int items) {
         level = new Level(width, height, enemies, items);
+    }
+    
+    public Level GetLevel() {
+        return level;
     }
 }

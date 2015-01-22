@@ -20,15 +20,15 @@ public enum TileType {
     }
     
     public boolean is(TileType other) {
-    if (other == null) {
+        if (other == null) {
+            return false;
+        }
+
+        for (TileType t = this;  t != null;  t = t.parent) {
+            if (other == t) {
+                return true;
+            }
+        }
         return false;
     }
-    
-    for (TileType t = this;  t != null;  t = t.parent) {
-        if (other == t) {
-            return true;
-        }
-    }
-    return false;
-}
 }

@@ -30,13 +30,27 @@ public class Level {
 
         this.items = new ArrayList<>();
         this.enemies = new ArrayList<>();
+
+        if (width < 2) {
+            width = 1;
+        }
+        if (height < 2) {
+            height = 1;
+        }
         
         this.width = width;
         this.height = height;
-
+        
         tiles = new Tile[width][height];
+        
+        if (enemies < 0) {
+            enemies = 0;
+        }
+        if (items < 0) {
+            items = 0;
+        }
 
-         //Random level generation, will use a better algorithm
+        //Random level generation, will use a better algorithm in the future
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Tile tile = new Tile();
@@ -44,10 +58,12 @@ public class Level {
             }
         }
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
-                    tiles[i][j].SetTile(TileType.WALL);
+        if (GetHeight() > 1 && GetWidth() > 1) {
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+                    if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
+                        tiles[i][j].SetTile(TileType.WALL);
+                    }
                 }
             }
         }
@@ -55,18 +71,17 @@ public class Level {
         System.out.println();
         SpawnItems(items);
         System.out.println();
-        SpawnPlayer(0,0);
+        SpawnPlayer(0, 0);
         System.out.println();
         SpawnEnemies(enemies);
         System.out.println();
+
     }
-    
+
     public Level(String levelName) throws FileNotFoundException {
-        
-        Scanner in = new Scanner(new FileReader("levels/"+levelName+".txt"));
-        
-        
-        
+
+        Scanner in = new Scanner(new FileReader("levels/" + levelName + ".txt"));
+
     }
 
     public ArrayList<Item> GetItems() {
@@ -98,15 +113,16 @@ public class Level {
     }
 
     private void SpawnItems(int items) {
-        while (items > 0) {
-            int x = random.nextInt(GetWidth());
-            int y = random.nextInt(GetHeight());
+        if (width > 1 && height > 1) {
+            while (items > 0) {
+                int x = random.nextInt(GetWidth());
+                int y = random.nextInt(GetHeight());
 
-            if (GetTile(x, y).GetType() != TileType.WALL) {
-                SpawnItem(x, y);
-                items--;
+                if (GetTile(x, y).GetType() != TileType.WALL) {
+                    SpawnItem(x, y);
+                    items--;
+                }
             }
-
         }
     }
 
@@ -160,15 +176,16 @@ public class Level {
     }
 
     private void SpawnEnemies(int enemies) {
-        while (enemies > 0) {
-            int x = random.nextInt(GetWidth());
-            int y = random.nextInt(GetHeight());
+        if (width > 1 && height > 1) {
+            while (enemies > 0) {
+                int x = random.nextInt(GetWidth());
+                int y = random.nextInt(GetHeight());
 
-            if (GetTile(x, y).GetType() != TileType.WALL) {
-                SpawnEnemy(x, y);
-                enemies--;
+                if (GetTile(x, y).GetType() != TileType.WALL) {
+                    SpawnEnemy(x, y);
+                    enemies--;
+                }
             }
-
         }
     }
 

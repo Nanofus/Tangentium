@@ -4,3 +4,4 @@
 * 15.1. - 1h - aihemäärittelyn kirjoittaminen ja tuntikirjanpidon aloitus
 * 20.1. - 1h - luokkien luontia
 * 21.1. - 2h - kenttä- ja muut generaattorit
+* 22.1. - 3h - Entity-luokan luonti, alustavat testit, pit-testi
