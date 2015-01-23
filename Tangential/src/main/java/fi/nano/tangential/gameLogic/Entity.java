@@ -9,6 +9,7 @@ public class Entity {
 
     public Entity(int x, int y, String name) {
         position = new Position(x, y);
+        
         this.name = name;
 
         switch (name) {
@@ -43,6 +44,11 @@ public class Entity {
 
         }
 
+    }
+    
+    public void Move(int x, int y) {
+        position.x = position.x + x;
+        position.y = position.y + y;
     }
 
     public Character GetSymbol() {
