@@ -18,7 +18,7 @@ public class Tile {
         return tile;
     }
     
-    public void SetTile(TileType type) {
+    public void SetType(TileType type) {
         tile = type;
     }
     

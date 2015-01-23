@@ -62,7 +62,7 @@ public class Level {
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
-                        tiles[i][j].SetTile(TileType.WALL);
+                        tiles[i][j].SetType(TileType.WALL);
                     }
                 }
             }
