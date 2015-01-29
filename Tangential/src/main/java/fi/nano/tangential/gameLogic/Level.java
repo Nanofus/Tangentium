@@ -21,6 +21,9 @@ public class Level {
     private Tile[][] tiles;
     private int width;
     private int height;
+    
+    private int enemies;
+    private int items;
 
     private Actor player;
 
@@ -31,36 +34,27 @@ public class Level {
         entityManager = new EntityManager();
         combatHandler = new CombatHandler(entityManager);
 
-        if (width < 2) {
-            width = 1;
-        }
-        if (height < 2) {
-            height = 1;
-        }
-
         this.width = width;
         this.height = height;
-
-        tiles = new Tile[width][height];
-
-        if (enemies < 0) {
-            enemies = 0;
-        }
-        if (items < 0) {
-            items = 0;
-        }
+        
+        this.enemies = enemies;
+        this.items = items;
+        
+        ValidateParametres();
+        
+        tiles = new Tile[this.width][this.height];
 
         //Random level generation, will use a better algorithm in the future
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
                 Tile tile = new Tile();
                 tiles[i][j] = tile;
             }
         }
 
         if (GetHeight() > 1 && GetWidth() > 1) {
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
+            for (int i = 0; i < this.width; i++) {
+                for (int j = 0; j < this.height; j++) {
                     if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
                         tiles[i][j].SetType(TileType.WALL);
                     }
@@ -69,11 +63,11 @@ public class Level {
         }
 
         System.out.println();
-        SpawnItems(items);
+        SpawnItems(this.items);
         System.out.println();
         SpawnPlayer(0, 0);
         System.out.println();
-        SpawnEnemies(enemies);
+        SpawnEnemies(this.enemies);
         System.out.println();
 
     }
@@ -84,6 +78,22 @@ public class Level {
 
     }
 
+    private void ValidateParametres() {
+        if (width < 2) {
+            width = 1;
+        }
+        if (height < 2) {
+            height = 1;
+        }
+
+        if (enemies < 0) {
+            enemies = 0;
+        }
+        if (items < 0) {
+            items = 0;
+        }
+    }
+    
     public Actor GetPlayer() {
         return player;
     }

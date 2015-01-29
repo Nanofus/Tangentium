@@ -69,7 +69,7 @@ public class Game {
     }
 
     private void RunGame() {
-        
+
         while (gameRunning) {
             System.out.println("New turn!");
 
@@ -83,11 +83,11 @@ public class Game {
                     enemy.GetAI().MakeMove();
                 }
             }
-            
+
             turn++;
-            
+
             //temp solution
-            if (turn>200) {
+            if (turn > 200) {
                 gameRunning = false;
             }
         }
