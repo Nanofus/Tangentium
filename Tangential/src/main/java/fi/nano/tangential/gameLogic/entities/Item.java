@@ -21,5 +21,13 @@ public class Item extends Entity {
 
         System.out.println("Generated item '" + name + "' with power " + power + " at " + GetPosition());
     }
+    
+    public DamageType GetDamageType() {
+        return type;
+    }
+    
+    public int GetPower() {
+        return power;
+    }
 
 }

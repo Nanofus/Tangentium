@@ -15,12 +15,12 @@ import java.util.Scanner;
  */
 public class Level {
 
+    public EntityManager entityManager;
+    private CombatHandler combatHandler;
+
     private Tile[][] tiles;
     private int width;
     private int height;
-
-    private ArrayList<Item> items;
-    private ArrayList<Actor> enemies;
 
     private Actor player;
 
@@ -28,8 +28,8 @@ public class Level {
 
     public Level(int width, int height, int enemies, int items) {
 
-        this.items = new ArrayList<>();
-        this.enemies = new ArrayList<>();
+        entityManager = new EntityManager();
+        combatHandler = new CombatHandler(entityManager);
 
         if (width < 2) {
             width = 1;
@@ -37,12 +37,12 @@ public class Level {
         if (height < 2) {
             height = 1;
         }
-        
+
         this.width = width;
         this.height = height;
-        
+
         tiles = new Tile[width][height];
-        
+
         if (enemies < 0) {
             enemies = 0;
         }
@@ -84,14 +84,6 @@ public class Level {
 
     }
 
-    public ArrayList<Item> GetItems() {
-        return items;
-    }
-
-    public ArrayList<Actor> GetEnemies() {
-        return enemies;
-    }
-
     public Actor GetPlayer() {
         return player;
     }
@@ -109,7 +101,7 @@ public class Level {
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", 5, true);
+        player = new Actor(x, y, "Player", 5, true, 0, 0, 0, 0, 0, 0);
     }
 
     private void SpawnItems(int items) {
@@ -172,7 +164,7 @@ public class Level {
         }
 
         Item item = new Item(x, y, itemName, power, type);
-        items.add(item);
+        entityManager.AddItem(item);
     }
 
     private void SpawnEnemies(int enemies) {
@@ -190,8 +182,20 @@ public class Level {
     }
 
     private void SpawnEnemy(int x, int y) {
-        Actor enemy = new Actor(x, y, "Skeleton", 1, false);
-        enemies.add(enemy);
+        int randomValue = random.nextInt(100);
+        Actor enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2);
+
+        if (randomValue < 40) {
+            enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2);
+        } else if (randomValue < 70) {
+            enemy = new Actor(x, y, "Troll", 1, false, 2, 0, 1, -2, 0, -1);
+        } else if (randomValue < 95) {
+            enemy = new Actor(x, y, "Lizard Man", 1, false, -2, -2, 0, 1, 2, 1);
+        } else if (randomValue < 100) {
+            enemy = new Actor(x, y, "Dragon", 1, false, 0, 0, 0, 2, 2, 2);
+        }
+
+        entityManager.AddEnemy(enemy);
     }
 
     @Override
@@ -207,7 +211,7 @@ public class Level {
                     charChosen = true;
                 }
                 if (!charChosen) {
-                    for (Actor enemy : enemies) {
+                    for (Actor enemy : entityManager.GetEnemies()) {
                         Position actorPos = enemy.GetPosition();
                         if (actorPos.x == i && actorPos.y == j) {
                             sb.append(enemy.GetSymbol());
@@ -216,7 +220,7 @@ public class Level {
                     }
                 }
                 if (!charChosen) {
-                    for (Item item : items) {
+                    for (Item item : entityManager.GetItems()) {
                         Position itemPos = item.GetPosition();
                         if (itemPos.x == i && itemPos.y == j) {
                             sb.append(item.GetSymbol());
