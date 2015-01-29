@@ -53,6 +53,10 @@ public class Actor extends Entity    {
         
     }
     
+    public void EquipItem(Item item) {
+        wieldedItem = item;
+    }
+    
     public int GetHealth() {
         return hitPoints;
     }
@@ -75,6 +79,10 @@ public class Actor extends Entity    {
 
     public void LoseHealth(int amount) {
         hitPoints = hitPoints - amount;
+        
+        if (hitPoints<0) {
+            hitPoints = 0;
+        }
     }
 
     public int GetResistance(DamageType damageType) {

@@ -20,10 +20,7 @@ public class CombatHandler {
         int actor2Resistance = actor2.GetResistance(actor1.GetWeapon().GetDamageType());
 
         int damage = actor1.GetWeapon().GetPower() - actor2Resistance;
-        if (damage < 0) {
-            damage = 0;
-        }
-
+        
         actor2.LoseHealth(damage);
 
         if (actor2.GetHealth() < 1) {
