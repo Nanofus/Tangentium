@@ -21,6 +21,15 @@ public class Entity {
             case "Skeleton":
                 symbol = 'S';
                 break;
+            case "Troll":
+                symbol = 'T';
+                break;
+            case "Lizard Man":
+                symbol = 'L';
+                break;
+            case "Dragon":
+                symbol = 'D';
+                break;
 
             //Item names
             case "Sword":
