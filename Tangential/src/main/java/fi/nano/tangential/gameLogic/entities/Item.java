@@ -1,7 +1,7 @@
 package fi.nano.tangential.gameLogic.entities;
 
 import fi.nano.tangential.gameLogic.Entity;
-import fi.nano.tangential.enums.DamageType;
+import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Position;
 
 /**

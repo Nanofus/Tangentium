@@ -3,7 +3,7 @@ package fi.nano.tangential.gameLogic.singletons;
 
 import fi.nano.tangential.gameLogic.singletons.CombatHandler;
 import fi.nano.tangential.gameLogic.singletons.EntityManager;
-import static fi.nano.tangential.enums.DamageType.*;
+import static fi.nano.tangential.gameLogic.enums.DamageType.*;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import org.junit.After;

@@ -1,7 +1,7 @@
 
 package fi.nano.tangential.gameLogic.entities;
 
-import fi.nano.tangential.enums.TileType;
+import fi.nano.tangential.gameLogic.enums.TileType;
 
 /**
  *

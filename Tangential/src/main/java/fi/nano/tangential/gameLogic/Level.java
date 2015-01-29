@@ -1,7 +1,7 @@
 package fi.nano.tangential.gameLogic;
 
-import fi.nano.tangential.enums.TileType;
-import fi.nano.tangential.enums.DamageType;
+import fi.nano.tangential.gameLogic.enums.TileType;
+import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.singletons.CombatHandler;
 import fi.nano.tangential.gameLogic.singletons.EntityManager;
 import fi.nano.tangential.gameLogic.entities.Actor;

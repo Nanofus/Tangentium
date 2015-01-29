@@ -1,6 +1,5 @@
 package fi.nano.tangential.gameLogic.enums;
 
-import fi.nano.tangential.enums.TileType;
 import fi.nano.tangential.gameLogic.Level;
 import org.junit.After;
 import org.junit.AfterClass;
