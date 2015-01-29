@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class Level {
 
-    public EntityManager entityManager;
+    private EntityManager entityManager;
     private CombatHandler combatHandler;
 
     private Tile[][] tiles;
@@ -98,6 +98,14 @@ public class Level {
 
     public int GetHeight() {
         return height;
+    }
+    
+    public ArrayList<Actor> GetActors() {
+        return entityManager.GetEnemies();
+    }
+    
+    public ArrayList<Item> GetItems() {
+        return entityManager.GetItems();
     }
 
     private void SpawnPlayer(int x, int y) {
