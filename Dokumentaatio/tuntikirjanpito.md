@@ -6,4 +6,5 @@
 * 21.1. - 2h - kenttä- ja muut generaattorit
 * 22.1. - 3h - Entity-luokan luonti, alustavat testit, pit-testi
 * 26.1. - 2h - EntityManager
-* 29.1. - 4h - Vahingon tekeminen, uusi luokkakaavio, lisää testejä,
+* 29.1. - 4h - Vahingon tekeminen, uusi luokkakaavio, lisää testejä
+* 30.1. - 1h - LevelReaderin lisäys
