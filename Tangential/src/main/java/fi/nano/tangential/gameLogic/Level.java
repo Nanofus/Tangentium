@@ -61,6 +61,8 @@ public class Level {
                 for (int j = 0; j < this.height; j++) {
                     if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
                         tiles[i][j].SetType(TileType.WALL);
+                    } else {
+                        tiles[i][j].SetType(TileType.FLOOR);
                     }
                 }
             }
@@ -251,11 +253,7 @@ public class Level {
                     }
                 }
                 if (!charChosen) {
-                    if (GetTile(i, j).GetType() == TileType.WALL) {
-                        sb.append('X');
-                    } else {
-                        sb.append('.');
-                    }
+                    sb.append(GetTile(i,j).GetSymbol());
                     charChosen = true;
                 }
             }
