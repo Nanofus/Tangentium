@@ -1,5 +1,6 @@
 package fi.nano.tangential.gameLogic;
 
+import fi.nano.tangential.fileProcessing.LevelReader;
 import fi.nano.tangential.gameLogic.enums.TileType;
 import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.singletons.CombatHandler;
@@ -78,10 +79,10 @@ public class Level {
 
     }
 
-    public Level(String levelName) throws FileNotFoundException {
-
-        Scanner in = new Scanner(new FileReader("levels/" + levelName + ".txt"));
-
+    public Level(String levelName) {
+        LevelReader levelReader = new LevelReader(levelName);
+        
+        
     }
 
     private void ValidateParametres() {
@@ -92,10 +93,10 @@ public class Level {
             height = 1;
         }
 
-        if (enemies < 0) {
+        if (enemies < 1) {
             enemies = 0;
         }
-        if (items < 0) {
+        if (items < 1) {
             items = 0;
         }
     }

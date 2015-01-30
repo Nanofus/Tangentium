@@ -51,6 +51,10 @@ public class Entity {
                 symbol = 'w';
                 break;
 
+            //NPC weapons
+            case "Dragonfire":
+                symbol = 'd';
+                break;
         }
 
     }

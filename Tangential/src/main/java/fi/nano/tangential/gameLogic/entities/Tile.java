@@ -9,7 +9,7 @@ import fi.nano.tangential.gameLogic.enums.TileType;
  */
 public class Tile {
     private TileType tile;
-    private Character symbol;
+    private Character symbol = 'Ö';
     
     public Tile() {
         
