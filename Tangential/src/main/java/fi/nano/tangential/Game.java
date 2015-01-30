@@ -31,7 +31,7 @@ public class Game {
     public Game(int width, int height, int enemies, int items) {
         System.out.println("\nGenerating game randomly...");
 
-        GenerateLevel(width, height, enemies, items);
+        level = GenerateLevel(width, height, enemies, items);
 
         System.out.println("\nGenerated level:\n----\n");
 
@@ -44,8 +44,8 @@ public class Game {
         RunGame();
     }
 
-    private void GenerateLevel(int width, int height, int enemies, int items) {
-        level = new Level(width, height, enemies, items);
+    private Level GenerateLevel(int width, int height, int enemies, int items) {
+        return new Level(width, height, enemies, items);
     }
 
     public Level GetLevel() {

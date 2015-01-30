@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,11 +24,13 @@ public class LevelReader {
             System.exit(1);
         }
         
-        level = new ArrayList<String>();
+        level = new ArrayList<>();
         
         while(in.hasNext()) {
             level.add(in.nextLine());
         }
+        
+        System.out.println(level.toString());
         
     }
 }

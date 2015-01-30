@@ -135,7 +135,7 @@ public class Level {
                 int x = random.nextInt(GetWidth());
                 int y = random.nextInt(GetHeight());
 
-                if (GetTile(x, y).GetType() != TileType.WALL) {
+                if (GetTile(x, y).GetType().is(TileType.PASSABLE)) {
                     SpawnItem(x, y);
                     items--;
                 }
