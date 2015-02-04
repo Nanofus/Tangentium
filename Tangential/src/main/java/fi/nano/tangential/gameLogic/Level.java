@@ -112,18 +112,17 @@ public class Level {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 tiles[i][j] = new Tile();
-                switch (levelArray.get(j).charAt(i)) {
+                Character tileChar = levelArray.get(j).charAt(i);
+                switch (tileChar) {
                     case '.':
                         tiles[i][j].SetType(FLOOR);
                     case 'X':
                         tiles[i][j].SetType(WALL);
                     default:
-                        tiles[i][j].SetType(CHASM);
+                        tiles[i][j].SetType(FLOOR);
                 }
             }
         }
-        
-        System.out.println(tiles[5][2]);
         
         System.out.println();
         SpawnItems(this.items);
