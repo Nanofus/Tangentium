@@ -17,11 +17,11 @@ public class CombatHandler {
         this.entityManager = entityManager;
     }
 
-    public void Hit(Actor hitter, Actor target) {
+    public void Hit(Actor attacker, Actor target) {
 
-        int targetResistance = target.GetResistance(hitter.GetWeapon().GetDamageType());
+        int targetResistance = target.GetResistance(attacker.GetWeapon().GetDamageType());
 
-        int damage = hitter.GetWeapon().GetPower() - targetResistance;
+        int damage = attacker.GetWeapon().GetPower() - targetResistance;
         
         target.LoseHealth(damage);
 
@@ -29,7 +29,7 @@ public class CombatHandler {
             DestroyActor(target);
         }
         
-        System.out.println(hitter + " hit " + target + " and did "+damage+" damage!");
+        System.out.println(attacker + " hit " + target + " and did "+damage+" damage!");
 
     }
 
