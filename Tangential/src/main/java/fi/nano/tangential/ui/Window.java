@@ -8,7 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 /**
- *
+ * Peli-ikkuna.
+ * 
  * @author Nanofus
  */
 public class Window implements Runnable {

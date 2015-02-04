@@ -7,13 +7,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Luokka joka lukee tason tekstitiedostosta.
  * @author Nanofus
  */
 public class LevelReader {
     
     ArrayList<String> level;
     
+    /**
+     * Konstruktori lataa tason tekstitiedostosta.
+     *
+     * @param   levelName   Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
+     */
     public LevelReader(String levelName) {
         Scanner in = null;
         

@@ -4,6 +4,9 @@ import fi.nano.tangential.gameLogic.*;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import java.io.FileNotFoundException;
 
+/**
+ * Luokka pitää sisällään varsinaisen pelin luonnin ja toiminnan.
+ */
 public class Game {
 
     private Level level;
@@ -11,7 +14,12 @@ public class Game {
     int turn = 0;
 
     boolean gameRunning = true;
-
+    
+    /**
+     * Konstruktori lataa Level-tyyppisen tason tekstitiedostosta.
+     *
+     * @param   levelName   Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
+     */
     public Game(String levelName) {
         System.out.println("\nGenerating game from file...");
 
@@ -25,6 +33,14 @@ public class Game {
 
     }
 
+    /**
+     * Konstruktori luo Level-tyyppisen tason parametrien perusteella.
+     *
+     * @param   width   Tason leveys
+     * @param   height  Tason korkeus
+     * @param   enemies Vihollisten määrä
+     * @param   items   Esineiden määrä
+     */
     public Game(int width, int height, int enemies, int items) {
         System.out.println("\nGenerating game randomly...");
 
@@ -46,6 +62,9 @@ public class Game {
         return level;
     }
 
+    /**
+     * Käynnistää pelilogiikan.
+     */
     public void RunGame() {
 
         while (gameRunning) {

@@ -5,7 +5,8 @@ import fi.nano.tangential.gameLogic.entities.Item;
 import java.util.ArrayList;
 
 /**
- *
+ * Level-olion käyttämä tietovarasto esineistä ja vihollisista. Vastaa esineiden ja vihollisten poistamisesta.
+ * 
  * @author Nanofus
  */
 public class EntityManager {

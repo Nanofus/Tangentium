@@ -5,7 +5,8 @@ import static fi.nano.tangential.gameLogic.enums.DamageType.SLASH;
 import fi.nano.tangential.gameLogic.entities.Actor;
 
 /**
- *
+ * Taistelusysteemin sisältävä luokka.
+ * 
  * @author Nanofus
  */
 public class CombatHandler {
@@ -16,19 +17,19 @@ public class CombatHandler {
         this.entityManager = entityManager;
     }
 
-    public void Hit(Actor actor1, Actor actor2) {
+    public void Hit(Actor hitter, Actor target) {
 
-        int actor2Resistance = actor2.GetResistance(actor1.GetWeapon().GetDamageType());
+        int targetResistance = target.GetResistance(hitter.GetWeapon().GetDamageType());
 
-        int damage = actor1.GetWeapon().GetPower() - actor2Resistance;
+        int damage = hitter.GetWeapon().GetPower() - targetResistance;
         
-        actor2.LoseHealth(damage);
+        target.LoseHealth(damage);
 
-        if (actor2.GetHealth() < 1) {
-            DestroyActor(actor2);
+        if (target.GetHealth() < 1) {
+            DestroyActor(target);
         }
         
-        System.out.println(actor1 + " hit " + actor2 + " and did "+damage+" damage!");
+        System.out.println(hitter + " hit " + target + " and did "+damage+" damage!");
 
     }
 

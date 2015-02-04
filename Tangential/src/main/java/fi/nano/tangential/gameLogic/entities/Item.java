@@ -5,7 +5,8 @@ import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Position;
 
 /**
- *
+ * Pelimaailman esine. Hahmo voi poimia esineen käyttöönsä.
+ * 
  * @author Nanofus
  */
 public class Item extends Entity {

@@ -15,7 +15,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
+ * Luokka, joka vastaa pelin tasosta ja tason sisällöstä.
+ * 
  * @author Nanofus
  */
 public class Level {
@@ -34,6 +35,14 @@ public class Level {
 
     Random random = new Random();
 
+    /**
+     * Konstruktori luo tason parametrien perusteella.
+     *
+     * @param   width   Tason leveys
+     * @param   height  Tason korkeus
+     * @param   enemies Vihollisten määrä
+     * @param   items   Esineiden määrä
+     */
     public Level(int width, int height, int enemies, int items) {
 
         entityManager = new EntityManager();
@@ -79,10 +88,13 @@ public class Level {
 
     }
 
+    /**
+     * Konstruktori lataa tason tekstitiedostosta.
+     *
+     * @param   levelName   Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
+     */
     public Level(String levelName) {
         LevelReader levelReader = new LevelReader(levelName);
-        
-        
     }
 
     private void ValidateParametres() {
@@ -126,7 +138,7 @@ public class Level {
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", 5, true, 0, 0, 0, 0, 0, 0);
+        player = new Actor(x, y, "Player", 5, true, 0, 0, 0, 0, 0, 0, this);
     }
 
     private void SpawnItems(int items) {
@@ -208,16 +220,16 @@ public class Level {
 
     private void SpawnEnemy(int x, int y) {
         int randomValue = random.nextInt(100);
-        Actor enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, this);
 
         if (randomValue < 40) {
-            enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2);
+            enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, this);
         } else if (randomValue < 70) {
-            enemy = new Actor(x, y, "Troll", 1, false, 2, 0, 1, -2, 0, -1);
+            enemy = new Actor(x, y, "Troll", 1, false, 2, 0, 1, -2, 0, -1, this);
         } else if (randomValue < 95) {
-            enemy = new Actor(x, y, "Lizard Man", 1, false, -2, -2, 0, 1, 2, 1);
+            enemy = new Actor(x, y, "Lizard Man", 1, false, -2, -2, 0, 1, 2, 1, this);
         } else if (randomValue < 100) {
-            enemy = new Actor(x, y, "Dragon", 1, false, 0, 0, 0, 2, 2, 2);
+            enemy = new Actor(x, y, "Dragon", 1, false, 0, 0, 0, 2, 2, 2, this);
         }
 
         entityManager.AddEnemy(enemy);

@@ -1,5 +1,10 @@
 package fi.nano.tangential.gameLogic;
 
+/**
+ * Luokka, joka toimii pohjana Item- ja Actor-tyyppisille olioille. Sisältää entiteetin nimen, symbolin ja sijainnin.
+ * 
+ * @author Nanofus
+ */
 public class Entity {
 
     private String name;

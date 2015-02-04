@@ -3,10 +3,12 @@ package fi.nano.tangential.gameLogic.entities;
 import fi.nano.tangential.gameLogic.AI;
 import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Entity;
+import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
 
 /**
- *
+ * Pelihahmoa hallitseva luokka. Voi olla controlled eli pelaajahahmo tai ei-controlled, jolloin ohjaus annetaan tekoälylle ja saadaan vihollinen.
+ * 
  * @author Nanofus
  */
 public class Actor extends Entity {
@@ -27,7 +29,7 @@ public class Actor extends Entity {
 
     private AI ai;
 
-    public Actor(int x, int y, String name, int hp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
+    public Actor(int x, int y, String name, int hp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance, Level level) {
         super(x, y, name);
 
         this.hitPoints = hp;
@@ -40,9 +42,11 @@ public class Actor extends Entity {
 
         this.controlled = controlled;
 
-        if (!controlled) {
-            ai = new AI(this);
+        if (!controlled && level!=null) {
+            ai = new AI(this,level);
             aiEnabled = true;
+        } else {
+            controlled = true;
         }
 
         if (controlled) {

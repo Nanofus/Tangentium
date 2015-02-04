@@ -2,6 +2,12 @@ package fi.nano.tangential.gameLogic.enums;
 
 // Hierarkkisen enumin toteutus. Mallia otettu: http://alexradzin.blogspot.hk/2010/10/hierarchical-structures-with-java-enums_05.html
 
+/**
+ * Pelimaailman ruudun tyyppi.
+ * 
+ * @author Nanofus
+ */
+
 public enum TileType {
 
     TILE(null),

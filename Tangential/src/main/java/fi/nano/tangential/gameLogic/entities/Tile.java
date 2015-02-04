@@ -4,7 +4,8 @@ package fi.nano.tangential.gameLogic.entities;
 import fi.nano.tangential.gameLogic.enums.TileType;
 
 /**
- *
+ * Pelimaailman ruutu. On tiettyä tyyppiä (TileType).
+ * 
  * @author Nanofus
  */
 public class Tile {
