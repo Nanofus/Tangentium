@@ -8,6 +8,7 @@ import fi.nano.tangential.gameLogic.singletons.EntityManager;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.entities.Tile;
+import static fi.nano.tangential.gameLogic.enums.TileType.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.Scanner;
 
 /**
  * Luokka, joka vastaa pelin tasosta ja tason sisällöstä.
- * 
+ *
  * @author Nanofus
  */
 public class Level {
@@ -27,7 +28,7 @@ public class Level {
     private Tile[][] tiles;
     private int width;
     private int height;
-    
+
     private int enemies;
     private int items;
 
@@ -38,24 +39,23 @@ public class Level {
     /**
      * Konstruktori luo tason parametrien perusteella.
      *
-     * @param   width   Tason leveys
-     * @param   height  Tason korkeus
-     * @param   enemies Vihollisten määrä
-     * @param   items   Esineiden määrä
+     * @param width Tason leveys
+     * @param height Tason korkeus
+     * @param enemies Vihollisten määrä
+     * @param items Esineiden määrä
      */
     public Level(int width, int height, int enemies, int items) {
 
-        entityManager = new EntityManager();
-        combatHandler = new CombatHandler(entityManager);
+        Init();
 
         this.width = width;
         this.height = height;
-        
+
         this.enemies = enemies;
         this.items = items;
-        
+
         ValidateParametres();
-        
+
         tiles = new Tile[this.width][this.height];
 
         //Random level generation, will use a better algorithm in the future
@@ -81,7 +81,7 @@ public class Level {
         System.out.println();
         SpawnItems(this.items);
         System.out.println();
-        SpawnPlayer(0, 0);
+        SpawnPlayer(1, 1);
         System.out.println();
         SpawnEnemies(this.enemies);
         System.out.println();
@@ -91,10 +91,54 @@ public class Level {
     /**
      * Konstruktori lataa tason tekstitiedostosta.
      *
-     * @param   levelName   Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
+     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
+     * (.txt)
      */
     public Level(String levelName) {
+
+        Init();
+        
+        this.enemies = 10;
+        this.items = 10;
+
         LevelReader levelReader = new LevelReader(levelName);
+        ArrayList<String> levelArray = levelReader.GetLevel();
+        
+        height = levelArray.size();
+        width = levelArray.get(0).length();
+        
+        tiles = new Tile[width][height];
+        
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                tiles[i][j] = new Tile();
+                switch (levelArray.get(j).charAt(i)) {
+                    case '.':
+                        tiles[i][j].SetType(FLOOR);
+                    case 'X':
+                        tiles[i][j].SetType(WALL);
+                    default:
+                        tiles[i][j].SetType(CHASM);
+                }
+            }
+        }
+        
+        System.out.println(tiles[5][2]);
+        
+        System.out.println();
+        SpawnItems(this.items);
+        System.out.println();
+        SpawnPlayer(1, 1);
+        System.out.println();
+        SpawnEnemies(this.enemies);
+        System.out.println();
+        
+
+    }
+
+    private void Init() {
+        entityManager = new EntityManager();
+        combatHandler = new CombatHandler(entityManager);
     }
 
     private void ValidateParametres() {
@@ -112,7 +156,7 @@ public class Level {
             items = 0;
         }
     }
-    
+
     public Actor GetPlayer() {
         return player;
     }
@@ -128,11 +172,11 @@ public class Level {
     public int GetHeight() {
         return height;
     }
-    
+
     public ArrayList<Actor> GetActors() {
         return entityManager.GetEnemies();
     }
-    
+
     public ArrayList<Item> GetItems() {
         return entityManager.GetItems();
     }
@@ -266,7 +310,7 @@ public class Level {
                     }
                 }
                 if (!charChosen) {
-                    sb.append(GetTile(i,j).GetSymbol());
+                    sb.append(GetTile(i, j).GetSymbol());
                     charChosen = true;
                 }
             }

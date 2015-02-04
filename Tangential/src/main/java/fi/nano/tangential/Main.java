@@ -5,14 +5,15 @@ import fi.nano.tangential.ui.Window;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Main-luokka.
+ * 
  * @author Nanofus
  */
 public class Main {
 
     public static void main(String[] args) {
         
-        Game game = new Game(100,100,50,50);
+        Game game = new Game("test");
         
         Window window = new Window(game);
         SwingUtilities.invokeLater(window);

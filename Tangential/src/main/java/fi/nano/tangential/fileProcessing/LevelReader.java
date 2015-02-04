@@ -29,13 +29,18 @@ public class LevelReader {
             System.exit(1);
         }
         
-        level = new ArrayList<>();
+        level = new ArrayList();
         
         while(in.hasNext()) {
             level.add(in.nextLine());
         }
         
-        System.out.println(level.toString());
+        //System.out.println(level.toString());
         
     }
+    
+    public ArrayList<String> GetLevel() {
+        return level;
+    }
+    
 }
