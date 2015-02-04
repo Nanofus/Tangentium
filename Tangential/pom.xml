@@ -43,10 +43,16 @@
                 <version>0.30</version>
                 <configuration>
                     <targetClasses>
-                        <param>fi.nano.tangential.*</param>
+                        <param>fi.nano.tangential.gameLogic</param>
+                    </targetClasses>
+                    <targetClasses>
+                        <param>fi.nano.tangential.gameLogic.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>fi.nano.tangential.*</param>
+                        <param>fi.nano.tangential.gameLogic</param>
+                    </targetTests>
+                    <targetTests>
+                        <param>fi.nano.tangential.gameLogic.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

@@ -23,9 +23,6 @@ public class Game {
 
         System.out.println("\n----");
 
-        System.out.println("\nStarting game.");
-
-        RunGame();
     }
 
     public Game(int width, int height, int enemies, int items) {
@@ -39,9 +36,6 @@ public class Game {
 
         System.out.println("\n----");
 
-        System.out.println("\nStarting game.");
-
-        RunGame();
     }
 
     private Level GenerateLevel(int width, int height, int enemies, int items) {
@@ -52,7 +46,7 @@ public class Game {
         return level;
     }
 
-    private void RunGame() {
+    public void RunGame() {
 
         while (gameRunning) {
             System.out.println("New turn!");
@@ -71,9 +65,9 @@ public class Game {
             turn++;
 
             //temp solution
-            if (turn > 200) {
+            /*if (turn > 200) {
                 gameRunning = false;
-            }
+            }*/
         }
     }
 
