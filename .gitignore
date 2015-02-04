@@ -1,8 +1,9 @@
+
+Tangential/target/
+
 #################
 ## Eclipse
 #################
-
-Tangential/target/
 
 *.pydevproject
 .project
