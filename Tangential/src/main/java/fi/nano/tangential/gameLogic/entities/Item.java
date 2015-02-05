@@ -13,6 +13,8 @@ public class Item extends Entity {
 
     private int power = 1;
     private DamageType type = DamageType.SLASH; //The types are SLASH, PIERCE, CRUSH, BURN, FREEZE and ARCANE
+    
+    private boolean equipped = false;
 
     public Item(int x, int y, String name, int power, DamageType type) {
         super(x,y,name);
@@ -29,6 +31,14 @@ public class Item extends Entity {
     
     public int GetPower() {
         return power;
+    }
+
+    public void SetEquipped(boolean b) {
+        equipped = b;
+    }
+    
+    public boolean IsEquipped() {
+        return equipped;
     }
 
 }

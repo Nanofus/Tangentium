@@ -58,7 +58,12 @@ public class Actor extends Entity {
     }
 
     public void EquipItem(Item item) {
+        if (wieldedItem != null) {
+            wieldedItem.SetEquipped(false);
+            wieldedItem.SetPosition(GetPosition().x, GetPosition().y);
+        }
         wieldedItem = item;
+        item.SetEquipped(true);
     }
 
     public int GetHealth() {

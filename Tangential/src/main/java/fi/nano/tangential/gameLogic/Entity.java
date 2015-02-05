@@ -72,9 +72,18 @@ public class Entity {
     public Character GetSymbol() {
         return symbol;
     }
+    
+    public String GetName() {
+        return name;
+    }
 
     public Position GetPosition() {
         return position;
+    }
+    
+    public void SetPosition(int x, int y) {
+        position.x = x;
+        position.y = y;
     }
 
 }

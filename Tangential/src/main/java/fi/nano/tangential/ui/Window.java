@@ -17,9 +17,13 @@ public class Window implements Runnable {
     private Game game;
     
     private JFrame frame;
+    
+    private InputListener inputListener;
 
     public Window(Game game) {
         this.game = game;
+        
+        inputListener = new InputListener(game);
     }
 
     @Override
@@ -33,6 +37,8 @@ public class Window implements Runnable {
         
         frame.pack();
         frame.setVisible(true);
+        
+        frame.addKeyListener(inputListener);
     }
     
     private void createComponents(Container container) {

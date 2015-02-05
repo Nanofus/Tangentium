@@ -303,8 +303,10 @@ public class Level {
                     for (Item item : entityManager.GetItems()) {
                         Position itemPos = item.GetPosition();
                         if (itemPos.x == i && itemPos.y == j) {
-                            sb.append(item.GetSymbol());
-                            charChosen = true;
+                            if (!item.IsEquipped()) {
+                                sb.append(item.GetSymbol());
+                                charChosen = true;
+                            }
                         }
                     }
                 }
