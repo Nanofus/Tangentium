@@ -40,7 +40,7 @@ public class ActorTest {
 
     @Test
     public void TestHealthLoss() {
-        Actor enemy = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
         
         enemy.LoseHealth(1);
         
@@ -49,7 +49,7 @@ public class ActorTest {
     
     @Test
     public void TestHealthGain() {
-        Actor enemy = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
         
         enemy.LoseHealth(-1);
         
@@ -58,7 +58,7 @@ public class ActorTest {
     
     @Test
     public void TestHealthNoChange() {
-        Actor enemy = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
         
         enemy.LoseHealth(0);
         

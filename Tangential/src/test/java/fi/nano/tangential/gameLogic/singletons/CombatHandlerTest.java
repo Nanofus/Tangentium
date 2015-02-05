@@ -42,10 +42,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
-        Actor enemy2 = new Actor(0, 1, "Troll", 3, false, 2, 0, 1, -2, 0, -1, null);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", 1, PIERCE);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 1, PIERCE);
 
         enemy1.EquipItem(weapon1);
 
@@ -59,10 +59,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
-        Actor enemy2 = new Actor(0, 1, "Troll", 3, false, 2, 0, 1, -2, 0, -1, null);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", 20, PIERCE);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 20, PIERCE);
 
         enemy1.EquipItem(weapon1);
 
@@ -76,10 +76,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
-        Actor enemy2 = new Actor(0, 1, "Troll", 3, false, 2, 0, 1, -2, 0, -1, null);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", 1, ARCANE);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 1, ARCANE);
 
         enemy1.EquipItem(weapon1);
 
@@ -93,10 +93,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, null);
-        Actor enemy2 = new Actor(0, 1, "Troll", 3, false, 2, 0, 1, -2, 0, -1, null);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", 5, SLASH);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 5, SLASH);
 
         enemy1.EquipItem(weapon1);
 
