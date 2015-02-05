@@ -19,7 +19,7 @@ public class AI {
     }
     
     public void MakeMove() {
-        System.out.println("AI made a move!");
+        //System.out.println("AI made a move!");
     }
     
 }

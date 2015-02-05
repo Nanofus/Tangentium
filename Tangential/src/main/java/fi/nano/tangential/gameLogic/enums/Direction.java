@@ -1,7 +1,7 @@
 package fi.nano.tangential.gameLogic.enums;
 
 /**
- * Enumeraattori suuntien ilmoittamista varten
+ * Enumeraattori suuntien ilmoittamista varten.
  * 
  * @author Nanofus
  */

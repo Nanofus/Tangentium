@@ -4,10 +4,12 @@ import fi.nano.tangential.Game;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+/**
+ * Käyttäjän syötettä kuunteleva kuuntelija. Lähettää napinpainallukset Gamelle.
+ * 
+ * @author Nanofus
+ */
 public class InputListener implements KeyListener {
 
     private Game game;
