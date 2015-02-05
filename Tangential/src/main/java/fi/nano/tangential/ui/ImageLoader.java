@@ -11,7 +11,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Lataa pelin kuvat tiedostoista.
+ * 
  * @author Nanofus
  */
 public class ImageLoader {

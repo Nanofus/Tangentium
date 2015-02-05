@@ -13,7 +13,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- *
+ * Piirtää tason, hahmot ja esineet ruudulle.
+ * 
  * @author Nanofus
  */
 public class LevelRenderer extends JPanel {

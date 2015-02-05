@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="fi.nano.tangential.gameLogic.EntityTest" time="0.007" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="fi.nano.tangential.gameLogic.EntityTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_11\jre\bin"/>
@@ -64,6 +64,6 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="fi.nano.tangential.gameLogic.EntityTest" name="MoveWithPositiveValues" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.EntityTest" name="MoveWithNegativeValues" time="0"/>
   <testcase classname="fi.nano.tangential.gameLogic.EntityTest" name="MoveWithZeroValues" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.EntityTest" name="MoveWithNegativeValues" time="0"/>
 </testsuite>

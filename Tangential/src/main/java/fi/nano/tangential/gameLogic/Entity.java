@@ -1,8 +1,11 @@
 package fi.nano.tangential.gameLogic;
 
+import static fi.nano.tangential.gameLogic.enums.TileType.*;
+
 /**
- * Luokka, joka toimii pohjana Item- ja Actor-tyyppisille olioille. Sisältää entiteetin nimen, symbolin ja sijainnin.
- * 
+ * Luokka, joka toimii pohjana Item- ja Actor-tyyppisille olioille. Sisältää
+ * entiteetin nimen, symbolin ja sijainnin.
+ *
  * @author Nanofus
  */
 public class Entity {
@@ -10,11 +13,14 @@ public class Entity {
     private String name;
     private Character symbol;
 
+    private Level level;
+
     private Position position;
 
-    public Entity(int x, int y, String name) {
+    public Entity(int x, int y, String name, Level level) {
         position = new Position(x, y);
-        
+
+        this.level = level;
         this.name = name;
 
         switch (name) {
@@ -63,16 +69,18 @@ public class Entity {
         }
 
     }
-    
+
     public void Move(int x, int y) {
-        position.x = position.x + x;
-        position.y = position.y + y;
+        if (level.GetTile(position.x + x, position.y + y).GetType().is(PASSABLE) && level.GetActorInTile(position.x + x, position.y + y) == null) {
+            position.x = position.x + x;
+            position.y = position.y + y;
+        }
     }
 
     public Character GetSymbol() {
         return symbol;
     }
-    
+
     public String GetName() {
         return name;
     }
@@ -80,7 +88,7 @@ public class Entity {
     public Position GetPosition() {
         return position;
     }
-    
+
     public void SetPosition(int x, int y) {
         position.x = x;
         position.y = y;

@@ -63,7 +63,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthNoChange" time="0.005"/>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthLoss" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthLoss" time="0.006"/>
   <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthGain" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthNoChange" time="0"/>
 </testsuite>

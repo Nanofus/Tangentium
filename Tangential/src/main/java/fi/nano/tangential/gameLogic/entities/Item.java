@@ -1,6 +1,7 @@
 package fi.nano.tangential.gameLogic.entities;
 
 import fi.nano.tangential.gameLogic.Entity;
+import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Position;
 
@@ -16,8 +17,8 @@ public class Item extends Entity {
     
     private boolean equipped = false;
 
-    public Item(int x, int y, String name, int power, DamageType type) {
-        super(x,y,name);
+    public Item(int x, int y, String name, Level level, int power, DamageType type) {
+        super(x,y,name,level);
 
         this.power = power;
         this.type = type;

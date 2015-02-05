@@ -34,10 +34,9 @@ public class Game {
 
         /*System.out.println("\nGenerated level:\n----\n");
 
-        System.out.println(level);
+         System.out.println(level);
 
-        System.out.println("\n----");*/
-
+         System.out.println("\n----");*/
     }
 
     /**
@@ -55,10 +54,9 @@ public class Game {
 
         /*System.out.println("\nGenerated level:\n----\n");
 
-        System.out.println(level);
+         System.out.println(level);
 
-        System.out.println("\n----");*/
-
+         System.out.println("\n----");*/
     }
 
     private Level GenerateLevel(int width, int height, int enemies, int items) {
@@ -97,13 +95,7 @@ public class Game {
                 break;
         }
 
-        if (level.GetTile(level.GetPlayer().GetPosition().x+x,level.GetPlayer().GetPosition().y+y).GetType().is(PASSABLE)) {
-            canMove = true;
-        }
-
-        if (canMove) {
-            level.GetPlayer().Move(x, y);
-        }
+        level.GetPlayer().Move(x, y);
 
         PassTurn();
     }
@@ -113,10 +105,11 @@ public class Game {
      */
     public void PickItem() {
         for (Item item : level.GetItems()) {
-            if (item.GetPosition() == level.GetPlayer().GetPosition() && !item.IsEquipped()) {
+            if (item.GetPosition().equals(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
                 level.GetPlayer().EquipItem(item);
                 System.out.println("Player picked up item " + item.GetName());
                 PassTurn();
+                break;
             }
         }
     }

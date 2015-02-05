@@ -97,18 +97,18 @@ public class Level {
     public Level(String levelName) {
 
         Init();
-        
-        this.enemies = 10;
+
+        this.enemies = 20;
         this.items = 10;
 
         LevelReader levelReader = new LevelReader(levelName);
         ArrayList<String> levelArray = levelReader.GetLevel();
-        
+
         height = levelArray.size();
         width = levelArray.get(0).length();
-        
+
         tiles = new Tile[width][height];
-        
+
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 tiles[i][j] = new Tile();
@@ -126,7 +126,7 @@ public class Level {
                 }
             }
         }
-        
+
         System.out.println();
         SpawnItems(this.items);
         System.out.println();
@@ -134,7 +134,6 @@ public class Level {
         System.out.println();
         SpawnEnemies(this.enemies);
         System.out.println();
-        
 
     }
 
@@ -167,8 +166,20 @@ public class Level {
         return tiles[x][y];
     }
     
-    public Tile GetTile(Position pos) {
-        return tiles[pos.x][pos.y];
+    public Actor GetActorInTile(int x, int y) {
+        Actor chosen = null;
+        
+        for (Actor actor : entityManager.GetEnemies()) {
+            if (actor.GetPosition().x == x && actor.GetPosition().y == y) {
+                chosen = actor;
+            }
+        }
+        
+        if (player.GetPosition().x == x && player.GetPosition().y == y) {
+            chosen = player;
+        }
+        
+        return chosen;
     }
 
     public int GetWidth() {
@@ -188,7 +199,7 @@ public class Level {
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", 5, true, 0, 0, 0, 0, 0, 0, this);
+        player = new Actor(x, y, "Player", this, 5, true, 0, 0, 0, 0, 0, 0);
     }
 
     private void SpawnItems(int items) {
@@ -250,7 +261,7 @@ public class Level {
                 break;
         }
 
-        Item item = new Item(x, y, itemName, power, type);
+        Item item = new Item(x, y, itemName, this, power, type);
         entityManager.AddItem(item);
     }
 
@@ -270,16 +281,16 @@ public class Level {
 
     private void SpawnEnemy(int x, int y) {
         int randomValue = random.nextInt(100);
-        Actor enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, this);
+        Actor enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
 
         if (randomValue < 40) {
-            enemy = new Actor(x, y, "Skeleton", 1, false, 0, 2, -2, -1, 1, -2, this);
+            enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
         } else if (randomValue < 70) {
-            enemy = new Actor(x, y, "Troll", 1, false, 2, 0, 1, -2, 0, -1, this);
+            enemy = new Actor(x, y, "Troll", this, 1, false, 2, 0, 1, -2, 0, -1);
         } else if (randomValue < 95) {
-            enemy = new Actor(x, y, "Lizard Man", 1, false, -2, -2, 0, 1, 2, 1, this);
+            enemy = new Actor(x, y, "Lizard Man", this, 1, false, -2, -2, 0, 1, 2, 1);
         } else if (randomValue < 100) {
-            enemy = new Actor(x, y, "Dragon", 1, false, 0, 0, 0, 2, 2, 2, this);
+            enemy = new Actor(x, y, "Dragon", this, 1, false, 0, 0, 0, 2, 2, 2);
         }
 
         entityManager.AddEnemy(enemy);

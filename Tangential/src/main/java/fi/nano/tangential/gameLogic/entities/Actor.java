@@ -7,8 +7,9 @@ import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
 
 /**
- * Pelihahmoa hallitseva luokka. Voi olla controlled eli pelaajahahmo tai ei-controlled, jolloin ohjaus annetaan tekoälylle ja saadaan vihollinen.
- * 
+ * Pelihahmoa hallitseva luokka. Voi olla controlled eli pelaajahahmo tai
+ * ei-controlled, jolloin ohjaus annetaan tekoälylle ja saadaan vihollinen.
+ *
  * @author Nanofus
  */
 public class Actor extends Entity {
@@ -29,8 +30,8 @@ public class Actor extends Entity {
 
     private AI ai;
 
-    public Actor(int x, int y, String name, int hp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance, Level level) {
-        super(x, y, name);
+    public Actor(int x, int y, String name, Level level, int hp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
+        super(x, y, name, level);
 
         this.hitPoints = hp;
         this.slashResistance = slashResistance;
@@ -42,8 +43,8 @@ public class Actor extends Entity {
 
         this.controlled = controlled;
 
-        if (!controlled && level!=null) {
-            ai = new AI(this,level);
+        if (!controlled && level != null) {
+            ai = new AI(this, level);
             aiEnabled = true;
         } else {
             controlled = true;
