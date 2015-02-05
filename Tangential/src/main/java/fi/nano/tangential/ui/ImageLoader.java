@@ -49,12 +49,12 @@ public class ImageLoader {
 
             player = ImageIO.read(new File("graphics/player.png"));
 
-            sword = ImageIO.read(new File("graphics/skeleton.png"));
-            spear = ImageIO.read(new File("graphics/lizardman.png"));
-            mace = ImageIO.read(new File("graphics/troll.png"));
-            pyrospell = ImageIO.read(new File("graphics/dragon.png"));
-            icestaff = ImageIO.read(new File("graphics/troll.png"));
-            wand = ImageIO.read(new File("graphics/dragon.png"));
+            sword = ImageIO.read(new File("graphics/sword.png"));
+            spear = ImageIO.read(new File("graphics/spear.png"));
+            mace = ImageIO.read(new File("graphics/mace.png"));
+            pyrospell = ImageIO.read(new File("graphics/pyrospell.png"));
+            icestaff = ImageIO.read(new File("graphics/icestaff.png"));
+            wand = ImageIO.read(new File("graphics/wand.png"));
         } catch (IOException ex) {
             System.out.println("Graphics file not found! Exiting...");
             System.exit(1);
@@ -98,7 +98,7 @@ public class ImageLoader {
                 return wand;
                 
             default:
-                return chasm;
+                return water;
         }
     }
 

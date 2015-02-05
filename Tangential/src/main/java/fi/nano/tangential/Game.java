@@ -4,6 +4,8 @@ import fi.nano.tangential.gameLogic.*;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
+import static fi.nano.tangential.gameLogic.enums.TileType.*;
+import fi.nano.tangential.ui.Window;
 import java.io.FileNotFoundException;
 
 /**
@@ -12,6 +14,7 @@ import java.io.FileNotFoundException;
 public class Game {
 
     private Level level;
+    private Window window;
 
     int turn = 0;
 
@@ -29,11 +32,11 @@ public class Game {
 
         level = new Level(levelName);
 
-        System.out.println("\nGenerated level:\n----\n");
+        /*System.out.println("\nGenerated level:\n----\n");
 
         System.out.println(level);
 
-        System.out.println("\n----");
+        System.out.println("\n----");*/
 
     }
 
@@ -50,11 +53,11 @@ public class Game {
 
         level = GenerateLevel(width, height, enemies, items);
 
-        System.out.println("\nGenerated level:\n----\n");
+        /*System.out.println("\nGenerated level:\n----\n");
 
         System.out.println(level);
 
-        System.out.println("\n----");
+        System.out.println("\n----");*/
 
     }
 
@@ -66,42 +69,43 @@ public class Game {
         return level;
     }
 
-    /**
-     * Käynnistää pelilogiikan.
-     */
-    public void RunGame() {
-
-        while (gameRunning) {
-            //System.out.println("New turn!");
-
-            //Player's turn
-            //System.out.println("Player's turn");
-            while (isPlayersTurn) {
-
-            }
-
-            //AI turn
-            //System.out.println("AI's turn");
-            for (Actor enemy : level.GetActors()) {
-                if (enemy.HasAI()) {
-                    enemy.GetAI().MakeMove();
-                }
-            }
-
-            turn++;
-
-            //temp solution
-            /*if (turn > 200) {
-             gameRunning = false;
-             }*/
-        }
+    public void SetWindow(Window window) {
+        this.window = window;
     }
 
     /**
      * Pelaajan liikkuminen inputista.
      */
     public void MovePlayer(Direction dir) {
+        int x = 0;
+        int y = 0;
 
+        boolean canMove = false;
+
+        switch (dir) {
+            case LEFT:
+                x = -1;
+                break;
+            case RIGHT:
+                x = 1;
+                break;
+            case UP:
+                y = -1;
+                break;
+            case DOWN:
+                y = 1;
+                break;
+        }
+
+        if (level.GetTile(level.GetPlayer().GetPosition().x+x,level.GetPlayer().GetPosition().y+y).GetType().is(PASSABLE)) {
+            canMove = true;
+        }
+
+        if (canMove) {
+            level.GetPlayer().Move(x, y);
+        }
+
+        PassTurn();
     }
 
     /**
@@ -111,7 +115,22 @@ public class Game {
         for (Item item : level.GetItems()) {
             if (item.GetPosition() == level.GetPlayer().GetPosition() && !item.IsEquipped()) {
                 level.GetPlayer().EquipItem(item);
-                System.out.println("Player picked up item "+item.GetName());
+                System.out.println("Player picked up item " + item.GetName());
+                PassTurn();
+            }
+        }
+    }
+
+    private void PassTurn() {
+        AIMove();
+        window.Refresh();
+        turn++;
+    }
+
+    private void AIMove() {
+        for (Actor enemy : level.GetActors()) {
+            if (enemy.HasAI()) {
+                enemy.GetAI().MakeMove();
             }
         }
     }

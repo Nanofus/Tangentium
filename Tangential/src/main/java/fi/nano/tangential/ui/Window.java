@@ -59,6 +59,10 @@ public class Window implements Runnable {
     private void createComponents(Container container) {
 
     }
+    
+    public void Refresh() {
+        frame.repaint();
+    }
 
     public JFrame getFrame() {
         return frame;

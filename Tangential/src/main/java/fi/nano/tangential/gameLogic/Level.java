@@ -166,6 +166,10 @@ public class Level {
     public Tile GetTile(int x, int y) {
         return tiles[x][y];
     }
+    
+    public Tile GetTile(Position pos) {
+        return tiles[pos.x][pos.y];
+    }
 
     public int GetWidth() {
         return width;

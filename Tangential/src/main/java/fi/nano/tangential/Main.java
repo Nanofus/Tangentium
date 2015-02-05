@@ -18,7 +18,7 @@ public class Main {
         Window window = new Window(game);
         SwingUtilities.invokeLater(window);
         
-        game.RunGame();
+        game.SetWindow(window);
            
     }
 }

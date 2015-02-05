@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="fi.nano.tangential.gameLogic.LevelTest" time="0.119" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="fi.nano.tangential.gameLogic.LevelTest" time="0.055" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_11\jre\bin"/>
@@ -30,7 +30,7 @@
     <property name="maven.ext.class.path" value="C:\Users\Nanofus\AppData\Roaming\NetBeans\8.0.1\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.0.1\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_11\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Ruby193\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_11\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Ruby193\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -63,10 +63,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestLevelRandomGenerationLevelHeight" time="0.054"/>
-  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelWidthNegativeValue" time="0.001"/>
+  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestLevelRandomGenerationLevelHeight" time="0.001"/>
   <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelWidthZeroValue" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestLevelRandomGenerationLevelWidth" time="0.041"/>
-  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelHeightZeroValue" time="0.003"/>
-  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelHeightNegativeValue" time="0.001"/>
+  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestLevelRandomGenerationLevelWidth" time="0.051"/>
+  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelHeightZeroValue" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelHeightNegativeValue" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.LevelTest" name="TestGameRandomGenerationLevelWidthNegativeValue" time="0"/>
 </testsuite>
