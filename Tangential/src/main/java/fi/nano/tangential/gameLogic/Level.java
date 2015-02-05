@@ -116,10 +116,13 @@ public class Level {
                 switch (tileChar) {
                     case '.':
                         tiles[i][j].SetType(FLOOR);
+                        break;
                     case 'X':
                         tiles[i][j].SetType(WALL);
+                        break;
                     default:
                         tiles[i][j].SetType(FLOOR);
+                        break;
                 }
             }
         }
@@ -190,7 +193,7 @@ public class Level {
                 int x = random.nextInt(GetWidth());
                 int y = random.nextInt(GetHeight());
 
-                if (GetTile(x, y).GetType().is(TileType.PASSABLE)) {
+                if (GetTile(x, y).GetType().is(PASSABLE)) {
                     SpawnItem(x, y);
                     items--;
                 }
@@ -253,7 +256,7 @@ public class Level {
                 int x = random.nextInt(GetWidth());
                 int y = random.nextInt(GetHeight());
 
-                if (GetTile(x, y).GetType() != TileType.WALL) {
+                if (GetTile(x, y).GetType().is(PASSABLE)) {
                     SpawnEnemy(x, y);
                     enemies--;
                 }
