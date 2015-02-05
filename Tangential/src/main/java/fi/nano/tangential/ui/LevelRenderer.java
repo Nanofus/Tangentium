@@ -7,6 +7,7 @@ package fi.nano.tangential.ui;
 
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.entities.Actor;
+import fi.nano.tangential.gameLogic.entities.Item;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
@@ -17,21 +18,11 @@ import javax.swing.JPanel;
  */
 public class LevelRenderer extends JPanel {
 
-    private BufferedImage img_floor;
-    private BufferedImage img_wall;
-    private BufferedImage img_chasm;
-    private BufferedImage img_water;
-
-    private BufferedImage img_skeleton;
-    private BufferedImage img_lizardMan;
-    private BufferedImage img_troll;
-    private BufferedImage img_dragon;
-
-    private BufferedImage img_player;
-
     private int tileSize;
 
     private Level level;
+    
+    private ImageLoader imageLoader;
 
     private int originX;
     private int originY;
@@ -39,25 +30,15 @@ public class LevelRenderer extends JPanel {
     private int centerX;
     private int centerY;
 
-    LevelRenderer(Level level, int windowWidth, int windowHeight, BufferedImage img_player, BufferedImage img_floor, BufferedImage img_wall, BufferedImage img_chasm, BufferedImage img_water, BufferedImage img_skeleton, BufferedImage img_lizardMan, BufferedImage img_troll, BufferedImage img_dragon) {
+    LevelRenderer(Level level, int windowWidth, int windowHeight) {
+        imageLoader = new ImageLoader();
+        
         this.level = level;
 
         this.originX = windowWidth / 2;
         this.originY = windowHeight / 2;
 
-        tileSize = img_floor.getWidth();
-
-        this.img_player = img_player;
-
-        this.img_floor = img_floor;
-        this.img_wall = img_wall;
-        this.img_chasm = img_chasm;
-        this.img_water = img_water;
-
-        this.img_skeleton = img_skeleton;
-        this.img_lizardMan = img_lizardMan;
-        this.img_troll = img_troll;
-        this.img_dragon = img_dragon;
+        tileSize = imageLoader.GetImage("Floor").getWidth();
     }
 
     @Override
@@ -68,42 +49,38 @@ public class LevelRenderer extends JPanel {
                 BufferedImage drawnImage;
                 switch (level.GetTile(i, j).GetType()) {
                     case WALL:
-                        drawnImage = img_wall;
+                        drawnImage = imageLoader.GetImage("Wall");
                         break;
                     case FLOOR:
-                        drawnImage = img_floor;
+                        drawnImage = imageLoader.GetImage("Floor");
                         break;
                     case WATER:
-                        drawnImage = img_water;
+                        drawnImage = imageLoader.GetImage("Water");
                         break;
                     default:
-                        drawnImage = img_chasm;
+                        drawnImage = imageLoader.GetImage("Chasm");
                         break;
                 }
                 g.drawImage(drawnImage, (tileSize * i), (tileSize * j), null);
 
+                for (Item item : level.GetItems()) {
+                    if (item.GetPosition().x == i && item.GetPosition().y == j) {
+                        if(!item.IsEquipped()) {
+                            drawnImage = imageLoader.GetImage(item.GetName());
+                            g.drawImage(drawnImage, (tileSize * i), (tileSize * j), null);
+                        }
+                    }
+                }
+                
                 for (Actor actor : level.GetActors()) {
                     if (actor.GetPosition().x == i && actor.GetPosition().y == j) {
-                        switch (actor.GetName()) {
-                            case "Skeleton":
-                                drawnImage = img_skeleton;
-                                break;
-                            case "Lizard Man":
-                                drawnImage = img_lizardMan;
-                                break;
-                            case "Troll":
-                                drawnImage = img_troll;
-                                break;
-                            case "Dragon":
-                                drawnImage = img_dragon;
-                                break;
-                        }
+                        drawnImage = imageLoader.GetImage(actor.GetName());
                         g.drawImage(drawnImage, (tileSize * i), (tileSize * j), null);
                     }
                 }
 
                 if (level.GetPlayer().GetPosition().x == i && level.GetPlayer().GetPosition().y == j) {
-                    drawnImage = img_player;
+                    drawnImage = imageLoader.GetImage("Player");
                     g.drawImage(drawnImage, (tileSize * i), (tileSize * j), null);
                 }
             }
