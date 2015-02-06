@@ -17,6 +17,8 @@ public class Actor extends Entity {
     private Item wieldedItem;
 
     private int hitPoints = 1;
+    
+    private int stunned = 0;
 
     private int slashResistance = 0;
     private int pierceResistance = 0;
@@ -93,6 +95,14 @@ public class Actor extends Entity {
         if (hitPoints < 0) {
             hitPoints = 0;
         }
+    }
+    
+    public void AddStun(int duration) {
+        stunned = duration;
+    }
+    
+    public int GetStun() {
+        return stunned;
     }
 
     public int GetResistance(DamageType damageType) {

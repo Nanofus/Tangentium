@@ -75,27 +75,31 @@ public class Game {
      * Pelaajan liikkuminen inputista.
      */
     public void MovePlayer(Direction dir) {
-        int x = 0;
-        int y = 0;
+        if (level.GetPlayer().GetStun() == 0) {
+            int x = 0;
+            int y = 0;
 
-        boolean canMove = false;
+            boolean canMove = false;
 
-        switch (dir) {
-            case LEFT:
-                x = -1;
-                break;
-            case RIGHT:
-                x = 1;
-                break;
-            case UP:
-                y = -1;
-                break;
-            case DOWN:
-                y = 1;
-                break;
+            switch (dir) {
+                case LEFT:
+                    x = -1;
+                    break;
+                case RIGHT:
+                    x = 1;
+                    break;
+                case UP:
+                    y = -1;
+                    break;
+                case DOWN:
+                    y = 1;
+                    break;
+            }
+
+            level.GetPlayer().Move(x, y);
+        } else {
+            level.GetPlayer().AddStun(-1);
         }
-
-        level.GetPlayer().Move(x, y);
 
         PassTurn();
     }
@@ -104,14 +108,20 @@ public class Game {
      * Pelaaja yrittää poimia esineen.
      */
     public void PickItem() {
-        for (Item item : level.GetItems()) {
-            if (item.GetPosition().equals(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
-                level.GetPlayer().EquipItem(item);
-                System.out.println("Player picked up item " + item.GetName());
-                PassTurn();
-                break;
+        if (level.GetPlayer().GetStun() == 0) {
+            for (Item item : level.GetItems()) {
+                if (item.GetPosition().is(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
+                    level.GetPlayer().EquipItem(item);
+                    System.out.println("Player picked up item " + item.GetName());
+                    PassTurn();
+                    break;
+                }
             }
+        } else {
+            level.GetPlayer().AddStun(-1);
         }
+
+        PassTurn();
     }
 
     private void PassTurn() {
@@ -122,8 +132,10 @@ public class Game {
 
     private void AIMove() {
         for (Actor enemy : level.GetActors()) {
-            if (enemy.HasAI()) {
+            if (enemy.HasAI() && enemy.GetStun() == 0) {
                 enemy.GetAI().MakeMove();
+            } else if (enemy.GetStun() > 0) {
+                enemy.AddStun(-1);
             }
         }
     }

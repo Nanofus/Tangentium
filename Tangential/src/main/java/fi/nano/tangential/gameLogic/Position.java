@@ -21,4 +21,12 @@ public class Position {
         return "(" + x + "," + y + ")";
     }
 
+    public boolean is(Position other) {
+        if(other.x == x && other.y == y) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

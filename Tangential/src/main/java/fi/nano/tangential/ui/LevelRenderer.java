@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fi.nano.tangential.ui;
 
 import fi.nano.tangential.gameLogic.Level;
@@ -14,16 +10,16 @@ import javax.swing.JPanel;
 
 /**
  * Piirtää tason, hahmot ja esineet ruudulle.
- * 
+ *
  * @author Nanofus
  */
 public class LevelRenderer extends JPanel {
 
-    private int tileSize;
+    private final int tileSize;
 
-    private Level level;
-    
-    private ImageLoader imageLoader;
+    private final Level level;
+
+    private final ImageLoader imageLoader;
 
     private int originX;
     private int originY;
@@ -33,7 +29,7 @@ public class LevelRenderer extends JPanel {
 
     LevelRenderer(Level level, int windowWidth, int windowHeight) {
         imageLoader = new ImageLoader();
-        
+
         this.level = level;
 
         this.originX = windowWidth / 2;
@@ -66,13 +62,13 @@ public class LevelRenderer extends JPanel {
 
                 for (Item item : level.GetItems()) {
                     if (item.GetPosition().x == i && item.GetPosition().y == j) {
-                        if(!item.IsEquipped()) {
+                        if (!item.IsEquipped()) {
                             drawnImage = imageLoader.GetImage(item.GetName());
                             g.drawImage(drawnImage, (tileSize * i), (tileSize * j), null);
                         }
                     }
                 }
-                
+
                 for (Actor actor : level.GetActors()) {
                     if (actor.GetPosition().x == i && actor.GetPosition().y == j) {
                         drawnImage = imageLoader.GetImage(actor.GetName());

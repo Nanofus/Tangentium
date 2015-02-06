@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        Game game = new Game("test");
+        Game game = new Game("level1");
         
         Window window = new Window(game);
         SwingUtilities.invokeLater(window);

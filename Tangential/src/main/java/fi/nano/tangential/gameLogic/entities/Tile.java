@@ -43,6 +43,14 @@ public class Tile {
             case ICE:
                 symbol = '_';
                 break;
+            case PILLAR:
+                symbol = 'I';
+            case GRASS:
+                symbol = ',';
+            case PATH:
+                symbol = ';';
+            case TREE:
+                symbol = 'T';
         }
     }
     

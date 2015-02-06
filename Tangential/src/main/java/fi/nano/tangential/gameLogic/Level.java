@@ -120,8 +120,29 @@ public class Level {
                     case 'X':
                         tiles[i][j].SetType(WALL);
                         break;
+                    case ' ':
+                        tiles[i][j].SetType(CHASM);
+                        break;
+                    case '~':
+                        tiles[i][j].SetType(WATER);
+                        break;
+                    case '_':
+                        tiles[i][j].SetType(ICE);
+                        break;
+                    case 'I':
+                        tiles[i][j].SetType(PILLAR);
+                        break;
+                    case ',':
+                        tiles[i][j].SetType(GRASS);
+                        break;
+                    case ';':
+                        tiles[i][j].SetType(PATH);
+                        break;
+                    case 'T':
+                        tiles[i][j].SetType(TREE);
+                        break;
                     default:
-                        tiles[i][j].SetType(FLOOR);
+                        tiles[i][j].SetType(CHASM);
                         break;
                 }
             }

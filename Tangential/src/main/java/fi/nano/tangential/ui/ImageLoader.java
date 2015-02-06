@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fi.nano.tangential.ui;
 
 import java.awt.image.BufferedImage;
@@ -21,6 +17,10 @@ public class ImageLoader {
     private BufferedImage wall;
     private BufferedImage chasm;
     private BufferedImage water;
+    private BufferedImage grass;
+    private BufferedImage tree;
+    private BufferedImage path;
+    private BufferedImage pillar;
 
     private BufferedImage skeleton;
     private BufferedImage lizardMan;
@@ -42,6 +42,10 @@ public class ImageLoader {
             wall = ImageIO.read(new File("graphics/wall.png"));
             chasm = ImageIO.read(new File("graphics/chasm.png"));
             water = ImageIO.read(new File("graphics/water.png"));
+            grass = ImageIO.read(new File("graphics/grass.png"));
+            tree = ImageIO.read(new File("graphics/tree.png"));
+            path = ImageIO.read(new File("graphics/path.png"));
+            pillar = ImageIO.read(new File("graphics/pillar.png"));
 
             skeleton = ImageIO.read(new File("graphics/skeleton.png"));
             lizardMan = ImageIO.read(new File("graphics/lizardman.png"));
@@ -71,6 +75,14 @@ public class ImageLoader {
             case "Chasm":
                 return chasm;
             case "Water":
+                return water;
+            case "Grass":
+                return wall;
+            case "Tree":
+                return floor;
+            case "Path":
+                return chasm;
+            case "Pillar":
                 return water;
             
             case "Skeleton":
