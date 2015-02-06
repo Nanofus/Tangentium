@@ -8,3 +8,6 @@
 * 26.1. - 2h - EntityManager
 * 29.1. - 4h - Vahingon tekeminen, uusi luokkakaavio, lisää testejä
 * 30.1. - 1h - LevelReaderin lisäys
+* 4.2.  - 2h - Javadocia, kentän lukeminen tiedostosta
+* 5.2.  - 5h - Grafiikkasysteemi ja liikkuminen
+* 6.2.  - 2h - Uusi kenttä, AI
