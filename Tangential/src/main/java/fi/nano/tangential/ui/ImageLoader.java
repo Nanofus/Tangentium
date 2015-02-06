@@ -77,13 +77,13 @@ public class ImageLoader {
             case "Water":
                 return water;
             case "Grass":
-                return wall;
+                return grass;
             case "Tree":
-                return floor;
+                return tree;
             case "Path":
-                return chasm;
+                return path;
             case "Pillar":
-                return water;
+                return pillar;
             
             case "Skeleton":
                 return skeleton;

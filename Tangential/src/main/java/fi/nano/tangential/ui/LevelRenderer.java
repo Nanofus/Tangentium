@@ -54,6 +54,21 @@ public class LevelRenderer extends JPanel {
                     case WATER:
                         drawnImage = imageLoader.GetImage("Water");
                         break;
+                    case PILLAR:
+                        drawnImage = imageLoader.GetImage("Pillar");
+                        break;
+                    case CHASM:
+                        drawnImage = imageLoader.GetImage("Chasm");
+                        break;
+                    case PATH:
+                        drawnImage = imageLoader.GetImage("Path");
+                        break;
+                    case GRASS:
+                        drawnImage = imageLoader.GetImage("Grass");
+                        break;
+                    case TREE:
+                        drawnImage = imageLoader.GetImage("Tree");
+                        break;
                     default:
                         drawnImage = imageLoader.GetImage("Chasm");
                         break;
