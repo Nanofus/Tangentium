@@ -108,17 +108,13 @@ public class Game {
      * Pelaaja yrittää poimia esineen.
      */
     public void PickItem() {
-        if (level.GetPlayer().GetStun() == 0) {
-            for (Item item : level.GetItems()) {
-                if (item.GetPosition().is(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
-                    level.GetPlayer().EquipItem(item);
-                    System.out.println("Player picked up item " + item.GetName());
-                    PassTurn();
-                    break;
-                }
+        for (Item item : level.GetItems()) {
+            if (item.GetPosition().is(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
+                level.GetPlayer().EquipItem(item);
+                System.out.println("Player picked up item " + item.GetName());
+                PassTurn();
+                break;
             }
-        } else {
-            level.GetPlayer().AddStun(-1);
         }
 
         PassTurn();
@@ -132,10 +128,8 @@ public class Game {
 
     private void AIMove() {
         for (Actor enemy : level.GetActors()) {
-            if (enemy.HasAI() && enemy.GetStun() == 0) {
+            if (enemy.HasAI()) {
                 enemy.GetAI().MakeMove();
-            } else if (enemy.GetStun() > 0) {
-                enemy.AddStun(-1);
             }
         }
     }

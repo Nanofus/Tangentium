@@ -5,7 +5,9 @@
  */
 package fi.nano.tangential.gameLogic.entities;
 
+import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.entities.Actor;
+import static fi.nano.tangential.gameLogic.enums.DamageType.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,4 +66,42 @@ public class ActorTest {
         
         assertEquals(1,enemy.GetHealth());
     }
+    
+    @Test
+    public void EquipItemTest() {
+        Item item = new Item(0,0,"TestItem",null,5,PIERCE);
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        enemy.EquipItem(item);
+        
+        assertEquals(true,item.IsEquipped());
+    }
+    
+    @Test
+    public void TestIfHasAITrue() {
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        assertEquals(true,enemy.HasAI());
+    }
+    
+    @Test
+    public void TestIfHasAIFalse() {
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, true, 0, 2, -2, -1, 1, -2);
+        
+        assertEquals(false,enemy.HasAI());
+    }
+    
+    @Test
+    public void TestStunAddPositive() {
+        Level level = new Level(10,10,0,0);
+        
+        Actor enemy = new Actor(4, 4, "Skeleton", level, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        enemy.AddStun(5);
+        
+        enemy.GetAI().MakeMove();
+        
+        assertEquals(4,enemy.GetStun());
+    }
+    
 }

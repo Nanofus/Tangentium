@@ -1,5 +1,7 @@
 package fi.nano.tangential.gameLogic;
 
+import fi.nano.tangential.gameLogic.Entity;
+import fi.nano.tangential.gameLogic.Level;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

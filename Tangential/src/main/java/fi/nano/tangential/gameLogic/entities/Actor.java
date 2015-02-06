@@ -17,8 +17,8 @@ public class Actor extends Entity {
     private Item wieldedItem;
 
     private int hitPoints = 1;
-    
-    private int stunned = 0;
+
+    private int stun = 0;
 
     private int slashResistance = 0;
     private int pierceResistance = 0;
@@ -45,28 +45,44 @@ public class Actor extends Entity {
 
         this.controlled = controlled;
 
-        if (!controlled && level != null) {
+        if (!controlled) {
             ai = new AI(this, level);
             aiEnabled = true;
         } else {
             controlled = true;
         }
 
-        if (controlled) {
-            System.out.println("Spawned player at " + GetPosition());
-        } else {
-            System.out.println("Spawned enemy '" + name + "' at " + GetPosition());
-        }
-
+        /*if (controlled) {
+         System.out.println("Spawned player at " + GetPosition());
+         } else {
+         System.out.println("Spawned enemy '" + name + "' at " + GetPosition());
+         }*/
     }
 
     public void EquipItem(Item item) {
-        if (wieldedItem != null) {
-            wieldedItem.SetEquipped(false);
-            wieldedItem.SetPosition(GetPosition().x, GetPosition().y);
+        if (stun < 1) {
+            if (wieldedItem != null) {
+                wieldedItem.SetEquipped(false);
+                wieldedItem.SetPosition(GetPosition().x, GetPosition().y);
+            }
+            wieldedItem = item;
+            item.SetEquipped(true);
+        } else {
+            LowerStun();
         }
-        wieldedItem = item;
-        item.SetEquipped(true);
+    }
+
+    @Override
+    public void Move(int x, int y) {
+        if (stun < 1) {
+            super.Move(x, y);
+        } else {
+            LowerStun();
+        }
+    }
+    
+    private void LowerStun() {
+        stun = stun - 1;
     }
 
     public int GetHealth() {
@@ -96,13 +112,13 @@ public class Actor extends Entity {
             hitPoints = 0;
         }
     }
-    
+
     public void AddStun(int duration) {
-        stunned = duration;
+        stun = duration;
     }
-    
+
     public int GetStun() {
-        return stunned;
+        return stun;
     }
 
     public int GetResistance(DamageType damageType) {

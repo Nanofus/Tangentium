@@ -28,9 +28,6 @@ public enum TileType {
     }
 
     public boolean is(TileType other) {
-        if (other == null) {
-            return false;
-        }
 
         for (TileType t = this; t != null; t = t.parent) {
             if (other == t) {
