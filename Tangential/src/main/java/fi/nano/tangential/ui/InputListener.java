@@ -7,13 +7,15 @@ import java.awt.event.KeyListener;
 
 /**
  * Käyttäjän syötettä kuunteleva kuuntelija. Lähettää napinpainallukset Gamelle.
- * 
+ *
  * @author Nanofus
  */
 public class InputListener implements KeyListener {
 
     private Game game;
-    
+
+    private boolean buttonPressed;
+
     public InputListener(Game game) {
         this.game = game;
     }
@@ -25,26 +27,31 @@ public class InputListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            game.MovePlayer(RIGHT);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            game.MovePlayer(LEFT);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            game.MovePlayer(UP);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            game.MovePlayer(DOWN);
-        }
-        
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            game.PickItem();
+        if (!buttonPressed) {
+            buttonPressed = true;
+            
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                game.MovePlayer(RIGHT);
+            }
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                game.MovePlayer(LEFT);
+            }
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                game.MovePlayer(UP);
+            }
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                game.MovePlayer(DOWN);
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                game.PickItem();
+            }
         }
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        buttonPressed = false;
     }
 }

@@ -41,11 +41,11 @@ public class ImageLoader {
             floor = ImageIO.read(new File("graphics/floor2.png"));
             wall = ImageIO.read(new File("graphics/wall2.png"));
             chasm = ImageIO.read(new File("graphics/floor2.png"));
-            water = ImageIO.read(new File("graphics/floor2.png"));
-            grass = ImageIO.read(new File("graphics/floor2.png"));
-            tree = ImageIO.read(new File("graphics/floor2.png"));
-            path = ImageIO.read(new File("graphics/floor2.png"));
-            pillar = ImageIO.read(new File("graphics/floor2.png"));
+            water = ImageIO.read(new File("graphics/water2.png"));
+            grass = ImageIO.read(new File("graphics/grass2.png"));
+            tree = ImageIO.read(new File("graphics/tree2.png"));
+            path = ImageIO.read(new File("graphics/path2.png"));
+            pillar = ImageIO.read(new File("graphics/pillar2.png"));
 
             skeleton = ImageIO.read(new File("graphics/player2.png"));
             lizardMan = ImageIO.read(new File("graphics/player2.png"));

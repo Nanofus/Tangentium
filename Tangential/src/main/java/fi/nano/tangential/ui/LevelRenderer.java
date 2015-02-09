@@ -57,6 +57,7 @@ public class LevelRenderer extends JPanel {
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
                 BufferedImage drawnImage;
+                BufferedImage drawnImageBottom = null;
                 switch (level.GetTile(i, j).GetType()) {
                     case WALL:
                         drawnImage = imageLoader.GetImage("Wall");
@@ -69,6 +70,7 @@ public class LevelRenderer extends JPanel {
                         break;
                     case PILLAR:
                         drawnImage = imageLoader.GetImage("Pillar");
+                        drawnImageBottom = imageLoader.GetImage("Floor");
                         break;
                     case CHASM:
                         drawnImage = imageLoader.GetImage("Chasm");
@@ -81,6 +83,7 @@ public class LevelRenderer extends JPanel {
                         break;
                     case TREE:
                         drawnImage = imageLoader.GetImage("Tree");
+                        drawnImageBottom = imageLoader.GetImage("Grass");
                         break;
                     default:
                         drawnImage = imageLoader.GetImage("Chasm");
@@ -90,11 +93,14 @@ public class LevelRenderer extends JPanel {
                 int tileOffset = 0;
 
                 if (drawnImage.getHeight() > tileSizeY) {
-                    tileOffset = 32;
+                    tileOffset = tileSizeY*2;
                 }
 
+                if (drawnImageBottom!=null) {
+                    g.drawImage(drawnImageBottom, isoPos.x + offsetX, isoPos.y + offsetY, null);
+                }
                 g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - tileOffset + offsetY, null);
-
+                
                 Item itemInTile = level.GetItemInTile(i, j);
                 if (itemInTile != null) {
                     drawnImage = imageLoader.GetImage(itemInTile.GetName());
