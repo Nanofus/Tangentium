@@ -38,28 +38,28 @@ public class ImageLoader {
 
     public ImageLoader() {
         try {
-            floor = ImageIO.read(new File("graphics/floor.png"));
-            wall = ImageIO.read(new File("graphics/wall.png"));
-            chasm = ImageIO.read(new File("graphics/chasm.png"));
-            water = ImageIO.read(new File("graphics/water.png"));
-            grass = ImageIO.read(new File("graphics/grass.png"));
-            tree = ImageIO.read(new File("graphics/tree.png"));
-            path = ImageIO.read(new File("graphics/path.png"));
-            pillar = ImageIO.read(new File("graphics/pillar.png"));
+            floor = ImageIO.read(new File("graphics/floor2.png"));
+            wall = ImageIO.read(new File("graphics/wall2.png"));
+            chasm = ImageIO.read(new File("graphics/floor2.png"));
+            water = ImageIO.read(new File("graphics/floor2.png"));
+            grass = ImageIO.read(new File("graphics/floor2.png"));
+            tree = ImageIO.read(new File("graphics/floor2.png"));
+            path = ImageIO.read(new File("graphics/floor2.png"));
+            pillar = ImageIO.read(new File("graphics/floor2.png"));
 
-            skeleton = ImageIO.read(new File("graphics/skeleton.png"));
-            lizardMan = ImageIO.read(new File("graphics/lizardman.png"));
-            troll = ImageIO.read(new File("graphics/troll.png"));
-            dragon = ImageIO.read(new File("graphics/dragon.png"));
+            skeleton = ImageIO.read(new File("graphics/player2.png"));
+            lizardMan = ImageIO.read(new File("graphics/player2.png"));
+            troll = ImageIO.read(new File("graphics/player2.png"));
+            dragon = ImageIO.read(new File("graphics/player2.png"));
 
-            player = ImageIO.read(new File("graphics/player.png"));
+            player = ImageIO.read(new File("graphics/player2.png"));
 
-            sword = ImageIO.read(new File("graphics/sword.png"));
-            spear = ImageIO.read(new File("graphics/spear.png"));
-            mace = ImageIO.read(new File("graphics/mace.png"));
-            pyrospell = ImageIO.read(new File("graphics/pyrospell.png"));
-            icestaff = ImageIO.read(new File("graphics/icestaff.png"));
-            wand = ImageIO.read(new File("graphics/wand.png"));
+            sword = ImageIO.read(new File("graphics/sword2.png"));
+            spear = ImageIO.read(new File("graphics/sword2.png"));
+            mace = ImageIO.read(new File("graphics/sword2.png"));
+            pyrospell = ImageIO.read(new File("graphics/sword2.png"));
+            icestaff = ImageIO.read(new File("graphics/sword2.png"));
+            wand = ImageIO.read(new File("graphics/sword2.png"));
         } catch (IOException ex) {
             System.out.println("Graphics file not found! Exiting...");
             System.exit(1);

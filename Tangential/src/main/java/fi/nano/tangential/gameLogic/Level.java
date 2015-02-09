@@ -186,20 +186,34 @@ public class Level {
     public Tile GetTile(int x, int y) {
         return tiles[x][y];
     }
-    
+
     public Actor GetActorInTile(int x, int y) {
         Actor chosen = null;
-        
+
         for (Actor actor : entityManager.GetEnemies()) {
             if (actor.GetPosition().x == x && actor.GetPosition().y == y) {
                 chosen = actor;
             }
         }
-        
+
         if (player.GetPosition().x == x && player.GetPosition().y == y) {
             chosen = player;
         }
-        
+
+        return chosen;
+    }
+
+    public Item GetItemInTile(int x, int y) {
+        Item chosen = null;
+
+        for (Item item : entityManager.GetItems()) {
+            if (item.GetPosition().x == x && item.GetPosition().y == y) {
+                if (!item.IsEquipped()) {
+                    chosen = item;
+                }
+            }
+        }
+
         return chosen;
     }
 
