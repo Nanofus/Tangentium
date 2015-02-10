@@ -44,7 +44,7 @@ public class Level {
      * @param enemies Vihollisten määrä
      * @param items Esineiden määrä
      */
-    public Level(int width, int height, int enemies, int items) {
+    /*public Level(int width, int height, int enemies, int items) {
 
         Init();
 
@@ -86,7 +86,7 @@ public class Level {
         SpawnEnemies(this.enemies);
         System.out.println();
 
-    }
+    }*/
 
     /**
      * Konstruktori lataa tason tekstitiedostosta.
@@ -97,12 +97,16 @@ public class Level {
     public Level(String levelName) {
 
         Init();
-
-        this.enemies = 20;
-        this.items = 10;
-
+        
         LevelReader levelReader = new LevelReader(levelName);
+        
         ArrayList<String> levelArray = levelReader.GetLevel();
+        ArrayList<String> actorArray = levelReader.GetActors();
+        ArrayList<String> itemArray = levelReader.GetItems();
+        
+        System.out.println(levelArray);
+        System.out.println(actorArray);
+        System.out.println(itemArray);
 
         height = levelArray.size();
         width = levelArray.get(0).length();
@@ -113,6 +117,9 @@ public class Level {
             for (int j = 0; j < height; j++) {
                 tiles[i][j] = new Tile();
                 Character tileChar = levelArray.get(j).charAt(i);
+                Character actorChar = actorArray.get(j).charAt(i);
+                Character itemChar = itemArray.get(j).charAt(i);
+                
                 switch (tileChar) {
                     case '.':
                         tiles[i][j].SetType(FLOOR);
@@ -145,16 +152,47 @@ public class Level {
                         tiles[i][j].SetType(CHASM);
                         break;
                 }
+                
+                switch (actorChar) {
+                    case '@':
+                        SpawnPlayer(i,j);
+                        break;
+                    case 'S':
+                        SpawnEnemy(i,j,"Skeleton");
+                        break;
+                    case 'T':
+                        SpawnEnemy(i,j,"Troll");
+                        break;
+                    case 'L':
+                        SpawnEnemy(i,j,"Lizard Man");
+                        break;
+                    case 'D':
+                        SpawnEnemy(i,j,"Dragon");
+                        break;
+                }
+                
+                switch(itemChar) {
+                    case 's':
+                        SpawnItem(i,j,"Sword",1);
+                        break;
+                    case 'r':
+                        SpawnItem(i,j,"Spear",1);
+                        break;
+                    case 'm':
+                        SpawnItem(i,j,"Mace",1);
+                        break;
+                    case 'p':
+                        SpawnItem(i,j,"Pyrospell",1);
+                        break;
+                    case 'i':
+                        SpawnItem(i,j,"Ice Staff",1);
+                        break;
+                    case 'w':
+                        SpawnItem(i,j,"Wand",1);
+                        break;
+                }
             }
         }
-
-        System.out.println();
-        SpawnItems(this.items);
-        System.out.println();
-        SpawnPlayer(1, 1);
-        System.out.println();
-        SpawnEnemies(this.enemies);
-        System.out.println();
 
     }
 
@@ -237,95 +275,56 @@ public class Level {
         player = new Actor(x, y, "Player", this, 5, true, 0, 0, 0, 0, 0, 0);
     }
 
-    private void SpawnItems(int items) {
-        if (width > 1 && height > 1) {
-            while (items > 0) {
-                int x = random.nextInt(GetWidth());
-                int y = random.nextInt(GetHeight());
-
-                if (GetTile(x, y).GetType().is(PASSABLE)) {
-                    SpawnItem(x, y);
-                    items--;
-                }
-            }
-        }
-    }
-
-    private void SpawnItem(int x, int y) {
-        int power = 1;
-        DamageType type = DamageType.SLASH;
-
-        if (random.nextInt(8) == 7) {
-            power = 2;
-        }
-        if (random.nextInt(19) == 18) {
-            power = 3;
-        }
-
-        int itemType = random.nextInt(6);
-        String itemName;
-        switch (itemType) {
-            case 0:
-                itemName = "Sword";
+    private void SpawnItem(int x, int y, String name, int power) {
+        DamageType type;
+        switch (name) {
+            case "Sword":
                 type = DamageType.SLASH;
                 break;
-            case 1:
-                itemName = "Spear";
+            case "Spear":
                 type = DamageType.PIERCE;
                 break;
-            case 2:
-                itemName = "Mace";
+            case "Mace":
                 type = DamageType.CRUSH;
                 break;
-            case 3:
-                itemName = "Pyrospell";
+            case "Pyrospell":
                 type = DamageType.BURN;
                 break;
-            case 4:
-                itemName = "Ice Staff";
+            case "Ice Staff":
                 type = DamageType.FREEZE;
                 break;
-            case 5:
-                itemName = "Wand";
+            case "Wand":
                 type = DamageType.ARCANE;
                 break;
 
             default:
-                itemName = "UNDEFINED";
                 type = DamageType.SLASH;
                 break;
         }
 
-        Item item = new Item(x, y, itemName, this, power, type);
+        Item item = new Item(x, y, name, this, power, type);
         entityManager.AddItem(item);
     }
 
-    private void SpawnEnemies(int enemies) {
-        if (width > 1 && height > 1) {
-            while (enemies > 0) {
-                int x = random.nextInt(GetWidth());
-                int y = random.nextInt(GetHeight());
-
-                if (GetTile(x, y).GetType().is(PASSABLE)) {
-                    SpawnEnemy(x, y);
-                    enemies--;
-                }
-            }
-        }
-    }
-
-    private void SpawnEnemy(int x, int y) {
-        int randomValue = random.nextInt(100);
-        Actor enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
-
-        if (randomValue < 40) {
-            enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
-        } else if (randomValue < 70) {
-            enemy = new Actor(x, y, "Troll", this, 1, false, 2, 0, 1, -2, 0, -1);
-        } else if (randomValue < 95) {
-            enemy = new Actor(x, y, "Lizard Man", this, 1, false, -2, -2, 0, 1, 2, 1);
-        } else if (randomValue < 100) {
-            enemy = new Actor(x, y, "Dragon", this, 1, false, 0, 0, 0, 2, 2, 2);
+    private void SpawnEnemy(int x, int y, String name) {
+        
+        Actor enemy = null;
+        
+        switch(name) {
+            case "Skeleton":
+                enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
+                break;
+            case "Troll":
+                enemy = new Actor(x, y, "Troll", this, 1, false, 2, 0, 1, -2, 0, -1);
+                break;
+            case "Lizard Man":
+                enemy = new Actor(x, y, "Lizard Man", this, 1, false, -2, -2, 0, 1, 2, 1);
+                break;
+            case "Dragon":
+                enemy = new Actor(x, y, "Dragon", this, 1, false, 0, 0, 0, 2, 2, 2);
+                break;
+            default:
+                enemy = new Actor(x, y, "UNDEFINED", this, 1, false, 0, 0, 0, 0, 0, 0);
         }
 
         entityManager.AddEnemy(enemy);

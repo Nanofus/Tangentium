@@ -47,7 +47,7 @@ public class Game {
      * @param enemies Vihollisten määrä
      * @param items Esineiden määrä
      */
-    public Game(int width, int height, int enemies, int items) {
+    /*public Game(int width, int height, int enemies, int items) {
         System.out.println("\nGenerating game randomly...");
 
         level = GenerateLevel(width, height, enemies, items);
@@ -56,12 +56,12 @@ public class Game {
 
          System.out.println(level);
 
-         System.out.println("\n----");*/
+         System.out.println("\n----");
     }
 
     private Level GenerateLevel(int width, int height, int enemies, int items) {
         return new Level(width, height, enemies, items);
-    }
+    }*/
 
     public Level GetLevel() {
         return level;
