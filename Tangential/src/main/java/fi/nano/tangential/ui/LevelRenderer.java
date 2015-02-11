@@ -4,6 +4,8 @@ import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
+import fi.nano.tangential.gameLogic.enums.Direction;
+import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
@@ -30,6 +32,10 @@ public class LevelRenderer extends JPanel {
     private int offsetX;
     private int offsetY;
 
+    private Direction cameraDirection = UP;
+    private int rotationX = 1;
+    private int rotationY = 1;
+
     LevelRenderer(Level level, int windowWidth, int windowHeight) {
         imageLoader = new ImageLoader();
 
@@ -49,7 +55,7 @@ public class LevelRenderer extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Position camPosition = new Position(level.GetPlayer().GetPosition().x,level.GetPlayer().GetPosition().y);
+        Position camPosition = new Position(level.GetPlayer().GetPosition().x, level.GetPlayer().GetPosition().y);
         Position isoCamPosition = TwoDToIso(camPosition);
         offsetX = windowWidth - isoCamPosition.x;
         offsetY = windowHeight - isoCamPosition.y;
@@ -93,14 +99,14 @@ public class LevelRenderer extends JPanel {
                 int tileOffset = 0;
 
                 if (drawnImage.getHeight() > tileSizeY) {
-                    tileOffset = tileSizeY*2;
+                    tileOffset = tileSizeY * 2;
                 }
 
-                if (drawnImageBottom!=null) {
+                if (drawnImageBottom != null) {
                     g.drawImage(drawnImageBottom, isoPos.x + offsetX, isoPos.y + offsetY, null);
                 }
                 g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - tileOffset + offsetY, null);
-                
+
                 Item itemInTile = level.GetItemInTile(i, j);
                 if (itemInTile != null) {
                     drawnImage = imageLoader.GetImage(itemInTile.GetName());
@@ -128,10 +134,67 @@ public class LevelRenderer extends JPanel {
     }
 
     public Position TwoDToIso(Position position) {
+        position.x = position.x * rotationX;
+        position.y = position.y * rotationY;
+        
         Position pos = new Position(0, 0);
         pos.x = (position.x - position.y) * (tileSizeX / 2);
         pos.y = (position.x + position.y) * (tileSizeY / 2);
         return pos;
+    }
+
+    void RotateCamera(Direction direction) {
+        switch (cameraDirection) {
+            case LEFT:
+                if (direction == LEFT) {
+                    cameraDirection = DOWN;
+                } else {
+                    cameraDirection = UP;
+                }
+                break;
+            case RIGHT:
+                if (direction == LEFT) {
+                    cameraDirection = UP;
+                } else {
+                    cameraDirection = DOWN;
+                }
+                break;
+            case UP:
+                if (direction == LEFT) {
+                    cameraDirection = LEFT;
+                } else {
+                    cameraDirection = RIGHT;
+                }
+                break;
+            case DOWN:
+                if (direction == LEFT) {
+                    cameraDirection = RIGHT;
+                } else {
+                    cameraDirection = LEFT;
+                }
+                break;
+        }
+
+        switch (cameraDirection) {
+            case LEFT:
+                rotationX = -1;
+                rotationY = 1;
+                break;
+            case RIGHT:
+                rotationX = 1;
+                rotationY = -1;
+                break;
+            case UP:
+                rotationX = 1;
+                rotationY = 1;
+                break;
+            case DOWN:
+                rotationX = -1;
+                rotationY = -1;
+                break;
+        }
+
+        repaint();
     }
 
 }

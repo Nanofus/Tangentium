@@ -119,6 +119,13 @@ public class Game {
 
         PassTurn();
     }
+    
+    /**
+     * Pelaaja kääntää kameraa.
+     */
+    public void RotateCamera(Direction direction) {
+        window.RotateCamera(direction);
+    }
 
     private void PassTurn() {
         AIMove();

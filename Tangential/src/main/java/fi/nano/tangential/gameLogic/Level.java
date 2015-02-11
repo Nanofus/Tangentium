@@ -46,70 +46,65 @@ public class Level {
      */
     /*public Level(int width, int height, int enemies, int items) {
 
-        Init();
+     Init();
 
-        this.width = width;
-        this.height = height;
+     this.width = width;
+     this.height = height;
 
-        this.enemies = enemies;
-        this.items = items;
+     this.enemies = enemies;
+     this.items = items;
 
-        ValidateParametres();
+     ValidateParametres();
 
-        tiles = new Tile[this.width][this.height];
+     tiles = new Tile[this.width][this.height];
 
-        //Random level generation, will use a better algorithm in the future
-        for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.height; j++) {
-                Tile tile = new Tile();
-                tiles[i][j] = tile;
-            }
-        }
+     //Random level generation, will use a better algorithm in the future
+     for (int i = 0; i < this.width; i++) {
+     for (int j = 0; j < this.height; j++) {
+     Tile tile = new Tile();
+     tiles[i][j] = tile;
+     }
+     }
 
-        if (GetHeight() > 1 && GetWidth() > 1) {
-            for (int i = 0; i < this.width; i++) {
-                for (int j = 0; j < this.height; j++) {
-                    if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
-                        tiles[i][j].SetType(TileType.WALL);
-                    } else {
-                        tiles[i][j].SetType(TileType.FLOOR);
-                    }
-                }
-            }
-        }
+     if (GetHeight() > 1 && GetWidth() > 1) {
+     for (int i = 0; i < this.width; i++) {
+     for (int j = 0; j < this.height; j++) {
+     if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
+     tiles[i][j].SetType(TileType.WALL);
+     } else {
+     tiles[i][j].SetType(TileType.FLOOR);
+     }
+     }
+     }
+     }
 
-        System.out.println();
-        SpawnItems(this.items);
-        System.out.println();
-        SpawnPlayer(1, 1);
-        System.out.println();
-        SpawnEnemies(this.enemies);
-        System.out.println();
+     System.out.println();
+     SpawnItems(this.items);
+     System.out.println();
+     SpawnPlayer(1, 1);
+     System.out.println();
+     SpawnEnemies(this.enemies);
+     System.out.println();
 
-    }*/
-
+     }*/
     /**
      * Konstruktori lataa tason tekstitiedostosta.
      *
-     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
-     * (.txt)
+     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
+     * 
      */
     public Level(String levelName) {
 
         Init();
-        
+
         LevelReader levelReader = new LevelReader(levelName);
-        
+
         ArrayList<String> levelArray = levelReader.GetLevel();
         ArrayList<String> actorArray = levelReader.GetActors();
         ArrayList<String> itemArray = levelReader.GetItems();
-        
-        System.out.println(levelArray);
-        System.out.println(actorArray);
-        System.out.println(itemArray);
 
         height = levelArray.size();
-        width = levelArray.get(0).length();
+        width = levelArray.get(2).length();
 
         tiles = new Tile[width][height];
 
@@ -119,7 +114,7 @@ public class Level {
                 Character tileChar = levelArray.get(j).charAt(i);
                 Character actorChar = actorArray.get(j).charAt(i);
                 Character itemChar = itemArray.get(j).charAt(i);
-                
+
                 switch (tileChar) {
                     case '.':
                         tiles[i][j].SetType(FLOOR);
@@ -152,43 +147,43 @@ public class Level {
                         tiles[i][j].SetType(CHASM);
                         break;
                 }
-                
+
                 switch (actorChar) {
                     case '@':
-                        SpawnPlayer(i,j);
+                        SpawnPlayer(i, j);
                         break;
                     case 'S':
-                        SpawnEnemy(i,j,"Skeleton");
+                        SpawnEnemy(i, j, "Skeleton");
                         break;
                     case 'T':
-                        SpawnEnemy(i,j,"Troll");
+                        SpawnEnemy(i, j, "Troll");
                         break;
                     case 'L':
-                        SpawnEnemy(i,j,"Lizard Man");
+                        SpawnEnemy(i, j, "Lizard Man");
                         break;
                     case 'D':
-                        SpawnEnemy(i,j,"Dragon");
+                        SpawnEnemy(i, j, "Dragon");
                         break;
                 }
-                
-                switch(itemChar) {
+
+                switch (itemChar) {
                     case 's':
-                        SpawnItem(i,j,"Sword",1);
+                        SpawnItem(i, j, "Sword", 1);
                         break;
                     case 'r':
-                        SpawnItem(i,j,"Spear",1);
+                        SpawnItem(i, j, "Spear", 1);
                         break;
                     case 'm':
-                        SpawnItem(i,j,"Mace",1);
+                        SpawnItem(i, j, "Mace", 1);
                         break;
                     case 'p':
-                        SpawnItem(i,j,"Pyrospell",1);
+                        SpawnItem(i, j, "Pyrospell", 1);
                         break;
                     case 'i':
-                        SpawnItem(i,j,"Ice Staff",1);
+                        SpawnItem(i, j, "Ice Staff", 1);
                         break;
                     case 'w':
-                        SpawnItem(i,j,"Wand",1);
+                        SpawnItem(i, j, "Wand", 1);
                         break;
                 }
             }
@@ -307,10 +302,10 @@ public class Level {
     }
 
     private void SpawnEnemy(int x, int y, String name) {
-        
+
         Actor enemy = null;
-        
-        switch(name) {
+
+        switch (name) {
             case "Skeleton":
                 enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
                 break;

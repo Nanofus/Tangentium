@@ -14,8 +14,6 @@ public class InputListener implements KeyListener {
 
     private Game game;
 
-    private boolean buttonPressed;
-
     public InputListener(Game game) {
         this.game = game;
     }
@@ -27,31 +25,33 @@ public class InputListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        if (!buttonPressed) {
-            buttonPressed = true;
-            
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                game.MovePlayer(RIGHT);
-            }
-            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                game.MovePlayer(LEFT);
-            }
-            if (e.getKeyCode() == KeyEvent.VK_UP) {
-                game.MovePlayer(UP);
-            }
-            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                game.MovePlayer(DOWN);
-            }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            game.MovePlayer(RIGHT);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            game.MovePlayer(LEFT);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+            game.MovePlayer(UP);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            game.MovePlayer(DOWN);
+        }
+        
+        if (e.getKeyCode() == KeyEvent.VK_Q) {
+            game.RotateCamera(LEFT);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_E) {
+            game.RotateCamera(RIGHT);
+        }
 
-            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                game.PickItem();
-            }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            game.PickItem();
         }
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        buttonPressed = false;
     }
 }

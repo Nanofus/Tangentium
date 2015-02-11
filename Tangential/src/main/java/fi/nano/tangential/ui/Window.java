@@ -1,6 +1,7 @@
 package fi.nano.tangential.ui;
 
 import fi.nano.tangential.Game;
+import fi.nano.tangential.gameLogic.enums.Direction;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -66,6 +67,10 @@ public class Window implements Runnable {
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public void RotateCamera(Direction direction) {
+        levelRenderer.RotateCamera(direction);
     }
 
 }
