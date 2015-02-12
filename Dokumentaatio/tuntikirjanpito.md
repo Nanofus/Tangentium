@@ -11,3 +11,7 @@
 * 4.2.  - 2h - Javadocia, kentän lukeminen tiedostosta
 * 5.2.  - 5h - Grafiikkasysteemi ja liikkuminen
 * 6.2.  - 2h - Uusi kenttä, AI
+* 7.2.  - 2h - Lisätty testejä, Actorin muokkausta
+* 9.2.  - 4h - Kameran isometrisyys, refaktorointia
+* 10.2. - 3h - Ohjelma lukee itemit ja actorit tiedostosta
+* 11.2. - 30 min - Kameran kääntäminen
