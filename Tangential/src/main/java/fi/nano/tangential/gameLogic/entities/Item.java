@@ -34,6 +34,11 @@ public class Item extends Entity {
         return power;
     }
 
+    /**
+     * Merkitsee, onko esine käytössä. Tosi piilottaa esineen kentältä, epätosi näyttää sen taas.
+     * 
+     * @param b Onko esine käytössä
+     */
     public void SetEquipped(boolean b) {
         equipped = b;
     }

@@ -126,13 +126,19 @@ public class LevelRenderer extends JPanel {
     }
 
     //Rikki
-    public Position IsoToTwoD(Position position) {
+    /*public Position IsoToTwoD(Position position) {
         Position pos = new Position(0, 0);
         pos.x = (2 * (position.y * tileSizeY) + (position.x * tileSizeX)) / 2;
         pos.y = (2 * (position.y * tileSizeY) - (position.x * tileSizeX)) / 2;
         return pos;
-    }
+    }*/
 
+    /**
+     * Konvertoi sijainnin 2D-koordinaatistosta isometriseen koordinaatistoon.
+     * 
+     * @param position Sijainti 2D-koordinaatistossa
+     * @return Uusi sijainti isometrisessa koordinaatistossa
+     */
     public Position TwoDToIso(Position position) {
         position.x = position.x * rotationX;
         position.y = position.y * rotationY;
@@ -143,7 +149,12 @@ public class LevelRenderer extends JPanel {
         return pos;
     }
 
-    void RotateCamera(Direction direction) {
+    /**
+     * Kääntää kameraa. Hyvin kokeellinen metodi.
+     * 
+     * @param direction Suunta
+     */
+    public void RotateCamera(Direction direction) {
         switch (cameraDirection) {
             case LEFT:
                 if (direction == LEFT) {

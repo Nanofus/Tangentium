@@ -73,6 +73,8 @@ public class Game {
 
     /**
      * Pelaajan liikkuminen inputista.
+     * 
+     * @param dir Suunta johon liikutaan.
      */
     public void MovePlayer(Direction dir) {
         if (level.GetPlayer().GetStun() == 0) {
@@ -122,6 +124,8 @@ public class Game {
     
     /**
      * Pelaaja kääntää kameraa.
+     * 
+     * @param direction Suunta.
      */
     public void RotateCamera(Direction direction) {
         window.RotateCamera(direction);

@@ -24,6 +24,11 @@ public class Tile {
         return symbol;
     }
     
+    /**
+     * Asettaa tilen tietyn tyyppiseksi. Voidaan käyttää tason luonnissa tai sen muokkaamisessa dynaamisesti.
+     * 
+     * @param type Tilen tyyppi
+     */
     public void SetType(TileType type) {
         tile = type;
         

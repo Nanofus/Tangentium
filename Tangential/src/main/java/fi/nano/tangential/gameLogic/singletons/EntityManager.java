@@ -35,7 +35,11 @@ public class EntityManager {
         items.add(item);
     }
     
-    
+    /**
+     * Poistaa actorin pelikentältä
+     * 
+     * @param actor Kohde-actor
+     */
     public void DestroyActor(Actor actor) {
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies.get(i) == actor) {

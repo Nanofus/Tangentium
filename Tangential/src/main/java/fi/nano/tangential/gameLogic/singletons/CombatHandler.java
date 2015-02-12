@@ -16,7 +16,13 @@ public class CombatHandler {
     public CombatHandler(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-
+    
+    /**
+     * Actor lyö toista ja tekee vahinkoa aseensa voiman verran.
+     * 
+     * @param attacker Lyöjä
+     * @param target Kohde
+     */
     public void Hit(Actor attacker, Actor target) {
 
         int targetResistance = target.GetResistance(attacker.GetWeapon().GetDamageType());
@@ -33,6 +39,11 @@ public class CombatHandler {
 
     }
 
+    /**
+     * Poistaa actorin pelikentältä.
+     * 
+     * @param actor Kohde-actor
+     */
     public void DestroyActor(Actor actor) {
         System.out.println("'" + actor + "' destroyed!");
         entityManager.DestroyActor(actor);

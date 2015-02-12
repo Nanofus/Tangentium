@@ -20,6 +20,9 @@ public class AI {
         this.level = level;
     }
 
+    /**
+     * Metodi antaa AI:lle luvan tehdä siirtonsa.
+     */
     public void MakeMove() {
         int action = random.nextInt(2);
 

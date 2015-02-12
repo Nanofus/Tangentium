@@ -70,6 +70,12 @@ public class Entity {
 
     }
 
+    /**
+     * Metodi, jolla Entity liikkuu.
+     * 
+     * @param x Liike x-akselilla.
+     * @param y Liike y-akselilla.
+     */
     public void Move(int x, int y) {
         if (level.GetTile(position.x + x, position.y + y).GetType().is(PASSABLE) && level.GetActorInTile(position.x + x, position.y + y) == null) {
             position.x = position.x + x;

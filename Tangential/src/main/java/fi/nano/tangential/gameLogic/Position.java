@@ -21,6 +21,12 @@ public class Position {
         return "(" + x + "," + y + ")";
     }
 
+    /**
+     * Vertaa kahta sijaintia ja kertoo ovatko ne samat.
+     * 
+     * @param other Toinen sijainti
+     * @return Onko sama sijainti
+     */
     public boolean is(Position other) {
         if(other.x == x && other.y == y) {
             return true;

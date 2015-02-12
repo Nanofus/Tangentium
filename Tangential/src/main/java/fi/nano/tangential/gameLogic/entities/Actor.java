@@ -59,6 +59,11 @@ public class Actor extends Entity {
          }*/
     }
 
+    /**
+     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen sijaintiin.
+     * 
+     * @param item Käyttöön otettava esine
+     */
     public void EquipItem(Item item) {
         if (stun < 1) {
             if (wieldedItem != null) {
@@ -105,6 +110,11 @@ public class Actor extends Entity {
         }
     }
 
+    /**
+     * Vähentää - tai lisää - actorin terveyttä tietyllä määrällä.
+     * 
+     * @param amount Määrä (positiivinen tekee vahinkoa, negatiivinen parantaa)
+     */
     public void LoseHealth(int amount) {
         hitPoints = hitPoints - amount;
 
@@ -113,6 +123,11 @@ public class Actor extends Entity {
         }
     }
 
+    /**
+     * Lamauttaa actorin hetkeksi
+     * 
+     * @param duration Lamautuksen kesto vuoroissa.
+     */
     public void AddStun(int duration) {
         stun = duration;
     }

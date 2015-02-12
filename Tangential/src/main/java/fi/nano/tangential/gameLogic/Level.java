@@ -220,6 +220,13 @@ public class Level {
         return tiles[x][y];
     }
 
+    /**
+     * Hakee Actorin tietystä tilestä.
+     * 
+     * @param x
+     * @param y
+     * @return Tilessä seisova actor
+     */
     public Actor GetActorInTile(int x, int y) {
         Actor chosen = null;
 
@@ -236,6 +243,13 @@ public class Level {
         return chosen;
     }
 
+    /**
+     * Hakee esineen tietystä tilestä.
+     * 
+     * @param x
+     * @param y
+     * @return Tilessä oleva esine
+     */
     public Item GetItemInTile(int x, int y) {
         Item chosen = null;
 
