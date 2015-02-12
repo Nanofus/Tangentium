@@ -7,9 +7,9 @@ aseensa vahinkomäärän verran, ottaen kuitenkin huomioon toisen vahinkotyyppiv
 ja eri aseet tekevät eri tyyppistä vahinkoa. Aseita voi kuitenkin kantaa vain yhtä kerralla, joten pelaajan on poimittava maasta
 vaihtoehtoisia aseita kohdatessaan erilaisia vihollisia.
 
-Pelikenttä on satunnaisgeneroitu labyrintti, jonka läpi pelaajan tulee päästä. Seinien läpi ei siis voi kulkea. Välillä pelaaja kohtaa tallennuspisteitä, joissa pelaajan tilanne tallennetaan tiedostoon ja joka voidaan palauttaa.
+Pelikenttä on tiedostosta ladattu labyrintti, jonka läpi pelaajan tulee päästä. Seinien läpi ei siis voi kulkea. Välillä pelaaja kohtaa tallennuspisteitä, joissa pelaajan tilanne tallennetaan tiedostoon ja joka voidaan palauttaa.
 
-Pelaajan tulee selvitä sokkelon läpi tulematta mörköjen syömäksi.
+Pelaajan tulee selvitä sokkelon läpi tulematta mörköjen syömäksi. Tasoja pelissä on useita.
 
 Hahmo liikkuu nuolista ja poimii aseen välilyönnistä. Vihollisen kanssa taistellaan siihen törmäämällä.
 
@@ -18,5 +18,3 @@ Hahmo liikkuu nuolista ja poimii aseen välilyönnistä. Vihollisen kanssa taist
 #### Pelaajan toiminnot:
 * Liikkuminen neljään suuntaan (ja samalla vihollisen lyöminen)
 * Aseen poimiminen
-* Tallentaminen
-* Tallennetun pelin lataaminen
