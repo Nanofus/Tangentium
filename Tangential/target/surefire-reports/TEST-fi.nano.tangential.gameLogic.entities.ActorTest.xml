@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="fi.nano.tangential.gameLogic.entities.ActorTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="fi.nano.tangential.gameLogic.entities.ActorTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_11\jre\bin"/>
@@ -63,11 +63,14 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthGain" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="EquipItemTest" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestIfHasAITrue" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthLoss" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestIfHasAIFalse" time="0"/>
-  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestStunAddPositive" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="EquipItemWhileStillHasPreviousItem" time="0"/>
   <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthNoChange" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestMoveWhileNotStunned" time="0.003"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestStunAddPositive" time="0.001"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestMoveWhileStunned" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestIfHasAIFalse" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthGain" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestIfHasAITrue" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="EquipItemTest" time="0"/>
+  <testcase classname="fi.nano.tangential.gameLogic.entities.ActorTest" name="TestHealthLoss" time="0"/>
 </testsuite>

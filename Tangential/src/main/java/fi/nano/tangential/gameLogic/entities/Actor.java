@@ -86,6 +86,10 @@ public class Actor extends Entity {
         }
     }
     
+    public void Rest() {
+        LowerStun();
+    }
+    
     private void LowerStun() {
         stun = stun - 1;
     }
@@ -129,7 +133,7 @@ public class Actor extends Entity {
      * @param duration Lamautuksen kesto vuoroissa.
      */
     public void AddStun(int duration) {
-        stun = duration;
+        stun = stun + duration;
     }
 
     public int GetStun() {

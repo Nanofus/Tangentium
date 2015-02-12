@@ -2,6 +2,7 @@ package fi.nano.tangential.fileProcessing;
 
 
 
+import fi.nano.tangential.gameLogic.Level;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,4 +44,5 @@ public class LevelReaderTest {
         
         assertEquals("~~~~~~~~",level.get(5));
     }
+
 }

@@ -31,6 +31,7 @@ public class AI {
                 MoveRandomly();
                 break;
             case 1: //Skippaa vuoro
+                SkipTurn();
                 break;
         }
 
@@ -53,6 +54,10 @@ public class AI {
                 me.Move(0, -1);
                 break;
         }
+    }
+    
+    private void SkipTurn() {
+        me.Rest();
     }
 
 }

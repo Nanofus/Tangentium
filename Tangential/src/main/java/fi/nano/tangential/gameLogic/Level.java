@@ -44,7 +44,7 @@ public class Level {
      * @param enemies Vihollisten määrä
      * @param items Esineiden määrä
      */
-    /*public Level(int width, int height, int enemies, int items) {
+    public Level(int width, int height, boolean spawnWalls) {
 
         Init();
 
@@ -69,8 +69,12 @@ public class Level {
         if (GetHeight() > 1 && GetWidth() > 1) {
             for (int i = 0; i < this.width; i++) {
                 for (int j = 0; j < this.height; j++) {
-                    if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
-                        tiles[i][j].SetType(TileType.WALL);
+                    if (spawnWalls) {
+                        if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
+                            tiles[i][j].SetType(TileType.WALL);
+                        } else {
+                            tiles[i][j].SetType(TileType.FLOOR);
+                        }
                     } else {
                         tiles[i][j].SetType(TileType.FLOOR);
                     }
@@ -86,7 +90,7 @@ public class Level {
         //SpawnEnemies(this.enemies);
         System.out.println();
 
-    }*/
+    }
 
     /**
      * Konstruktori lataa tason tekstitiedostosta.
@@ -280,6 +284,10 @@ public class Level {
 
     public ArrayList<Item> GetItems() {
         return entityManager.GetItems();
+    }
+    
+    public EntityManager GetEntityManager() {
+        return entityManager;
     }
 
     private void SpawnPlayer(int x, int y) {

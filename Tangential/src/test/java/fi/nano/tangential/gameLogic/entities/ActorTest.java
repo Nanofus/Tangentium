@@ -6,6 +6,7 @@
 package fi.nano.tangential.gameLogic.entities;
 
 import fi.nano.tangential.gameLogic.Level;
+import fi.nano.tangential.gameLogic.Position;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import static fi.nano.tangential.gameLogic.enums.DamageType.*;
 import org.junit.After;
@@ -78,6 +79,23 @@ public class ActorTest {
     }
     
     @Test
+    public void EquipItemWhileStillHasPreviousItem() {
+        Item item = new Item(0,0,"TestItem",null,5,PIERCE);
+        Item item2 = new Item(0,0,"TestItem2",null,4,PIERCE);
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        enemy.EquipItem(item);
+        enemy.EquipItem(item2);
+        
+        boolean correctItem = false;
+        if (!item.IsEquipped() && item2.IsEquipped()) {
+            correctItem = true;
+        }
+        
+        assertEquals(true,correctItem);
+    }
+    
+    @Test
     public void TestIfHasAITrue() {
         Actor enemy = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
         
@@ -102,4 +120,37 @@ public class ActorTest {
         assertEquals(4,enemy.GetStun());
     }
     
+    @Test
+    public void TestMoveWhileStunned() {
+        Actor enemy = new Actor(4, 4, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        enemy.AddStun(5);
+        
+        enemy.Move(1, 0);
+        
+        Position expectedPosition = new Position(4,4);
+        boolean positionsMatch = false;
+        if (expectedPosition.is(enemy.GetPosition())) {
+            positionsMatch = true;
+        }
+        
+        assertEquals(true,positionsMatch);
+    }
+    
+    @Test
+    public void TestMoveWhileNotStunned() {
+        Level level = new Level("level1");
+        
+        Actor enemy = new Actor(4, 4, "Skeleton", level, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        enemy.Move(1, 0);
+        
+        Position expectedPosition = new Position(5,4);
+        boolean positionsMatch = false;
+        if (expectedPosition.is(enemy.GetPosition())) {
+            positionsMatch = true;
+        }
+        
+        assertEquals(true,positionsMatch);
+    }
 }

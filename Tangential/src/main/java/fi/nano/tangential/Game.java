@@ -4,9 +4,7 @@ import fi.nano.tangential.gameLogic.*;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
-import static fi.nano.tangential.gameLogic.enums.TileType.*;
 import fi.nano.tangential.ui.Window;
-import java.io.FileNotFoundException;
 
 /**
  * Luokka pitää sisällään varsinaisen pelin luonnin ja toiminnan.
