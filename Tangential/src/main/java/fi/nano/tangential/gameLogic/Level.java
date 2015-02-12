@@ -46,52 +46,54 @@ public class Level {
      */
     /*public Level(int width, int height, int enemies, int items) {
 
-     Init();
+        Init();
 
-     this.width = width;
-     this.height = height;
+        this.width = width;
+        this.height = height;
 
-     this.enemies = enemies;
-     this.items = items;
+        this.enemies = enemies;
+        this.items = items;
 
-     ValidateParametres();
+        ValidateParametres();
 
-     tiles = new Tile[this.width][this.height];
+        tiles = new Tile[this.width][this.height];
 
-     //Random level generation, will use a better algorithm in the future
-     for (int i = 0; i < this.width; i++) {
-     for (int j = 0; j < this.height; j++) {
-     Tile tile = new Tile();
-     tiles[i][j] = tile;
-     }
-     }
+        //Random level generation, will use a better algorithm in the future
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                Tile tile = new Tile();
+                tiles[i][j] = tile;
+            }
+        }
 
-     if (GetHeight() > 1 && GetWidth() > 1) {
-     for (int i = 0; i < this.width; i++) {
-     for (int j = 0; j < this.height; j++) {
-     if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
-     tiles[i][j].SetType(TileType.WALL);
-     } else {
-     tiles[i][j].SetType(TileType.FLOOR);
-     }
-     }
-     }
-     }
+        if (GetHeight() > 1 && GetWidth() > 1) {
+            for (int i = 0; i < this.width; i++) {
+                for (int j = 0; j < this.height; j++) {
+                    if (random.nextBoolean() == true && random.nextBoolean() == true && random.nextBoolean() == true) {
+                        tiles[i][j].SetType(TileType.WALL);
+                    } else {
+                        tiles[i][j].SetType(TileType.FLOOR);
+                    }
+                }
+            }
+        }
 
-     System.out.println();
-     SpawnItems(this.items);
-     System.out.println();
-     SpawnPlayer(1, 1);
-     System.out.println();
-     SpawnEnemies(this.enemies);
-     System.out.println();
+        System.out.println();
+        //SpawnItems(this.items);
+        System.out.println();
+        SpawnPlayer(1, 1);
+        System.out.println();
+        //SpawnEnemies(this.enemies);
+        System.out.println();
 
-     }*/
+    }*/
+
     /**
      * Konstruktori lataa tason tekstitiedostosta.
      *
-     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
-     * 
+     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
+     * (.txt)
+     *
      */
     public Level(String levelName) {
 
@@ -222,7 +224,7 @@ public class Level {
 
     /**
      * Hakee Actorin tietystä tilestä.
-     * 
+     *
      * @param x
      * @param y
      * @return Tilessä seisova actor
@@ -245,7 +247,7 @@ public class Level {
 
     /**
      * Hakee esineen tietystä tilestä.
-     * 
+     *
      * @param x
      * @param y
      * @return Tilessä oleva esine

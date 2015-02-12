@@ -33,7 +33,7 @@ public class LevelTest {
     public void tearDown() {
     }
 
-    @Test
+    /*@Test
     public void TestLevelRandomGenerationLevelWidth() {
         Level level = new Level(100, 200, 20, 20);
 
@@ -109,6 +109,6 @@ public class LevelTest {
         int levelHeight = levelRows[0].length();
 
         assertEquals(1, levelHeight);
-    }
+    }*/
 
 }

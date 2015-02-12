@@ -93,9 +93,7 @@ public class ActorTest {
     
     @Test
     public void TestStunAddPositive() {
-        Level level = new Level("testlevel");
-        
-        Actor enemy = new Actor(4, 4, "Skeleton", level, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy = new Actor(4, 4, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
         
         enemy.AddStun(5);
         

@@ -36,7 +36,7 @@ public class TileTypeTest {
 
     @Test
     public void PassableIsPassable() {
-        Level level = new Level(10, 10, 0, 0);
+        Level level = new Level("testlevel");
 
         level.GetTile(0, 0).SetType(TileType.FLOOR);
 
@@ -51,7 +51,7 @@ public class TileTypeTest {
 
     @Test
     public void ImpassableIsImpassable() {
-        Level level = new Level(10, 10, 0, 0);
+        Level level = new Level("testlevel");
 
         level.GetTile(0, 0).SetType(TileType.WALL);
 
