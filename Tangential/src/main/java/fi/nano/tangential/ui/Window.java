@@ -31,6 +31,7 @@ public class Window implements Runnable {
 
     private final InputListener inputListener;
     private LevelRenderer levelRenderer;
+    private GUIRenderer guiRenderer;
     private final ImageLoader imageLoader;
 
     public Window(Game game) {
@@ -55,8 +56,10 @@ public class Window implements Runnable {
         frame.addKeyListener(inputListener);
 
         levelRenderer = new LevelRenderer(imageLoader,game.GetLevel(),windowWidth,windowHeight);
+        guiRenderer = new GUIRenderer(imageLoader,game.GetLevel().GetPlayer(),windowWidth,windowHeight);
 
         frame.add(levelRenderer);
+        //frame.add(guiRenderer);
     }
 
     private void createComponents(Container container) {

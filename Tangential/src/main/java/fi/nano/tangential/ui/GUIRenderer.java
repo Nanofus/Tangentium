@@ -25,12 +25,15 @@ public class GUIRenderer extends JPanel {
     private final int windowHeight;
 
     GUIRenderer(ImageLoader imageLoader, Actor player, int windowWidth, int windowHeight) {
+        this.setOpaque(false);
+        this.setLayout(null);
+
         this.imageLoader = imageLoader;
 
         this.player = player;
 
-        this.windowWidth = windowWidth / 2;
-        this.windowHeight = windowHeight / 2;
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
     }
 
     @Override
@@ -38,7 +41,9 @@ public class GUIRenderer extends JPanel {
         super.paintComponent(g);
 
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
-        
+
+        g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
+
     }
 
 }
