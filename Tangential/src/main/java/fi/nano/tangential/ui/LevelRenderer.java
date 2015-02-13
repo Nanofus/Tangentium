@@ -36,8 +36,8 @@ public class LevelRenderer extends JPanel {
     private int rotationX = 1;
     private int rotationY = 1;
 
-    LevelRenderer(Level level, int windowWidth, int windowHeight) {
-        imageLoader = new ImageLoader();
+    LevelRenderer(ImageLoader imageLoader, Level level, int windowWidth, int windowHeight) {
+        this.imageLoader = imageLoader;
 
         this.level = level;
 

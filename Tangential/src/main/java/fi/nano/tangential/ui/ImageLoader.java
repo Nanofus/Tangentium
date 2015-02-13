@@ -35,6 +35,15 @@ public class ImageLoader {
     private BufferedImage pyrospell;
     private BufferedImage icestaff;
     private BufferedImage wand;
+    
+    private BufferedImage weaponbackg;
+    
+    private BufferedImage swordicon;
+    private BufferedImage spearicon;
+    private BufferedImage maceicon;
+    private BufferedImage pyrospellicon;
+    private BufferedImage icestafficon;
+    private BufferedImage wandicon;
 
     public ImageLoader() {
         try {
@@ -60,6 +69,16 @@ public class ImageLoader {
             pyrospell = ImageIO.read(new File("graphics/sword2.png"));
             icestaff = ImageIO.read(new File("graphics/sword2.png"));
             wand = ImageIO.read(new File("graphics/sword2.png"));
+            
+            weaponbackg = ImageIO.read(new File("graphics/weaponbackg.png"));
+            
+            swordicon = ImageIO.read(new File("graphics/swordicon.png"));
+            spearicon = ImageIO.read(new File("graphics/spearicon.png"));
+            maceicon = ImageIO.read(new File("graphics/maceicon.png"));
+            pyrospellicon = ImageIO.read(new File("graphics/pyrospellicon.png"));
+            icestafficon = ImageIO.read(new File("graphics/icestafficon.png"));
+            wandicon = ImageIO.read(new File("graphics/wandicon.png"));
+            
         } catch (IOException ex) {
             System.out.println("Graphics file not found! Exiting...");
             System.exit(1);
@@ -109,6 +128,22 @@ public class ImageLoader {
                 return icestaff;
             case "Wand":
                 return wand;
+                
+            case "Weapon Background":
+                return weaponbackg;
+                
+            case "Sword Icon":
+                return swordicon;
+            case "Spear Icon":
+                return spearicon;
+            case "Mace Icon":
+                return maceicon;
+            case "Pyrospell Icon":
+                return pyrospellicon;
+            case "Ice Staff Icon":
+                return icestafficon;
+            case "Wand Icon":
+                return wandicon;
                 
             default:
                 return water;

@@ -31,10 +31,12 @@ public class Window implements Runnable {
 
     private final InputListener inputListener;
     private LevelRenderer levelRenderer;
+    private final ImageLoader imageLoader;
 
     public Window(Game game) {
         this.game = game;
 
+        imageLoader = new ImageLoader();
         inputListener = new InputListener(game);
     }
 
@@ -52,7 +54,7 @@ public class Window implements Runnable {
 
         frame.addKeyListener(inputListener);
 
-        levelRenderer = new LevelRenderer(game.GetLevel(),windowWidth,windowHeight);
+        levelRenderer = new LevelRenderer(imageLoader,game.GetLevel(),windowWidth,windowHeight);
 
         frame.add(levelRenderer);
     }
