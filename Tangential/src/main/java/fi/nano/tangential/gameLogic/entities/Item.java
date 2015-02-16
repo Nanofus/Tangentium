@@ -13,7 +13,7 @@ import fi.nano.tangential.gameLogic.Position;
 public class Item extends Entity {
 
     private int power = 1;
-    private DamageType type = DamageType.SLASH; //The types are SLASH, PIERCE, CRUSH, BURN, FREEZE and ARCANE
+    private DamageType type = DamageType.Slash; //The types are SLASH, PIERCE, CRUSH, BURN, FREEZE and ARCANE
     
     private boolean equipped = false;
 

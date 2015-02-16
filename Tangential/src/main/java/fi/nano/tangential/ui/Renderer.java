@@ -8,6 +8,7 @@ import fi.nano.tangential.gameLogic.enums.Direction;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -32,6 +33,10 @@ public class Renderer extends JPanel {
     private int windowHeight;
     private int offsetX;
     private int offsetY;
+
+    private ArrayList<String> guiTexts;
+    private ArrayList<Integer> guiPosX;
+    private ArrayList<Integer> guiPosY;
 
     private Direction cameraDirection = UP;
     private int rotationX = 1;
@@ -62,6 +67,10 @@ public class Renderer extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        guiTexts = new ArrayList();
+        guiPosX = new ArrayList();
+        guiPosY = new ArrayList();
+
         PaintLevel(g);
         PaintGUI(g);
     }
@@ -86,9 +95,13 @@ public class Renderer extends JPanel {
                     case WATER:
                         drawnImage = imageLoader.GetImage("Water");
                         break;
-                    case PILLAR:
+                    case PILLAR_WITH_FLOOR:
                         drawnImage = imageLoader.GetImage("Pillar");
                         drawnImageBottom = imageLoader.GetImage("Floor");
+                        break;
+                    case PILLAR_WITH_GRASS:
+                        drawnImage = imageLoader.GetImage("Pillar");
+                        drawnImageBottom = imageLoader.GetImage("Grass");
                         break;
                     case CHASM:
                         drawnImage = imageLoader.GetImage("Chasm");
@@ -124,6 +137,16 @@ public class Renderer extends JPanel {
                     drawnImage = imageLoader.GetImage(itemInTile.GetName());
                     isoPos = TwoDToIso(new Position(i, j));
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 16 + offsetY, null);
+
+                    guiTexts.add("Name: " + itemInTile.GetName());
+                    guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                    guiPosY.add(isoPos.y + offsetY);
+                    guiTexts.add("Type: " + itemInTile.GetDamageType().toString());
+                    guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                    guiPosY.add(isoPos.y + offsetY + 12);
+                    guiTexts.add("Power: " + itemInTile.GetPower());
+                    guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                    guiPosY.add(isoPos.y + offsetY + 24);
                 }
 
                 Actor actorInTile = level.GetActorInTile(i, j);
@@ -131,13 +154,28 @@ public class Renderer extends JPanel {
                     drawnImage = imageLoader.GetImage(actorInTile.GetName());
                     isoPos = TwoDToIso(new Position(i, j));
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 16 + offsetY, null);
-                }
 
+                    if (!actorInTile.equals(player)) {
+                        guiTexts.add("Health: " + actorInTile.GetHealth());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY);
+                        guiTexts.add("Weak: " + actorInTile.GetWeakness());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY + 12);
+                        guiTexts.add("Strong: " + actorInTile.GetStrength());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY + 24);
+                    }
+                }
             }
         }
     }
 
     private void PaintGUI(Graphics g) {
+        for (int i = 0; i < guiTexts.size(); i++) {
+            g.drawString(guiTexts.get(i), guiPosX.get(i), guiPosY.get(i));
+        }
+
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
 

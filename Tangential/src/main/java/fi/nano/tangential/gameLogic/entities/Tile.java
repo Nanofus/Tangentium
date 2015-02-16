@@ -48,8 +48,10 @@ public class Tile {
             case ICE:
                 symbol = '_';
                 break;
-            case PILLAR:
+            case PILLAR_WITH_FLOOR:
                 symbol = 'I';
+            case PILLAR_WITH_GRASS:
+                symbol = 'G';
             case GRASS:
                 symbol = ',';
             case PATH:

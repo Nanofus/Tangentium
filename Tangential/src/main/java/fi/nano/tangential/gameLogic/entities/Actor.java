@@ -5,6 +5,7 @@ import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Entity;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
+import java.util.ArrayList;
 
 /**
  * Pelihahmoa hallitseva luokka. Voi olla controlled eli pelaajahahmo tai
@@ -17,6 +18,7 @@ public class Actor extends Entity {
     private Item wieldedItem;
 
     private int hitPoints = 1;
+    private int maxHitPoints = 1;
 
     private int stun = 0;
 
@@ -32,10 +34,11 @@ public class Actor extends Entity {
 
     private AI ai;
 
-    public Actor(int x, int y, String name, Level level, int hp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
+    public Actor(int x, int y, String name, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
         super(x, y, name, level);
 
         this.hitPoints = hp;
+        this.maxHitPoints = maxhp;
         this.slashResistance = slashResistance;
         this.pierceResistance = pierceResistance;
         this.crushResistance = crushResistance;
@@ -61,7 +64,7 @@ public class Actor extends Entity {
 
     /**
      * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen sijaintiin.
-     * 
+     *
      * @param item Käyttöön otettava esine
      */
     public void EquipItem(Item item) {
@@ -85,17 +88,20 @@ public class Actor extends Entity {
             LowerStun();
         }
     }
-    
+
     public void Rest() {
         LowerStun();
     }
-    
+
     private void LowerStun() {
         stun = stun - 1;
     }
 
     public int GetHealth() {
         return hitPoints;
+    }
+    public int GetMaxHealth() {
+        return maxHitPoints;
     }
 
     public Item GetWeapon() {
@@ -116,20 +122,23 @@ public class Actor extends Entity {
 
     /**
      * Vähentää - tai lisää - actorin terveyttä tietyllä määrällä.
-     * 
+     *
      * @param amount Määrä (positiivinen tekee vahinkoa, negatiivinen parantaa)
      */
     public void LoseHealth(int amount) {
         hitPoints = hitPoints - amount;
-
+        
         if (hitPoints < 0) {
             hitPoints = 0;
+        }
+        if (hitPoints > maxHitPoints) {
+            hitPoints = maxHitPoints;
         }
     }
 
     /**
      * Lamauttaa actorin hetkeksi
-     * 
+     *
      * @param duration Lamautuksen kesto vuoroissa.
      */
     public void AddStun(int duration) {
@@ -142,19 +151,109 @@ public class Actor extends Entity {
 
     public int GetResistance(DamageType damageType) {
         switch (damageType) {
-            case SLASH:
+            case Slash:
                 return slashResistance;
-            case PIERCE:
+            case Pierce:
                 return pierceResistance;
-            case CRUSH:
+            case Crush:
                 return crushResistance;
-            case BURN:
+            case Burn:
                 return burnResistance;
-            case FREEZE:
+            case Freeze:
                 return freezeResistance;
-            case ARCANE:
+            case Arcane:
                 return arcaneResistance;
         }
         return 0;
+    }
+
+    public String GetWeakness() {
+        int smallestValue;
+        String smallestInString = "";
+
+        smallestValue = slashResistance;
+        if (smallestValue > pierceResistance) {
+            smallestValue = pierceResistance;
+        }
+        if (smallestValue > crushResistance) {
+            smallestValue = crushResistance;
+        }
+        if (smallestValue > burnResistance) {
+            smallestValue = burnResistance;
+        }
+        if (smallestValue > freezeResistance) {
+            smallestValue = freezeResistance;
+        }
+        if (smallestValue > arcaneResistance) {
+            smallestValue = arcaneResistance;
+        }
+
+        if (smallestValue == slashResistance) {
+            smallestInString = smallestInString + ", Slash";
+        }
+        if (smallestValue == pierceResistance) {
+            smallestInString = smallestInString + ", Pierce";
+        }
+        if (smallestValue == crushResistance) {
+            smallestInString = smallestInString + ", Crush";
+        }
+        if (smallestValue == burnResistance) {
+            smallestInString = smallestInString + ", Burn";
+        }
+        if (smallestValue == freezeResistance) {
+            smallestInString = smallestInString + ", Freeze";
+        }
+        if (smallestValue == arcaneResistance) {
+            smallestInString = smallestInString + ", Arcane";
+        }
+
+        smallestInString = smallestInString.substring(2);
+
+        return smallestInString;
+    }
+
+    public String GetStrength() {
+        int biggestValue;
+        String biggestInString = "";
+
+        biggestValue = slashResistance;
+        if (biggestValue < pierceResistance) {
+            biggestValue = pierceResistance;
+        }
+        if (biggestValue < crushResistance) {
+            biggestValue = crushResistance;
+        }
+        if (biggestValue < burnResistance) {
+            biggestValue = burnResistance;
+        }
+        if (biggestValue < freezeResistance) {
+            biggestValue = freezeResistance;
+        }
+        if (biggestValue < arcaneResistance) {
+            biggestValue = arcaneResistance;
+        }
+
+        if (biggestValue == slashResistance) {
+            biggestInString = biggestInString + ", Slash";
+        }
+        if (biggestValue == pierceResistance) {
+            biggestInString = biggestInString + ", Pierce";
+        }
+        if (biggestValue == crushResistance) {
+            biggestInString = biggestInString + ", Crush";
+        }
+        if (biggestValue == burnResistance) {
+            biggestInString = biggestInString + ", Burn";
+        }
+        if (biggestValue == freezeResistance) {
+            biggestInString = biggestInString + ", Freeze";
+        }
+        if (biggestValue == arcaneResistance) {
+            biggestInString = biggestInString + ", Arcane";
+        }
+
+        biggestInString = biggestInString.substring(2);
+
+        return biggestInString;
     }
 }

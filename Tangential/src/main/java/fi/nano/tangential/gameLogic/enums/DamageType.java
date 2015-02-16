@@ -7,5 +7,5 @@ package fi.nano.tangential.gameLogic.enums;
  * @author Nanofus
  */
 public enum DamageType {
-    SLASH,PIERCE,CRUSH,BURN,FREEZE,ARCANE
+    Slash,Pierce,Crush,Burn,Freeze,Arcane
 }

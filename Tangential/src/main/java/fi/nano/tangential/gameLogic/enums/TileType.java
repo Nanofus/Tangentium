@@ -14,6 +14,8 @@ public enum TileType {
             CHASM(IMPASSABLE),
             WATER(IMPASSABLE),
             PILLAR(IMPASSABLE),
+                PILLAR_WITH_FLOOR(PILLAR),
+                PILLAR_WITH_GRASS(PILLAR),
             TREE(IMPASSABLE),
         PASSABLE(TILE),
             FLOOR(PASSABLE),

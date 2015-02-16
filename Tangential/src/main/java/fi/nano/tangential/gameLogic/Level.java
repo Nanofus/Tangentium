@@ -138,7 +138,10 @@ public class Level {
                         tiles[i][j].SetType(ICE);
                         break;
                     case 'I':
-                        tiles[i][j].SetType(PILLAR);
+                        tiles[i][j].SetType(PILLAR_WITH_FLOOR);
+                        break;
+                    case 'G':
+                        tiles[i][j].SetType(PILLAR_WITH_GRASS);
                         break;
                     case ',':
                         tiles[i][j].SetType(GRASS);
@@ -291,33 +294,33 @@ public class Level {
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", this, 5, true, 0, 0, 0, 0, 0, 0);
+        player = new Actor(x, y, "Player", this, 5, 5, true, 0, 0, 0, 0, 0, 0);
     }
 
     private void SpawnItem(int x, int y, String name, int power) {
         DamageType type;
         switch (name) {
             case "Sword":
-                type = DamageType.SLASH;
+                type = DamageType.Slash;
                 break;
             case "Spear":
-                type = DamageType.PIERCE;
+                type = DamageType.Pierce;
                 break;
             case "Mace":
-                type = DamageType.CRUSH;
+                type = DamageType.Crush;
                 break;
             case "Pyrospell":
-                type = DamageType.BURN;
+                type = DamageType.Burn;
                 break;
             case "Ice Staff":
-                type = DamageType.FREEZE;
+                type = DamageType.Freeze;
                 break;
             case "Wand":
-                type = DamageType.ARCANE;
+                type = DamageType.Arcane;
                 break;
 
             default:
-                type = DamageType.SLASH;
+                type = DamageType.Slash;
                 break;
         }
 
@@ -331,19 +334,19 @@ public class Level {
 
         switch (name) {
             case "Skeleton":
-                enemy = new Actor(x, y, "Skeleton", this, 1, false, 0, 2, -2, -1, 1, -2);
+                enemy = new Actor(x, y, "Skeleton", this, 1, 1, false, 0, 2, -2, -1, 1, -2);
                 break;
             case "Troll":
-                enemy = new Actor(x, y, "Troll", this, 1, false, 2, 0, 1, -2, 0, -1);
+                enemy = new Actor(x, y, "Troll", this, 4, 4, false, 2, 0, 1, -2, 0, -1);
                 break;
             case "Lizard Man":
-                enemy = new Actor(x, y, "Lizard Man", this, 1, false, -2, -2, 0, 1, 2, 1);
+                enemy = new Actor(x, y, "Lizard Man", this, 2, 2, false, -2, -2, 0, 1, 2, 1);
                 break;
             case "Dragon":
-                enemy = new Actor(x, y, "Dragon", this, 1, false, 0, 0, 0, 2, 2, 2);
+                enemy = new Actor(x, y, "Dragon", this, 10, 10, false, 0, 0, 0, 2, 2, 2);
                 break;
             default:
-                enemy = new Actor(x, y, "UNDEFINED", this, 1, false, 0, 0, 0, 0, 0, 0);
+                enemy = new Actor(x, y, "UNDEFINED", this, 1, 1, false, 0, 0, 0, 0, 0, 0);
         }
 
         entityManager.AddEnemy(enemy);
