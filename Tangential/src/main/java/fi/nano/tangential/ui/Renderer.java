@@ -69,8 +69,8 @@ public class Renderer extends JPanel {
     private void PaintLevel(Graphics g) {
         Position camPosition = new Position(level.GetPlayer().GetPosition().x, level.GetPlayer().GetPosition().y);
         Position isoCamPosition = TwoDToIso(camPosition);
-        offsetX = (windowWidth/2) - isoCamPosition.x;
-        offsetY = (windowHeight/2) - isoCamPosition.y;
+        offsetX = (windowWidth / 2) - isoCamPosition.x;
+        offsetY = (windowHeight / 2) - isoCamPosition.y;
 
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
@@ -140,6 +140,11 @@ public class Renderer extends JPanel {
     private void PaintGUI(Graphics g) {
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
+
+        if (player.GetWeapon() != null) {
+            drawnImage = imageLoader.GetImage(player.GetWeapon().GetName() + " Icon");
+            g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
+        }
     }
 
     /**
