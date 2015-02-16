@@ -5,6 +5,7 @@ import fi.nano.tangential.gameLogic.enums.Direction;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,16 +23,15 @@ import javax.swing.WindowConstants;
  */
 public class Window implements Runnable {
 
-    private final int windowWidth = 800;
-    private final int windowHeight = 600;
+    private int windowWidth = 800;
+    private int windowHeight = 600;
     
     private final Game game;
 
     private JFrame frame;
 
     private final InputListener inputListener;
-    private LevelRenderer levelRenderer;
-    private GUIRenderer guiRenderer;
+    private Renderer renderer;
     private final ImageLoader imageLoader;
 
     public Window(Game game) {
@@ -44,26 +44,16 @@ public class Window implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Tangential");
-        frame.setPreferredSize(new Dimension(windowWidth, windowHeight));
-
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        createComponents(frame.getContentPane());
-
-        frame.pack();
+        frame.setResizable(false);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(new Dimension(windowWidth+frame.getInsets().left+frame.getInsets().right, windowHeight+frame.getInsets().top+frame.getInsets().bottom));
 
         frame.addKeyListener(inputListener);
 
-        levelRenderer = new LevelRenderer(imageLoader,game.GetLevel(),windowWidth,windowHeight);
-        guiRenderer = new GUIRenderer(imageLoader,game.GetLevel().GetPlayer(),windowWidth,windowHeight);
+        renderer = new Renderer(imageLoader,game.GetLevel(),game.GetLevel().GetPlayer(),windowWidth,windowHeight);
 
-        frame.add(levelRenderer);
-        //frame.add(guiRenderer);
-    }
-
-    private void createComponents(Container container) {
-
+        frame.add(renderer);
     }
     
     public void Refresh() {
@@ -75,7 +65,7 @@ public class Window implements Runnable {
     }
 
     public void RotateCamera(Direction direction) {
-        levelRenderer.RotateCamera(direction);
+        renderer.RotateCamera(direction);
     }
 
 }
