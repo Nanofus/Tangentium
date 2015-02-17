@@ -5,6 +5,7 @@ import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Entity;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
+import fi.nano.tangential.gameLogic.singletons.CombatHandler;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +16,15 @@ import java.util.ArrayList;
  */
 public class Actor extends Entity {
 
+    private CombatHandler combatHandler;
+
     private Item wieldedItem;
 
     private int hitPoints = 1;
     private int maxHitPoints = 1;
 
     private int stun = 0;
+    private int weaponDelay = 0;
 
     private int slashResistance = 0;
     private int pierceResistance = 0;
@@ -34,8 +38,10 @@ public class Actor extends Entity {
 
     private AI ai;
 
-    public Actor(int x, int y, String name, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
+    public Actor(int x, int y, String name, Level level, CombatHandler combatHandler, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
         super(x, y, name, level);
+
+        this.combatHandler = combatHandler;
 
         this.hitPoints = hp;
         this.maxHitPoints = maxhp;
@@ -83,7 +89,12 @@ public class Actor extends Entity {
     @Override
     public void Move(int x, int y) {
         if (stun < 1) {
-            super.Move(x, y);
+            Actor targetInTile = GetLevel().GetActorInTile(this.GetPosition().x+x,this.GetPosition().y+y);
+            if (targetInTile != null && weaponDelay < 1) {
+                combatHandler.Hit(this, GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y));
+            } else {
+                super.Move(x, y);
+            }
         } else {
             LowerStun();
         }
@@ -95,11 +106,13 @@ public class Actor extends Entity {
 
     private void LowerStun() {
         stun = stun - 1;
+        weaponDelay = weaponDelay - 1;
     }
 
     public int GetHealth() {
         return hitPoints;
     }
+
     public int GetMaxHealth() {
         return maxHitPoints;
     }
@@ -127,7 +140,7 @@ public class Actor extends Entity {
      */
     public void LoseHealth(int amount) {
         hitPoints = hitPoints - amount;
-        
+
         if (hitPoints < 0) {
             hitPoints = 0;
         }
@@ -145,8 +158,21 @@ public class Actor extends Entity {
         stun = stun + duration;
     }
 
+    /**
+     * Estää actoria lyömästä hetkeen
+     *
+     * @param duration Lyönnineston kesto vuoroissa.
+     */
+    public void AddWeaponDelay(int duration) {
+        weaponDelay = weaponDelay + duration;
+    }
+
     public int GetStun() {
         return stun;
+    }
+
+    public int GetWeaponDelay() {
+        return weaponDelay;
     }
 
     public int GetResistance(DamageType damageType) {

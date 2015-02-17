@@ -156,7 +156,7 @@ public class Renderer extends JPanel {
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 16 + offsetY, null);
 
                     if (!actorInTile.equals(player)) {
-                        guiTexts.add("Health: " + actorInTile.GetHealth());
+                        guiTexts.add("Health: " + actorInTile.GetHealth() + "/" + actorInTile.GetMaxHealth());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY);
                         guiTexts.add("Weak: " + actorInTile.GetWeakness());

@@ -94,10 +94,19 @@ public class Entity {
     public Position GetPosition() {
         return position;
     }
+    
+    public Level GetLevel() {
+        return level;
+    }
 
     public void SetPosition(int x, int y) {
         position.x = x;
         position.y = y;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+    
 }

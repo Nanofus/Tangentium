@@ -1,6 +1,8 @@
 package fi.nano.tangential.gameLogic;
 
 import fi.nano.tangential.gameLogic.entities.Actor;
+import fi.nano.tangential.gameLogic.enums.Stance;
+import static fi.nano.tangential.gameLogic.enums.Stance.*;
 import java.util.Random;
 
 /**
@@ -12,6 +14,8 @@ public class AI {
 
     Level level;
     Actor me;
+
+    Stance stance = Default;
 
     Random random = new Random();
 
@@ -28,7 +32,13 @@ public class AI {
 
         switch (action) {
             case 0:
-                MoveRandomly();
+                if (stance == Default) {
+                    MoveRandomly();
+                } else if (stance == Chase) {
+                    //Chase player
+                } else if (stance == Flee) {
+                    //Flee from player
+                }
                 break;
             case 1: //Skippaa vuoro
                 SkipTurn();
@@ -55,7 +65,7 @@ public class AI {
                 break;
         }
     }
-    
+
     private void SkipTurn() {
         me.Rest();
     }

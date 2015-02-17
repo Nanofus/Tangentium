@@ -6,7 +6,7 @@ import fi.nano.tangential.gameLogic.entities.Actor;
 
 /**
  * Taistelusysteemin sisältävä luokka.
- * 
+ *
  * @author Nanofus
  */
 public class CombatHandler {
@@ -16,32 +16,37 @@ public class CombatHandler {
     public CombatHandler(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-    
+
     /**
      * Actor lyö toista ja tekee vahinkoa aseensa voiman verran.
-     * 
+     *
      * @param attacker Lyöjä
      * @param target Kohde
      */
     public void Hit(Actor attacker, Actor target) {
+        if (attacker.GetWeapon() != null) {
+            int targetResistance = target.GetResistance(attacker.GetWeapon().GetDamageType());
 
-        int targetResistance = target.GetResistance(attacker.GetWeapon().GetDamageType());
+            int damage = attacker.GetWeapon().GetPower() - targetResistance;
 
-        int damage = attacker.GetWeapon().GetPower() - targetResistance;
-        
-        target.LoseHealth(damage);
+            target.LoseHealth(damage);
 
-        if (target.GetHealth() < 1) {
-            DestroyActor(target);
+            if (target.GetHealth() < 1) {
+                DestroyActor(target);
+            }
+
+            System.out.println("'" + attacker + "' hit '" + target + "' and did '" + damage + "' damage!");
+
+            target.AddStun(2);
+            attacker.AddWeaponDelay(3);
+        } else {
+            System.out.println("Attacker has no weapon!");
         }
-        
-        System.out.println(attacker + " hit " + target + " and did "+damage+" damage!");
-
     }
 
     /**
      * Poistaa actorin pelikentältä.
-     * 
+     *
      * @param actor Kohde-actor
      */
     public void DestroyActor(Actor actor) {

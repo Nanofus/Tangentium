@@ -251,6 +251,16 @@ public class Level {
 
         return chosen;
     }
+    
+    /**
+     * Hakee Actorin tietystä tilestä.
+     *
+     * @param pos Sijainti kentällä
+     * @return Tilessä seisova actor
+     */
+    public Actor GetActorInTile(Position pos) {
+        return GetActorInTile(pos.x,pos.y);
+    }
 
     /**
      * Hakee esineen tietystä tilestä.
@@ -272,6 +282,16 @@ public class Level {
 
         return chosen;
     }
+    
+    /**
+     * Hakee Itemin tietystä tilestä.
+     * 
+     * @param pos Sijainti kentällä
+     * @return 
+     */
+    public Item GetItemInTile(Position pos) {
+        return GetItemInTile(pos.x,pos.y);
+    }
 
     public int GetWidth() {
         return width;
@@ -288,13 +308,13 @@ public class Level {
     public ArrayList<Item> GetItems() {
         return entityManager.GetItems();
     }
-    
+
     public EntityManager GetEntityManager() {
         return entityManager;
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", this, 5, 5, true, 0, 0, 0, 0, 0, 0);
+        player = new Actor(x, y, "Player", this, combatHandler, 5, 5, true, 0, 0, 0, 0, 0, 0);
     }
 
     private void SpawnItem(int x, int y, String name, int power) {
@@ -334,19 +354,19 @@ public class Level {
 
         switch (name) {
             case "Skeleton":
-                enemy = new Actor(x, y, "Skeleton", this, 1, 1, false, 0, 2, -2, -1, 1, -2);
+                enemy = new Actor(x, y, "Skeleton", this, combatHandler, 1, 1, false, 0, 2, -2, -1, 1, -2);
                 break;
             case "Troll":
-                enemy = new Actor(x, y, "Troll", this, 4, 4, false, 2, 0, 1, -2, 0, -1);
+                enemy = new Actor(x, y, "Troll", this, combatHandler, 4, 4, false, 2, 0, 1, -2, 0, -1);
                 break;
             case "Lizard Man":
-                enemy = new Actor(x, y, "Lizard Man", this, 2, 2, false, -2, -2, 0, 1, 2, 1);
+                enemy = new Actor(x, y, "Lizard Man", this, combatHandler, 2, 2, false, -2, -2, 0, 1, 2, 1);
                 break;
             case "Dragon":
-                enemy = new Actor(x, y, "Dragon", this, 10, 10, false, 0, 0, 0, 2, 2, 2);
+                enemy = new Actor(x, y, "Dragon", this, combatHandler, 10, 10, false, 0, 0, 0, 2, 2, 2);
                 break;
             default:
-                enemy = new Actor(x, y, "UNDEFINED", this, 1, 1, false, 0, 0, 0, 0, 0, 0);
+                enemy = new Actor(x, y, "UNDEFINED", this, combatHandler, 1, 1, false, 0, 0, 0, 0, 0, 0);
         }
 
         entityManager.AddEnemy(enemy);
@@ -394,5 +414,6 @@ public class Level {
 
         return sb.toString();
     }
+
 
 }
