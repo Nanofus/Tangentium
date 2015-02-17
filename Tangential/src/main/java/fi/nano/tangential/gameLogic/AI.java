@@ -15,7 +15,7 @@ public class AI {
     Level level;
     Actor me;
 
-    Stance stance = Default;
+    Stance stance = Wander;
 
     Random random = new Random();
 
@@ -32,7 +32,7 @@ public class AI {
 
         switch (action) {
             case 0:
-                if (stance == Default) {
+                if (stance == Wander) {
                     MoveRandomly();
                 } else if (stance == Chase) {
                     //Chase player
