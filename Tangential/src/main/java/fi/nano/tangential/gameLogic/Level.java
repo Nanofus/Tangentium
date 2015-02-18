@@ -8,6 +8,9 @@ import fi.nano.tangential.gameLogic.singletons.EntityManager;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.entities.Tile;
+import static fi.nano.tangential.gameLogic.enums.DamageType.*;
+import fi.nano.tangential.gameLogic.enums.Direction;
+import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import static fi.nano.tangential.gameLogic.enums.TileType.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -251,7 +254,7 @@ public class Level {
 
         return chosen;
     }
-    
+
     /**
      * Hakee Actorin tietystä tilestä.
      *
@@ -259,7 +262,7 @@ public class Level {
      * @return Tilessä seisova actor
      */
     public Actor GetActorInTile(Position pos) {
-        return GetActorInTile(pos.x,pos.y);
+        return GetActorInTile(pos.x, pos.y);
     }
 
     /**
@@ -282,15 +285,59 @@ public class Level {
 
         return chosen;
     }
-    
+
     /**
      * Hakee Itemin tietystä tilestä.
-     * 
+     *
      * @param pos Sijainti kentällä
-     * @return 
+     * @return
      */
     public Item GetItemInTile(Position pos) {
-        return GetItemInTile(pos.x,pos.y);
+        return GetItemInTile(pos.x, pos.y);
+    }
+
+    /**
+     * Laskee etäisyyden ruuduissa kahden ruudun välillä.
+     *
+     * @param pos1 Sijainti 1
+     * @param pos2 Sijainti 2
+     * @return Etäisyys ruuduissa.
+     */
+    public int GetDistance(Position pos1, Position pos2) {
+        int distX = Math.abs(pos1.x - pos2.x);
+        int distY = Math.abs(pos1.y - pos2.y);
+
+        return distX + distY;
+    }
+
+    /**
+     * Palauttaa Direction-tyyppisenä suunnan, jossa pos2 pos1:stä katsottuna
+     * on.
+     *
+     * @param pos1 Lähtösijainti
+     * @param pos2 Kohteen sijainti
+     * @return Kohteen suunta.
+     */
+    public Direction PositionDirection(Position pos1, Position pos2) {
+        int distX = pos1.x - pos2.x;
+        int distY = pos1.y - pos2.y;
+        Direction dir;
+
+        if (Math.abs(distX) > Math.abs(distY)) {
+            if (distX < 0) {
+                dir = LEFT;
+            } else {
+                dir = RIGHT;
+            }
+        } else {
+            if (distY < 0) {
+                dir = UP;
+            } else {
+                dir = DOWN;
+            }
+        }
+
+        return dir;
     }
 
     public int GetWidth() {
@@ -311,6 +358,10 @@ public class Level {
 
     public EntityManager GetEntityManager() {
         return entityManager;
+    }
+
+    public CombatHandler GetCombatHandler() {
+        return combatHandler;
     }
 
     private void SpawnPlayer(int x, int y) {
@@ -349,21 +400,29 @@ public class Level {
     }
 
     private void SpawnEnemy(int x, int y, String name) {
-
-        Actor enemy = null;
+        Actor enemy;
+        Item enemyWeapon;
 
         switch (name) {
             case "Skeleton":
                 enemy = new Actor(x, y, "Skeleton", this, combatHandler, 1, 1, false, 0, 2, -2, -1, 1, -2);
+                enemyWeapon = new Item(0, 0, "Skeleton Sword", this, 1, Slash);
+                enemy.EquipItem(enemyWeapon);
                 break;
             case "Troll":
                 enemy = new Actor(x, y, "Troll", this, combatHandler, 4, 4, false, 2, 0, 1, -2, 0, -1);
+                enemyWeapon = new Item(0, 0, "Troll's Club", this, 1, Crush);
+                enemy.EquipItem(enemyWeapon);
                 break;
             case "Lizard Man":
                 enemy = new Actor(x, y, "Lizard Man", this, combatHandler, 2, 2, false, -2, -2, 0, 1, 2, 1);
+                enemyWeapon = new Item(0, 0, "Reptilian Blade", this, 1, Slash);
+                enemy.EquipItem(enemyWeapon);
                 break;
             case "Dragon":
                 enemy = new Actor(x, y, "Dragon", this, combatHandler, 10, 10, false, 0, 0, 0, 2, 2, 2);
+                enemyWeapon = new Item(0, 0, "Breath of Fire", this, 1, Burn);
+                enemy.EquipItem(enemyWeapon);
                 break;
             default:
                 enemy = new Actor(x, y, "UNDEFINED", this, combatHandler, 1, 1, false, 0, 0, 0, 0, 0, 0);
@@ -414,6 +473,5 @@ public class Level {
 
         return sb.toString();
     }
-
 
 }

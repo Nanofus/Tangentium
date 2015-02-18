@@ -15,7 +15,7 @@ public class Position {
         this.x = x;
         this.y = y;
     }
-    
+
     @Override
     public String toString() {
         return "(" + x + "," + y + ")";
@@ -23,12 +23,12 @@ public class Position {
 
     /**
      * Vertaa kahta sijaintia ja kertoo ovatko ne samat.
-     * 
+     *
      * @param other Toinen sijainti
      * @return Onko sama sijainti
      */
     public boolean is(Position other) {
-        if(other.x == x && other.y == y) {
+        if (other.x == x && other.y == y) {
             return true;
         } else {
             return false;

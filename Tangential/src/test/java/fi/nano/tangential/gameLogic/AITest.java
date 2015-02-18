@@ -42,7 +42,7 @@ public class AITest {
     public void MoveAIRandomly() {
         Level level = new Level("level1");
         
-        Actor enemy = new Actor(3, 3, "Skeleton", level, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy = new Actor(3, 3, "Skeleton", level, level.GetCombatHandler(), 1, false, 0, 2, -2, -1, 1, -2);
         enemy.GetAI().MakeMove();
         enemy.GetAI().MakeMove();
         enemy.GetAI().MakeMove();

@@ -89,9 +89,11 @@ public class Actor extends Entity {
     @Override
     public void Move(int x, int y) {
         if (stun < 1) {
-            Actor targetInTile = GetLevel().GetActorInTile(this.GetPosition().x+x,this.GetPosition().y+y);
+            Actor targetInTile = GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y);
             if (targetInTile != null && weaponDelay < 1) {
-                combatHandler.Hit(this, GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y));
+                if (!this.HasAI() && !targetInTile.HasAI()) {
+                    combatHandler.Hit(this, GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y));
+                }
             } else {
                 super.Move(x, y);
             }
