@@ -76,14 +76,18 @@ public class Actor extends Entity {
      */
     public void EquipItem(Item item) {
         if (stun < 1) {
-            if (wieldedItem != null) {
-                wieldedItem.SetEquipped(false);
-                wieldedItem.SetPosition(GetPosition().x, GetPosition().y);
-            }
+            DropItem();
             wieldedItem = item;
             item.SetEquipped(true);
         } else {
             LowerStun();
+        }
+    }
+
+    private void DropItem() {
+        if (wieldedItem != null) {
+            wieldedItem.SetEquipped(false);
+            wieldedItem.SetPosition(GetPosition().x, GetPosition().y);
         }
     }
 
@@ -95,9 +99,8 @@ public class Actor extends Entity {
                 if (!targetInTile.HasAI() || !this.HasAI()) {
                     combatHandler.Hit(this, GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y));
                 }
-            } else {
-                super.Move(x, y);
             }
+            super.Move(x, y);
             LowerWeaponDelay();
         } else {
             LowerStun();
@@ -116,7 +119,7 @@ public class Actor extends Entity {
     private void LowerWeaponDelay() {
         weaponDelay = weaponDelay - 1;
     }
-    
+
     public int GetHealth() {
         return hitPoints;
     }
@@ -132,7 +135,7 @@ public class Actor extends Entity {
     public AI GetAI() {
         return ai;
     }
-    
+
     public Stance GetStance() {
         if (HasAI()) {
             return ai.GetStance();
@@ -142,11 +145,7 @@ public class Actor extends Entity {
     }
 
     public boolean HasAI() {
-        if (aiEnabled) {
-            return true;
-        } else {
-            return false;
-        }
+        return aiEnabled;
     }
 
     /**

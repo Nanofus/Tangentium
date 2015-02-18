@@ -27,7 +27,7 @@ public class AI {
 
     public AI(Actor me, Level level) {
         target = level.GetPlayer();
-        
+
         this.me = me;
         this.level = level;
     }
@@ -36,7 +36,8 @@ public class AI {
      * Metodi antaa AI:lle luvan tehdä siirtonsa.
      */
     public void MakeMove() {
-        int action = random.nextInt(2);
+        //int action = random.nextInt(2);
+        int action = 0;
 
         UpdateStance();
 
@@ -67,7 +68,7 @@ public class AI {
         if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
             stance = Chase;
         //} else if (health <= (maxHealth / 4)) {
-        //    stance = Flee;
+            //stance = Flee;
         } else {
             stance = Wander;
         }
@@ -75,6 +76,7 @@ public class AI {
 
     /**
      * Palauttaa suunnan, jossa pelaaja on tästä katsottuna
+     *
      * @return Suunta
      */
     public Direction GetTargetDirection() {
@@ -85,7 +87,7 @@ public class AI {
         targetDirection = GetTargetDirection();
         switch (targetDirection) {
             case UP:
-                me.Move(0, -1);
+                me.Move(0, 1);
             case DOWN:
                 me.Move(0, 1);
             case LEFT:
@@ -130,7 +132,7 @@ public class AI {
     private void SkipTurn() {
         me.Rest();
     }
-    
+
     public Stance GetStance() {
         return stance;
     }
