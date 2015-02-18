@@ -23,7 +23,7 @@ public class Item extends Entity {
         this.power = power;
         this.type = type;
 
-        System.out.println("Generated item '" + name + "' with power " + power + " at " + GetPosition());
+        //System.out.println("Generated item '" + name + "' with power " + power + " at " + GetPosition());
     }
     
     public DamageType GetDamageType() {

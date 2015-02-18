@@ -21,11 +21,13 @@ public class AI {
     Actor target;
     Direction targetDirection;
     boolean noticedTarget = false;
-    int noticeDistance = 5;
+    int noticeDistance = 10;
 
     Random random = new Random();
 
     public AI(Actor me, Level level) {
+        target = level.GetPlayer();
+        
         this.me = me;
         this.level = level;
     }
@@ -62,16 +64,20 @@ public class AI {
         float health = me.GetHealth();
         float maxHealth = me.GetMaxHealth();
 
-        if (health <= (maxHealth / 4)) {
-            stance = Flee;
-        } else if (level.GetDistance(me.GetPosition(), target.GetPosition()) >= noticeDistance) {
+        if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
             stance = Chase;
+        //} else if (health <= (maxHealth / 4)) {
+        //    stance = Flee;
         } else {
             stance = Wander;
         }
     }
 
-    private Direction GetTargetDirection() {
+    /**
+     * Palauttaa suunnan, jossa pelaaja on tästä katsottuna
+     * @return Suunta
+     */
+    public Direction GetTargetDirection() {
         return level.PositionDirection(me.GetPosition(), target.GetPosition());
     }
 
@@ -79,9 +85,9 @@ public class AI {
         targetDirection = GetTargetDirection();
         switch (targetDirection) {
             case UP:
-                me.Move(0, 1);
-            case DOWN:
                 me.Move(0, -1);
+            case DOWN:
+                me.Move(0, 1);
             case LEFT:
                 me.Move(-1, 0);
             case RIGHT:
@@ -123,6 +129,10 @@ public class AI {
 
     private void SkipTurn() {
         me.Rest();
+    }
+    
+    public Stance GetStance() {
+        return stance;
     }
 
 }

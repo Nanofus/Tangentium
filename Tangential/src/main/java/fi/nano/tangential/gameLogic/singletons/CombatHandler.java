@@ -29,16 +29,19 @@ public class CombatHandler {
 
             int damage = attacker.GetWeapon().GetPower() - targetResistance;
 
-            target.LoseHealth(damage);
+            if (damage >= 0) {
+                target.LoseHealth(damage);
+            }
+
+            System.out.println("'" + attacker + "' hit '" + target + "' and did '" + damage + "' damage!");
 
             if (target.GetHealth() < 1) {
                 DestroyActor(target);
             }
 
-            System.out.println("'" + attacker + "' hit '" + target + "' and did '" + damage + "' damage!");
-
             target.AddStun(2);
             attacker.AddWeaponDelay(3);
+
         } else {
             System.out.println("Attacker has no weapon!");
         }

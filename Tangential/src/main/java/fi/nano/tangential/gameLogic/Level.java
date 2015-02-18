@@ -201,6 +201,7 @@ public class Level {
             }
         }
 
+        System.out.println("--- Game ready ---");
     }
 
     private void Init() {
@@ -325,15 +326,15 @@ public class Level {
 
         if (Math.abs(distX) > Math.abs(distY)) {
             if (distX < 0) {
-                dir = LEFT;
-            } else {
                 dir = RIGHT;
+            } else {
+                dir = LEFT;
             }
         } else {
             if (distY < 0) {
-                dir = UP;
-            } else {
                 dir = DOWN;
+            } else {
+                dir = UP;
             }
         }
 

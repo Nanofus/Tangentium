@@ -165,6 +165,12 @@ public class Renderer extends JPanel {
                         guiTexts.add("Strong: " + actorInTile.GetStrength());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY + 24);
+                        guiTexts.add("Stance: " + actorInTile.GetStance());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY + 36);
+                        guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY + 48);
                     }
                 }
             }

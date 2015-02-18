@@ -5,6 +5,7 @@ import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Entity;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
+import fi.nano.tangential.gameLogic.enums.Stance;
 import fi.nano.tangential.gameLogic.singletons.CombatHandler;
 import java.util.ArrayList;
 
@@ -91,12 +92,13 @@ public class Actor extends Entity {
         if (stun < 1) {
             Actor targetInTile = GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y);
             if (targetInTile != null && weaponDelay < 1) {
-                if (!this.HasAI() && !targetInTile.HasAI()) {
+                if (!targetInTile.HasAI() || !this.HasAI()) {
                     combatHandler.Hit(this, GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y));
                 }
             } else {
                 super.Move(x, y);
             }
+            LowerWeaponDelay();
         } else {
             LowerStun();
         }
@@ -108,9 +110,13 @@ public class Actor extends Entity {
 
     private void LowerStun() {
         stun = stun - 1;
-        weaponDelay = weaponDelay - 1;
+        LowerWeaponDelay();
     }
 
+    private void LowerWeaponDelay() {
+        weaponDelay = weaponDelay - 1;
+    }
+    
     public int GetHealth() {
         return hitPoints;
     }
@@ -125,6 +131,14 @@ public class Actor extends Entity {
 
     public AI GetAI() {
         return ai;
+    }
+    
+    public Stance GetStance() {
+        if (HasAI()) {
+            return ai.GetStance();
+        } else {
+            return Stance.None;
+        }
     }
 
     public boolean HasAI() {
