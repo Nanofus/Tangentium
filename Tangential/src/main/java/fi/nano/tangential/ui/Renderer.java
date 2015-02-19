@@ -24,8 +24,8 @@ public class Renderer extends JPanel {
     private final int actorSizeX;
     private final int actorSizeY;
 
-    private final Level level;
-    private final Actor player;
+    private Level level;
+    private Actor player;
 
     private final ImageLoader imageLoader;
 
@@ -229,6 +229,11 @@ public class Renderer extends JPanel {
         pos.x = (position.x - position.y) * (tileSizeX / 2);
         pos.y = (position.x + position.y) * (tileSizeY / 2);
         return pos;
+    }
+    
+    public void RestartLevel(Level level, Actor player) {
+        this.level = level;
+        this.player = player;
     }
 
     /**

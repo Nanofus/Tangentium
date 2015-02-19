@@ -1,19 +1,10 @@
 package fi.nano.tangential.ui;
 
 import fi.nano.tangential.Game;
+import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.enums.Direction;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -54,6 +45,10 @@ public class Window implements Runnable {
         renderer = new Renderer(imageLoader,game.GetLevel(),game.GetLevel().GetPlayer(),windowWidth,windowHeight);
 
         frame.add(renderer);
+    }
+    
+    public void RestartLevel(Level level) {
+        renderer.RestartLevel(level, level.GetPlayer());
     }
     
     public void Refresh() {

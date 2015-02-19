@@ -49,6 +49,7 @@ public class Game {
 
     private void RestartGame() {
         level = new Level(levelName);
+        window.RestartLevel(level);
     }
 
     /**
