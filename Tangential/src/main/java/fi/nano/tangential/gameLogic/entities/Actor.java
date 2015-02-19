@@ -68,16 +68,26 @@ public class Actor extends Entity {
     }
 
     /**
-     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen
-     * sijaintiin.
+     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen sijaintiin.
      *
      * @param item Käyttöön otettava esine
      */
     public void EquipItem(Item item) {
-        if (stun < 1) {
+        if (stun < 1 && !item.IsEquipped()) {
             DropItem();
             wieldedItem = item;
             item.SetEquipped(true);
+            System.out.println("'"+GetName()+"' picked up item " + item.GetName());
+            LowerWeaponDelay();
+        } else {
+            LowerStun();
+        }
+    }
+
+    public void EquipItemInTile() {
+        Item item = GetLevel().GetItemInTile(GetPosition());
+        if (item != null) {
+            EquipItem(item);
         } else {
             LowerStun();
         }
@@ -154,8 +164,7 @@ public class Actor extends Entity {
     /**
      * Vähentää - tai lisää - actorin terveyttä tietyllä määrällä.
      *
-     * @param amount Määrä (positiivinen tekee vahinkoa, negatiivinen
-     * parantaa)
+     * @param amount Määrä (positiivinen tekee vahinkoa, negatiivinen parantaa)
      */
     public void LoseHealth(int amount) {
         hitPoints = hitPoints - amount;

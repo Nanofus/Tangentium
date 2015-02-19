@@ -96,15 +96,7 @@ public class Game {
      */
     public void PlayerPickItem() {
         if (!level.IsGameOver()) {
-            for (Item item : level.GetItems()) {
-                if (item.GetPosition().is(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
-                    level.GetPlayer().EquipItem(item);
-                    System.out.println("Player picked up item " + item.GetName());
-                    PassTurn();
-                    break;
-                }
-            }
-
+            level.GetPlayer().EquipItemInTile();
             PassTurn();
         } else {
             RestartGame();

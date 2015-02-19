@@ -14,8 +14,8 @@ import javax.swing.WindowConstants;
  */
 public class Window implements Runnable {
 
-    private int windowWidth = 800;
-    private int windowHeight = 600;
+    private int windowWidth = 1280;
+    private int windowHeight = 720;
     
     private final Game game;
 
@@ -49,6 +49,7 @@ public class Window implements Runnable {
     
     public void RestartLevel(Level level) {
         renderer.RestartLevel(level, level.GetPlayer());
+        Refresh();
     }
     
     public void Refresh() {

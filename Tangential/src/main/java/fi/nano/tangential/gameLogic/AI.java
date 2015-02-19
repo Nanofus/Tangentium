@@ -36,8 +36,8 @@ public class AI {
      * Metodi antaa AI:lle luvan tehdä siirtonsa.
      */
     public void MakeMove() {
-        //int action = random.nextInt(2);
-        int action = 0;
+        int action = random.nextInt(2);
+        //int action = 0;
 
         UpdateStance();
 
@@ -87,13 +87,17 @@ public class AI {
         targetDirection = GetTargetDirection();
         switch (targetDirection) {
             case UP:
-                me.Move(0, 1);
+                me.Move(0, -1);
+                break;
             case DOWN:
                 me.Move(0, 1);
+                break;
             case LEFT:
                 me.Move(-1, 0);
+                break;
             case RIGHT:
                 me.Move(1, 0);
+                break;
         }
     }
 
@@ -102,12 +106,16 @@ public class AI {
         switch (targetDirection) {
             case UP:
                 me.Move(0, -1);
+                break;
             case DOWN:
                 me.Move(0, 1);
+                break;
             case LEFT:
-                me.Move(1, 0);
-            case RIGHT:
                 me.Move(-1, 0);
+                break;
+            case RIGHT:
+                me.Move(1, 0);
+                break;
         }
     }
 
