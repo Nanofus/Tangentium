@@ -23,6 +23,7 @@ public enum TileType {
             FLOOR(PASSABLE),
             LEVER(PASSABLE),
                 LEVER_ON_FLOOR(LEVER),
+            WINCIRCLE(PASSABLE),
             GRASS(PASSABLE),
             PATH(PASSABLE),
             ICE(PASSABLE);

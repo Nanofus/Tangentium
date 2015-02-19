@@ -14,6 +14,7 @@ public class Tile {
     private TileAction action;
     
     private int actionId = 0;
+    private TileType actionChangeType = TileType.FLOOR;
     
     private Character symbol = 'Ö';
     
@@ -27,6 +28,18 @@ public class Tile {
     
     public Character GetSymbol() {
         return symbol;
+    }
+    
+    public TileAction GetAction() {
+        return action;
+    }
+    
+    public int GetActionId() {
+        return actionId;
+    }
+    
+    public TileType GetActionChangeType() {
+        return actionChangeType;
     }
     
     /**

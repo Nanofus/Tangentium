@@ -64,4 +64,9 @@ public class Window implements Runnable {
         renderer.RotateCamera(direction);
     }
 
+    public void WinGame() {
+        renderer.GameWon();
+        Refresh();
+    }
+
 }

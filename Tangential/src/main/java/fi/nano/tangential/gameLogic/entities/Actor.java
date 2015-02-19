@@ -84,10 +84,25 @@ public class Actor extends Entity {
         }
     }
 
+    /**
+     * Pelaaja ottaa käyttöön esineen joka ruudussa on
+     */
     public void EquipItemInTile() {
         Item item = GetLevel().GetItemInTile(GetPosition());
         if (item != null) {
             EquipItem(item);
+        } else {
+            LowerStun();
+        }
+    }
+    
+    /**
+     * Pelaaja käyttää vipua tai muuta vastaavaa joka ruudussa on
+     */
+    public void UseActionTile() {
+        if (stun < 1) {
+            GetLevel().ActivateTile(GetPosition());
+            LowerWeaponDelay();
         } else {
             LowerStun();
         }

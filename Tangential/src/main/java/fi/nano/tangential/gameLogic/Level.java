@@ -1,5 +1,6 @@
 package fi.nano.tangential.gameLogic;
 
+import fi.nano.tangential.Game;
 import fi.nano.tangential.fileProcessing.LevelReader;
 import fi.nano.tangential.gameLogic.enums.TileType;
 import fi.nano.tangential.gameLogic.enums.DamageType;
@@ -26,6 +27,8 @@ import java.util.Scanner;
  */
 public class Level {
 
+    private Game game;
+
     private EntityManager entityManager;
     private CombatHandler combatHandler;
 
@@ -40,14 +43,18 @@ public class Level {
 
     Random random = new Random();
 
+    private boolean gameOver = false;
+
     /**
      * Konstruktori lataa tason tekstitiedostosta.
      *
+     * @param game Peli-instanssi joka loi tason
      * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
      * (.txt)
      *
      */
-    public Level(String levelName) {
+    public Level(Game game, String levelName) {
+        this.game = game;
 
         Init();
 
@@ -99,6 +106,10 @@ public class Level {
                         break;
                     case 'l':
                         tiles[i][j].SetType(LEVER_ON_FLOOR);
+                        tiles[i][j].SetTileAction(TileAction.Changer);
+                        break;
+                    case '!':
+                        tiles[i][j].SetType(WINCIRCLE);
                         tiles[i][j].SetTileAction(TileAction.Changer);
                         break;
                     case ',':
@@ -257,6 +268,35 @@ public class Level {
     }
 
     /**
+     * Aktivoi toiminnon tietyssä tilessä.
+     *
+     * @param pos
+     */
+    public void ActivateTile(Position pos) {
+        Tile tileInPos = GetTile(pos.x, pos.y);
+        if (tileInPos.GetAction() == TileAction.Changer) {
+            if (tileInPos.GetType().is(WINCIRCLE)) {
+                game.AdvanceLevel();
+            } else {
+                for (int i = 0; i < width; i++) {
+                    for (int j = 0; j < height; j++) {
+                        Tile tile = tiles[i][j];
+                        if (tile.GetAction() == TileAction.Changing) {
+                            if (tile.GetActionId() == tileInPos.GetActionId()) {
+                                TileType type = tile.GetType();
+                                if (type.is(DOOR)) {
+                                    tile.SetType(tile.GetActionChangeType());
+                                    System.out.println("'" + type + "' opened to '" + tile.GetActionChangeType() + "'!");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Laskee etäisyyden ruuduissa kahden ruudun välillä.
      *
      * @param pos1 Sijainti 1
@@ -306,7 +346,14 @@ public class Level {
      * @return Totuusarvo pelaajan kuolleisuudelle
      */
     public boolean IsGameOver() {
-        return player.GetHealth() <= 0;
+        if (player.GetHealth() <= 0) {
+            gameOver = true;
+        }
+        return gameOver;
+    }
+
+    public void SetGameOver(boolean value) {
+        gameOver = value;
     }
 
     public int GetWidth() {

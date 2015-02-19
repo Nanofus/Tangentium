@@ -26,6 +26,8 @@ public class Renderer extends JPanel {
 
     private Level level;
     private Actor player;
+    
+    private boolean gameWon = false;
 
     private final ImageLoader imageLoader;
 
@@ -109,6 +111,10 @@ public class Renderer extends JPanel {
                         break;
                     case LEVER_ON_FLOOR:
                         drawnImage = imageLoader.GetImage("Lever");
+                        drawnImageBottom = imageLoader.GetImage("Floor");
+                        break;
+                    case WINCIRCLE:
+                        drawnImage = imageLoader.GetImage("Win Circle");
                         drawnImageBottom = imageLoader.GetImage("Floor");
                         break;
                     case CHASM:
@@ -212,8 +218,13 @@ public class Renderer extends JPanel {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 150, null);
         }
 
-        if (level.IsGameOver()) {
+        if (level.IsGameOver() && !gameWon) {
             drawnImage = imageLoader.GetImage("Game Over");
+            g.drawImage(drawnImage, (windowWidth/2)-(drawnImage.getWidth()/2), (windowHeight/2)-(drawnImage.getHeight()/2), null);
+        }
+        
+        if (gameWon) {
+            drawnImage = imageLoader.GetImage("Victory");
             g.drawImage(drawnImage, (windowWidth/2)-(drawnImage.getWidth()/2), (windowHeight/2)-(drawnImage.getHeight()/2), null);
         }
 
@@ -242,6 +253,10 @@ public class Renderer extends JPanel {
     public void RestartLevel(Level level, Actor player) {
         this.level = level;
         this.player = player;
+    }
+    
+    public void GameWon() {
+        gameWon = true;
     }
 
     /**

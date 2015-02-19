@@ -24,6 +24,7 @@ public class ImageLoader {
     
     private BufferedImage door_left;
     private BufferedImage lever;
+    private BufferedImage wincircle;
 
     private BufferedImage skeleton;
     private BufferedImage lizardMan;
@@ -44,6 +45,7 @@ public class ImageLoader {
     private BufferedImage healthicon;
     private BufferedImage weaponstunicon;
     private BufferedImage gameover;
+    private BufferedImage victory;
     
     private BufferedImage swordicon;
     private BufferedImage spearicon;
@@ -65,6 +67,7 @@ public class ImageLoader {
             
             door_left = ImageIO.read(new File("graphics/door_left.png"));
             lever = ImageIO.read(new File("graphics/lever.png"));
+            wincircle = ImageIO.read(new File("graphics/wincircle.png"));
 
             skeleton = ImageIO.read(new File("graphics/player2.png"));
             lizardMan = ImageIO.read(new File("graphics/player2.png"));
@@ -85,6 +88,7 @@ public class ImageLoader {
             healthicon = ImageIO.read(new File("graphics/healthicon.png"));
             weaponstunicon = ImageIO.read(new File("graphics/weaponstunicon.png"));
             gameover = ImageIO.read(new File("graphics/gameover.png"));
+            victory = ImageIO.read(new File("graphics/victory.png"));
             
             swordicon = ImageIO.read(new File("graphics/swordicon.png"));
             spearicon = ImageIO.read(new File("graphics/spearicon.png"));
@@ -122,6 +126,8 @@ public class ImageLoader {
                 return door_left;
             case "Lever":
                 return lever;
+            case "Win Circle":
+                return wincircle;
             
             case "Skeleton":
                 return skeleton;
@@ -158,6 +164,8 @@ public class ImageLoader {
                 return weaponstunicon;
             case "Game Over":
                 return gameover;
+            case "Victory":
+                return victory;
                 
             case "Sword Icon":
                 return swordicon;

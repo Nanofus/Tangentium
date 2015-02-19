@@ -5,6 +5,7 @@ import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import fi.nano.tangential.ui.Window;
+import java.util.ArrayList;
 
 /**
  * Luokka pitää sisällään varsinaisen pelin luonnin ja toiminnan.
@@ -12,13 +13,14 @@ import fi.nano.tangential.ui.Window;
 public class Game {
 
     private Level level;
-    private String levelName;
     private Window window;
 
-    int turn = 0;
+    private int currentLevel = 0;
+    private ArrayList<String> levels;
 
-    boolean gameRunning = true;
-    boolean isPlayersTurn = false;
+    private boolean gameWon = false;
+
+    int turn = 0;
 
     /**
      * Konstruktori lataa Level-tyyppisen tason tekstitiedostosta.
@@ -26,11 +28,12 @@ public class Game {
      * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
      * (.txt)
      */
-    public Game(String levelName) {
+    public Game(ArrayList<String> levelName) {
+        levels = levelName;
+
         System.out.println("\nGenerating game from file...");
 
-        this.levelName = levelName;
-        level = new Level(levelName);
+        level = new Level(this, levels.get(currentLevel));
 
         /*System.out.println("\nGenerated level:\n----\n");
 
@@ -48,8 +51,28 @@ public class Game {
     }
 
     private void RestartGame() {
-        level = new Level(levelName);
-        window.RestartLevel(level);
+        if (!gameWon) {
+            level = new Level(this, levels.get(currentLevel));
+            window.RestartLevel(level);
+        }
+    }
+
+    /**
+     * Siirtää pelaajan seuraavalle tasolle tai voittaa pelin jos viimeinen taso
+     *
+     */
+    public void AdvanceLevel() {
+        currentLevel++;
+        if (currentLevel < levels.size()) {
+            String nextLevel = levels.get(currentLevel);
+            level = new Level(this, nextLevel);
+            window.RestartLevel(level);
+        } else {
+            System.out.println("GAME WON");
+            level.SetGameOver(true);
+            gameWon = true;
+            window.WinGame();
+        }
     }
 
     /**
@@ -94,9 +117,10 @@ public class Game {
     /**
      * Pelaaja yrittää poimia esineen.
      */
-    public void PlayerPickItem() {
+    public void PlayerUse() {
         if (!level.IsGameOver()) {
             level.GetPlayer().EquipItemInTile();
+            level.GetPlayer().UseActionTile();
             PassTurn();
         } else {
             RestartGame();
