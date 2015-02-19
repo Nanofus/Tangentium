@@ -3,6 +3,7 @@ package fi.nano.tangential.gameLogic;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
+import fi.nano.tangential.gameLogic.enums.DamageType;
 import static fi.nano.tangential.gameLogic.enums.DamageType.*;
 import static fi.nano.tangential.gameLogic.enums.TileType.*;
 import org.junit.After;
@@ -114,59 +115,58 @@ public class LevelTest {
 
      assertEquals(1, levelHeight);
      }*/
-    
     @Test
     public void LoadLevelFromFile() {
-        Level level = new Level("level1");
+        Level level = new Level(null, "level1");
 
-        assertEquals(FLOOR,level.GetTile(5,5).GetType());
-        
+        assertEquals(FLOOR, level.GetTile(5, 5).GetType());
+
     }
-    
+
     @Test
     public void GetEnemyActorInTile() {
-        Level level = new Level("level1");
-        
-        Actor enemy = new Actor(2, 2, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        Level level = new Level(null, "level1");
+
+        Actor enemy = new Actor(2, 2, "Skeleton", level, 1, 1, false, 0, 2, -2, -1, 1, -2);
         level.GetEntityManager().AddEnemy(enemy);
-        
-        assertEquals(enemy,level.GetActorInTile(2, 2));
+
+        assertEquals(enemy, level.GetActorInTile(2, 2));
     }
-    
+
     @Test
     public void GetActorInTileFalse() {
-        Level level = new Level("level1");
-        
-        Actor enemy = new Actor(2, 2, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
+        Level level = new Level(null, "level1");
+
+        Actor enemy = new Actor(2, 2, "Skeleton", level, 1, 1, false, 0, 2, -2, -1, 1, -2);
         level.GetEntityManager().AddEnemy(enemy);
-        
-        assertEquals(null,level.GetActorInTile(3, 3));
+
+        assertEquals(null, level.GetActorInTile(3, 3));
     }
-    
+
     @Test
     public void GetPlayerActorInTile() {
-        Level level = new Level("level1");
-        
-        assertEquals(level.GetPlayer(),level.GetActorInTile(1, 1));
+        Level level = new Level(null, "level1");
+
+        assertEquals(level.GetPlayer(), level.GetActorInTile(1, 1));
     }
-    
+
     @Test
     public void GetItemInTile() {
-        Level level = new Level("level1");
-        
-        Item item = new Item(2, 2, "TestSword", null, 1, SLASH);
+        Level level = new Level(null, "level1");
+
+        Item item = new Item(2, 2, "TestSword", null, 1, DamageType.Slash);
         level.GetEntityManager().AddItem(item);
-        
-        assertEquals(item,level.GetItemInTile(2, 2));
+
+        assertEquals(item, level.GetItemInTile(2, 2));
     }
 
     @Test
     public void TestLevelPrint() {
-        Level level = new Level("level1");
-        
+        Level level = new Level(null, "level1");
+
         String levelAsString = level.toString();
-        
-        assertEquals('X',levelAsString.charAt(5));
+
+        assertEquals('X', levelAsString.charAt(5));
     }
-    
+
 }

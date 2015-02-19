@@ -37,10 +37,12 @@ public class Actor extends Entity {
 
     private AI ai;
 
-    public Actor(int x, int y, String name, Level level, CombatHandler combatHandler, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
+    public Actor(int x, int y, String name, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
         super(x, y, name, level);
 
-        this.combatHandler = combatHandler;
+        if (level != null) {
+            this.combatHandler = level.GetCombatHandler();
+        }
 
         this.hitPoints = hp;
         this.maxHitPoints = maxhp;
@@ -77,7 +79,7 @@ public class Actor extends Entity {
             DropItem();
             wieldedItem = item;
             item.SetEquipped(true);
-            System.out.println("'"+GetName()+"' picked up item " + item.GetName());
+            System.out.println("'" + GetName() + "' picked up item " + item.GetName());
             LowerWeaponDelay();
         } else {
             LowerStun();
@@ -95,7 +97,7 @@ public class Actor extends Entity {
             LowerStun();
         }
     }
-    
+
     /**
      * Pelaaja käyttää vipua tai muuta vastaavaa joka ruudussa on
      */

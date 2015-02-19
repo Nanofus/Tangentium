@@ -38,7 +38,7 @@ public class EntityTest {
 
     @Test
     public void MoveWithPositiveValues() {
-        Level level = new Level(100,100,false);
+        Level level = new Level(null,"level");
         Entity entity = new Entity(5, -1, "Testientity", level);
 
         entity.Move(5, 6);
@@ -48,7 +48,7 @@ public class EntityTest {
 
     @Test
     public void MoveWithZeroValues() {
-        Level level = new Level(100,100,false);
+        Level level = new Level(null,"level");
         Entity entity = new Entity(5, 1, "Testientity", level);
 
         entity.Move(0, 0);
@@ -58,7 +58,7 @@ public class EntityTest {
 
     @Test
     public void MoveWithNegativeValues() {
-        Level level = new Level(100,100,false);
+        Level level = new Level(null,"level1");
         Entity entity = new Entity(5, 1, "Testientity", level);
 
         entity.Move(-1, -1);

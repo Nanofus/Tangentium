@@ -381,7 +381,7 @@ public class Level {
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", this, combatHandler, 5, 5, true, 0, 0, 0, 0, 0, 0);
+        player = new Actor(x, y, "Player", this, 5, 5, true, 0, 0, 0, 0, 0, 0);
     }
 
     private void SpawnItem(int x, int y, String name, int power) {
@@ -421,27 +421,27 @@ public class Level {
 
         switch (name) {
             case "Skeleton":
-                enemy = new Actor(x, y, "Skeleton", this, combatHandler, 1, 1, false, 0, 2, -2, -1, 1, -2);
+                enemy = new Actor(x, y, "Skeleton", this, 1, 1, false, 0, 2, -2, -1, 1, -2);
                 enemyWeapon = new Item(0, 0, "Skeleton Sword", this, 1, Slash);
                 enemy.EquipItem(enemyWeapon);
                 break;
             case "Troll":
-                enemy = new Actor(x, y, "Troll", this, combatHandler, 4, 4, false, 2, 0, 1, -2, 0, -1);
+                enemy = new Actor(x, y, "Troll", this, 4, 4, false, 2, 0, 1, -2, 0, -1);
                 enemyWeapon = new Item(0, 0, "Troll's Club", this, 1, Crush);
                 enemy.EquipItem(enemyWeapon);
                 break;
             case "Lizard Man":
-                enemy = new Actor(x, y, "Lizard Man", this, combatHandler, 2, 2, false, -2, -2, 0, 1, 2, 1);
+                enemy = new Actor(x, y, "Lizard Man", this, 2, 2, false, -2, -2, 0, 1, 2, 1);
                 enemyWeapon = new Item(0, 0, "Reptilian Blade", this, 1, Slash);
                 enemy.EquipItem(enemyWeapon);
                 break;
             case "Dragon":
-                enemy = new Actor(x, y, "Dragon", this, combatHandler, 10, 10, false, 0, 0, 0, 2, 2, 2);
+                enemy = new Actor(x, y, "Dragon", this, 10, 10, false, 0, 0, 0, 2, 2, 2);
                 enemyWeapon = new Item(0, 0, "Breath of Fire", this, 1, Burn);
                 enemy.EquipItem(enemyWeapon);
                 break;
             default:
-                enemy = new Actor(x, y, "UNDEFINED", this, combatHandler, 1, 1, false, 0, 0, 0, 0, 0, 0);
+                enemy = new Actor(x, y, "UNDEFINED", this, 1, 1, false, 0, 0, 0, 0, 0, 0);
         }
 
         entityManager.AddEnemy(enemy);

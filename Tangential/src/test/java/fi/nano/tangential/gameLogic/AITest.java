@@ -5,7 +5,9 @@
  */
 package fi.nano.tangential.gameLogic;
 
+import fi.nano.tangential.Game;
 import fi.nano.tangential.gameLogic.entities.Actor;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,6 +34,7 @@ public class AITest {
 
     @Before
     public void setUp() {
+        
     }
 
     @After
@@ -40,9 +43,11 @@ public class AITest {
 
     @Test
     public void MoveAIRandomly() {
-        Level level = new Level("level1");
+        ArrayList<String> levels = new ArrayList<String>();
+        levels.add("level1");
+        Game game = new Game(levels);
         
-        Actor enemy = new Actor(3, 3, "Skeleton", level, level.GetCombatHandler(), 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy = new Actor(3, 3, "Skeleton", game.GetLevel(), 1, 1, false, 0, 2, -2, -1, 1, -2);
         enemy.GetAI().MakeMove();
         enemy.GetAI().MakeMove();
         enemy.GetAI().MakeMove();

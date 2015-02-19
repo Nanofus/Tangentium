@@ -43,10 +43,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
-        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 1, PIERCE);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 1, Pierce);
 
         enemy1.EquipItem(weapon1);
 
@@ -60,10 +60,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
-        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 20, PIERCE);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 20, Pierce);
 
         enemy1.EquipItem(weapon1);
 
@@ -77,10 +77,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
-        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 1, ARCANE);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 1, Arcane);
 
         enemy1.EquipItem(weapon1);
 
@@ -94,10 +94,10 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
-        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 5, SLASH);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 5, Slash);
 
         enemy1.EquipItem(weapon1);
 
@@ -111,53 +111,53 @@ public class CombatHandlerTest {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
-        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 5, SLASH);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 5, Slash);
 
         entityManager.AddEnemy(enemy2);
-        
+
         enemy1.EquipItem(weapon1);
 
         handler.Hit(enemy1, enemy2);
 
         boolean wasFound = false;
         ArrayList<Actor> enemies = entityManager.GetEnemies();
-        for(Actor enemy : enemies) {
+        for (Actor enemy : enemies) {
             if (enemy.GetSymbol() == enemy2.GetSymbol()) {
                 wasFound = true;
             }
         }
-        
-        assertEquals(false,wasFound);
+
+        assertEquals(false, wasFound);
     }
-    
+
     @Test
     public void TestActorDestructionWithNonLethalDamage() {
         EntityManager entityManager = new EntityManager();
         CombatHandler handler = new CombatHandler(entityManager);
 
-        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, false, 0, 2, -2, -1, 1, -2);
-        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, false, 2, 0, 1, -2, 0, -1);
+        Actor enemy1 = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        Actor enemy2 = new Actor(0, 1, "Troll", null, 3, 3, false, 2, 0, 1, -2, 0, -1);
 
-        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 0, SLASH);
+        Item weapon1 = new Item(0, 0, "Test Slash Weapon", null, 0, Slash);
 
         entityManager.AddEnemy(enemy2);
-        
+
         enemy1.EquipItem(weapon1);
 
         handler.Hit(enemy1, enemy2);
 
         boolean wasFound = false;
         ArrayList<Actor> enemies = entityManager.GetEnemies();
-        for(Actor enemy : enemies) {
+        for (Actor enemy : enemies) {
             if (enemy.GetSymbol() == enemy2.GetSymbol()) {
                 wasFound = true;
             }
         }
-        
-        assertEquals(true,wasFound);
+
+        assertEquals(true, wasFound);
     }
 
 }

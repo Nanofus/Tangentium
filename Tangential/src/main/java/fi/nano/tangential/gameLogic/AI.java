@@ -26,7 +26,9 @@ public class AI {
     Random random = new Random();
 
     public AI(Actor me, Level level) {
-        target = level.GetPlayer();
+        if (level != null) {
+            target = level.GetPlayer();
+        }
 
         this.me = me;
         this.level = level;
@@ -60,17 +62,19 @@ public class AI {
     }
 
     private void UpdateStance() {
-        target = level.GetPlayer();
+        if (level != null) {
+            target = level.GetPlayer();
 
-        float health = me.GetHealth();
-        float maxHealth = me.GetMaxHealth();
+            float health = me.GetHealth();
+            float maxHealth = me.GetMaxHealth();
 
-        if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
-            stance = Chase;
-        //} else if (health <= (maxHealth / 4)) {
-            //stance = Flee;
-        } else {
-            stance = Wander;
+            if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
+                stance = Chase;
+            //} else if (health <= (maxHealth / 4)) {
+                //stance = Flee;
+            } else {
+                stance = Wander;
+            }
         }
     }
 
