@@ -126,6 +126,20 @@ public class LevelTest {
     }
     
     @Test
+    public void TestParametreValidationIncorrectValues() {
+        Level level = new Level(null,"smalltestlevel");
+        
+        assertEquals(1,level.GetWidth());
+    }
+    
+    @Test
+    public void TestParametreValidationCorrectValues() {
+        Level level = new Level(null,"testlevel");
+        
+        assertEquals(7,level.GetWidth());
+    }
+    
+    @Test
     public void TestDistanceDirect() {
         Level level = new Level(null, "level1");
 
@@ -136,6 +150,6 @@ public class LevelTest {
     public void TestDistanceDiagonal() {
         Level level = new Level(null, "level1");
 
-        assertEquals(5,level.GetDistance(new Position(0,0), new Position(3,3)));
+        assertEquals(6,level.GetDistance(new Position(0,0), new Position(3,3)));
     }
 }

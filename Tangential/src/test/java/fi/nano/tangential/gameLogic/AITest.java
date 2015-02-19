@@ -7,6 +7,8 @@ package fi.nano.tangential.gameLogic;
 
 import fi.nano.tangential.Game;
 import fi.nano.tangential.gameLogic.entities.Actor;
+import fi.nano.tangential.gameLogic.enums.Direction;
+import static fi.nano.tangential.gameLogic.enums.Stance.*;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,6 +43,40 @@ public class AITest {
     public void tearDown() {
     }
 
+    @Test
+    public void TestStanceChangeFromWanderToChase() {
+        ArrayList<String> levels = new ArrayList<String>();
+        levels.add("level1");
+        Game game = new Game(levels);
+        
+        Actor enemy = new Actor(3, 3, "Skeleton", game.GetLevel(), 1, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        game.GetLevel().GetEntityManager().AddEnemy(enemy);
+        
+        game.MovePlayer(Direction.UP);
+        
+        assertEquals(Chase,enemy.GetAI().GetStance());
+    }
+    
+    @Test
+    public void TestStanceChangeFromChaseToWander() {
+        ArrayList<String> levels = new ArrayList<String>();
+        levels.add("level1");
+        Game game = new Game(levels);
+        
+        Actor enemy = new Actor(5, 5, "Skeleton", game.GetLevel(), 1, 1, false, 0, 2, -2, -1, 1, -2);
+        
+        game.GetLevel().GetEntityManager().AddEnemy(enemy);
+        
+        game.MovePlayer(Direction.UP);
+        
+        enemy.Move(20, 0);
+        
+        game.MovePlayer(Direction.UP);
+        
+        assertEquals(Wander,enemy.GetAI().GetStance());
+    }
+    
     @Test
     public void MoveAIRandomly() {
         ArrayList<String> levels = new ArrayList<String>();

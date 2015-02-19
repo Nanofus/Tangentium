@@ -139,7 +139,9 @@ public class Game {
     private void PassTurn() {
         if (!level.IsGameOver()) {
             AIMove();
-            window.Refresh();
+            if (window != null) {
+                window.Refresh();
+            }
             turn++;
         }
     }

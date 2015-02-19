@@ -9,6 +9,9 @@ import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.Position;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import static fi.nano.tangential.gameLogic.enums.DamageType.*;
+import fi.nano.tangential.gameLogic.enums.TileAction;
+import fi.nano.tangential.gameLogic.enums.TileType;
+import static fi.nano.tangential.gameLogic.enums.TileType.FLOOR;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -76,6 +79,17 @@ public class ActorTest {
         enemy.EquipItem(item);
 
         assertEquals(true, item.IsEquipped());
+    }
+
+    @Test
+    public void CantEquipItemWhileStunned() {
+        Item item = new Item(0, 0, "TestItem", null, 5, Pierce);
+        Actor enemy = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
+        enemy.AddStun(5);
+        
+        enemy.EquipItem(item);
+
+        assertEquals(false, item.IsEquipped());
     }
 
     @Test
@@ -221,4 +235,42 @@ public class ActorTest {
         assertEquals("Slash, Pierce, Crush, Burn, Freeze, Arcane", enemy.GetStrength());
     }
 
+    @Test
+    public void TestUseActivationTile() {
+        Level level = new Level(null, "level1");
+        level.GetTile(20, 20).SetType(TileType.LEVER);
+        level.GetTile(20, 20).SetTileAction(TileAction.Changer);
+        level.GetTile(20, 20).SetTileActionId(1);
+
+        level.GetTile(21, 20).SetType(TileType.DOOR_LEFT);
+        level.GetTile(21, 20).SetTileAction(TileAction.Changing);
+        level.GetTile(21, 20).SetTileActionId(1);
+        
+        Actor enemy = new Actor(20, 20, "Skeleton", level, 1, 1, false, 0, 2, -2, -1, 1, -2);
+
+        enemy.UseActionTile();
+        
+        assertEquals(FLOOR, level.GetTile(21, 20).GetType());
+    }
+    
+    @Test
+    public void TestUseActivationTileWhileStunned() {
+        Level level = new Level(null, "level1");
+        level.GetTile(20, 20).SetType(TileType.LEVER);
+        level.GetTile(20, 20).SetTileAction(TileAction.Changer);
+        level.GetTile(20, 20).SetTileActionId(1);
+
+        level.GetTile(21, 20).SetType(TileType.DOOR_LEFT);
+        level.GetTile(21, 20).SetTileAction(TileAction.Changing);
+        level.GetTile(21, 20).SetTileActionId(1);
+        
+        Actor enemy = new Actor(20, 20, "Skeleton", level, 1, 1, false, 0, 2, -2, -1, 1, -2);
+
+        enemy.AddStun(5);
+        
+        enemy.UseActionTile();
+        
+        assertEquals(TileType.DOOR_LEFT, level.GetTile(21, 20).GetType());
+    }
+    
 }

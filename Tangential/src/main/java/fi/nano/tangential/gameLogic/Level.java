@@ -14,11 +14,8 @@ import fi.nano.tangential.gameLogic.enums.Direction;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import fi.nano.tangential.gameLogic.enums.TileAction;
 import static fi.nano.tangential.gameLogic.enums.TileType.*;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Luokka, joka vastaa pelin tasosta ja tason sisällöstä.
@@ -27,12 +24,12 @@ import java.util.Scanner;
  */
 public class Level {
 
-    private Game game;
+    private final Game game;
 
     private EntityManager entityManager;
     private CombatHandler combatHandler;
 
-    private Tile[][] tiles;
+    private final Tile[][] tiles;
     private int width;
     private int height;
 
@@ -59,16 +56,23 @@ public class Level {
         Init();
 
         LevelReader levelReader = new LevelReader(levelName);
+        ArrayList<String> levelArray = levelReader.GetLevel();
 
+        height = levelArray.size();
+        width = levelArray.get(0).length();
+
+        tiles = new Tile[width][height];
+
+        SpawnObjects(levelReader);
+
+        System.out.println("--- Game ready ---");
+    }
+
+    private void SpawnObjects(LevelReader levelReader) {
         ArrayList<String> levelArray = levelReader.GetLevel();
         ArrayList<String> actorArray = levelReader.GetActors();
         ArrayList<String> itemArray = levelReader.GetItems();
         ArrayList<String> tileActionIdArray = levelReader.GetActionIdArray();
-
-        height = levelArray.size();
-        width = levelArray.get(2).length();
-
-        tiles = new Tile[width][height];
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -170,8 +174,6 @@ public class Level {
                 }
             }
         }
-
-        System.out.println("--- Game ready ---");
     }
 
     private void Init() {

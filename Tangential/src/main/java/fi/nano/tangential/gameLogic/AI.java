@@ -49,8 +49,8 @@ public class AI {
                     MoveRandomly();
                 } else if (stance == Chase) {
                     Chase();
-                } else if (stance == Flee) {
-                    Flee();
+                //} else if (stance == Flee) {
+                //    Flee();
                 }
                 break;
             case 1: //Skippaa vuoro
@@ -105,7 +105,7 @@ public class AI {
         }
     }
 
-    private void Flee() {
+    /*private void Flee() {
         targetDirection = GetTargetDirection();
         switch (targetDirection) {
             case UP:
@@ -121,7 +121,7 @@ public class AI {
                 me.Move(1, 0);
                 break;
         }
-    }
+    }*/
 
     private void MoveRandomly() {
         int moveDirection = random.nextInt(4);
