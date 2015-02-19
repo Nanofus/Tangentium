@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Luokka, joka vastaa tekoälyn ohjaamien vihollishahmojen siirroista.
  *
- * @author Nanofus
+ * @author Nanofus 
  */
 public class AI {
 
