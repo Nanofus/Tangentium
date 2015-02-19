@@ -19,4 +19,4 @@
 * 16.2. - 2h - Käyttöliittymää, AI:ta
 * 17.2. - 1h - Lisää käyttöliittymän kuvakkeita
 * 18.2. - 3h - Tekoälyn toiminnallisuuden parantaminen
-* 19.2. - 5h - Testejä, tekoälyn parantaminen, pelin voittaminen
+* 19.2. - 7h - Testejä, tekoälyn parantaminen, pelin voittaminen, uudet grafiikat
