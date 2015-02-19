@@ -11,6 +11,7 @@ import fi.nano.tangential.gameLogic.entities.Tile;
 import static fi.nano.tangential.gameLogic.enums.DamageType.*;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
+import fi.nano.tangential.gameLogic.enums.TileAction;
 import static fi.nano.tangential.gameLogic.enums.TileType.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -55,6 +56,7 @@ public class Level {
         ArrayList<String> levelArray = levelReader.GetLevel();
         ArrayList<String> actorArray = levelReader.GetActors();
         ArrayList<String> itemArray = levelReader.GetItems();
+        ArrayList<String> tileActionIdArray = levelReader.GetActionIdArray();
 
         height = levelArray.size();
         width = levelArray.get(2).length();
@@ -67,6 +69,7 @@ public class Level {
                 Character tileChar = levelArray.get(j).charAt(i);
                 Character actorChar = actorArray.get(j).charAt(i);
                 Character itemChar = itemArray.get(j).charAt(i);
+                Character tileActionIdChar = tileActionIdArray.get(j).charAt(i);
 
                 switch (tileChar) {
                     case '.':
@@ -90,6 +93,14 @@ public class Level {
                     case 'G':
                         tiles[i][j].SetType(PILLAR_WITH_GRASS);
                         break;
+                    case 'd':
+                        tiles[i][j].SetType(DOOR_LEFT);
+                        tiles[i][j].SetTileAction(TileAction.Changing);
+                        break;
+                    case 'l':
+                        tiles[i][j].SetType(LEVER_ON_FLOOR);
+                        tiles[i][j].SetTileAction(TileAction.Changer);
+                        break;
                     case ',':
                         tiles[i][j].SetType(GRASS);
                         break;
@@ -102,6 +113,10 @@ public class Level {
                     default:
                         tiles[i][j].SetType(CHASM);
                         break;
+                }
+
+                if (tileActionIdChar != '-') {
+                    tiles[i][j].SetTileActionId(Integer.parseInt(tileActionIdChar.toString()));
                 }
 
                 switch (actorChar) {
@@ -284,10 +299,10 @@ public class Level {
 
         return dir;
     }
-    
+
     /**
      * Onko peli ohi eli onko pelaaja kuollut
-     * 
+     *
      * @return Totuusarvo pelaajan kuolleisuudelle
      */
     public boolean IsGameOver() {

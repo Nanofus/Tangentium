@@ -21,6 +21,9 @@ public class ImageLoader {
     private BufferedImage tree;
     private BufferedImage path;
     private BufferedImage pillar;
+    
+    private BufferedImage door_left;
+    private BufferedImage lever;
 
     private BufferedImage skeleton;
     private BufferedImage lizardMan;
@@ -59,6 +62,9 @@ public class ImageLoader {
             tree = ImageIO.read(new File("graphics/tree2.png"));
             path = ImageIO.read(new File("graphics/path2.png"));
             pillar = ImageIO.read(new File("graphics/pillar2.png"));
+            
+            door_left = ImageIO.read(new File("graphics/door_left.png"));
+            lever = ImageIO.read(new File("graphics/lever.png"));
 
             skeleton = ImageIO.read(new File("graphics/player2.png"));
             lizardMan = ImageIO.read(new File("graphics/player2.png"));
@@ -111,6 +117,11 @@ public class ImageLoader {
                 return path;
             case "Pillar":
                 return pillar;
+            
+            case "Door Left":
+                return door_left;
+            case "Lever":
+                return lever;
             
             case "Skeleton":
                 return skeleton;

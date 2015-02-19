@@ -1,6 +1,7 @@
 
 package fi.nano.tangential.gameLogic.entities;
 
+import fi.nano.tangential.gameLogic.enums.TileAction;
 import fi.nano.tangential.gameLogic.enums.TileType;
 
 /**
@@ -10,6 +11,10 @@ import fi.nano.tangential.gameLogic.enums.TileType;
  */
 public class Tile {
     private TileType tile;
+    private TileAction action;
+    
+    private int actionId = 0;
+    
     private Character symbol = 'Ö';
     
     public Tile() {
@@ -52,6 +57,10 @@ public class Tile {
                 symbol = 'I';
             case PILLAR_WITH_GRASS:
                 symbol = 'G';
+            case LEVER_ON_FLOOR:
+                symbol = 'l';
+            case DOOR_LEFT:
+                symbol = 'd';
             case GRASS:
                 symbol = ',';
             case PATH:
@@ -59,6 +68,25 @@ public class Tile {
             case TREE:
                 symbol = 'T';
         }
+    }
+    
+    /**
+     * Määrittelee tilen erikoislaatuisen luonteen
+     * 
+     * @param action Erikoistoiminto
+     * @param id ID esimerkiksi vipuja varten
+     */
+    public void SetTileAction(TileAction action) {
+        this.action = action;
+    }
+    
+    /**
+     * Määrittelee tilen erikoistoiminnon ID:n
+     * 
+     * @param id ID-numero
+     */
+    public void SetTileActionId(int id) {
+        this.actionId = id;
     }
     
     @Override

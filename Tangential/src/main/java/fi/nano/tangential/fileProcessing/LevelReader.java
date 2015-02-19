@@ -16,6 +16,7 @@ public class LevelReader {
     private ArrayList<String> level;
     private ArrayList<String> actors;
     private ArrayList<String> items;
+    private ArrayList<String> actionIds;
     
     /**
      * Konstruktori lataa tason tekstitiedostosta.
@@ -28,6 +29,7 @@ public class LevelReader {
         level = new ArrayList();
         actors = new ArrayList();
         items = new ArrayList();
+        actionIds = new ArrayList();
         
         System.out.println("Reading level...");
         
@@ -68,6 +70,19 @@ public class LevelReader {
             items.add(in.nextLine());
         }
         
+        System.out.println("Reading tile action ID:s...");
+        
+        try {
+            in = new Scanner(new File("levels/" + levelName + "_actionids.txt"),"UTF-8");
+        } catch (FileNotFoundException ex) {
+            System.out.println("Tile actions file not found! Exiting...");
+            System.exit(1);
+        }
+        
+        while(in.hasNext()) {
+            actionIds.add(in.nextLine());
+        }
+        
         /*System.out.println(level);
         System.out.println(actors);
         System.out.println(items);*/
@@ -76,6 +91,7 @@ public class LevelReader {
         level.set(0, level.get(0).substring(1));
         actors.set(0, actors.get(0).substring(1));
         items.set(0, items.get(0).substring(1));
+        actionIds.set(0, actionIds.get(0).substring(1));
         
     }
     
@@ -89,6 +105,10 @@ public class LevelReader {
     
     public ArrayList<String> GetItems() {
         return items;
+    }
+
+    public ArrayList<String> GetActionIdArray() {
+        return actionIds;
     }
     
 }
