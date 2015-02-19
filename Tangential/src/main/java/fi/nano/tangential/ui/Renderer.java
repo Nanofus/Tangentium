@@ -150,7 +150,7 @@ public class Renderer extends JPanel {
                 if (itemInTile != null) {
                     drawnImage = imageLoader.GetImage(itemInTile.GetName());
                     isoPos = TwoDToIso(new Position(i, j));
-                    g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 16 + offsetY, null);
+                    g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y + offsetY, null);
 
                     guiTexts.add("Name: " + itemInTile.GetName());
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
@@ -167,7 +167,7 @@ public class Renderer extends JPanel {
                 if (actorInTile != null) {
                     drawnImage = imageLoader.GetImage(actorInTile.GetName());
                     isoPos = TwoDToIso(new Position(i, j));
-                    g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 16 + offsetY, null);
+                    g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 64 + offsetY, null);
 
                     if (!actorInTile.equals(player)) {
                         guiTexts.add("Health: " + actorInTile.GetHealth() + "/" + actorInTile.GetMaxHealth());
