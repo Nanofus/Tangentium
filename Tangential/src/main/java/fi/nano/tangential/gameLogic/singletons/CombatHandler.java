@@ -12,6 +12,9 @@ import fi.nano.tangential.gameLogic.entities.Actor;
 public class CombatHandler {
 
     private final EntityManager entityManager;
+    
+    private int defaultStun = 2;
+    private int defaultWeaponDelay = 4;
 
     public CombatHandler(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -39,8 +42,8 @@ public class CombatHandler {
                 DestroyActor(target);
             }
 
-            target.AddStun(2);
-            attacker.AddWeaponDelay(3);
+            target.AddStun(defaultStun);
+            attacker.AddWeaponDelay(defaultWeaponDelay);
 
         } else {
             System.out.println("Attacker has no weapon!");

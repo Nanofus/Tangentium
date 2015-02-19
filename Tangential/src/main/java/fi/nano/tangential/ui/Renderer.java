@@ -171,6 +171,12 @@ public class Renderer extends JPanel {
                         guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY + 48);
+                        guiTexts.add("Stun: " + actorInTile.GetStun());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY + 60);
+                        guiTexts.add("WDel: " + actorInTile.GetWeaponDelay());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY + 72);
                     }
                 }
             }
@@ -184,6 +190,24 @@ public class Renderer extends JPanel {
 
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
+
+        drawnImage = imageLoader.GetImage("Stun Icon");
+        for (int i = 0; i < player.GetStun(); i++) {
+            g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 80, null);
+        }
+        drawnImage = imageLoader.GetImage("Health Icon");
+        for (int i = 0; i < player.GetHealth(); i++) {
+            g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
+        }
+        drawnImage = imageLoader.GetImage("Weapon Delay Icon");
+        for (int i = 0; i < player.GetWeaponDelay(); i++) {
+            g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 150, null);
+        }
+
+        if (level.IsGameOver()) {
+            drawnImage = imageLoader.GetImage("Game Over");
+            g.drawImage(drawnImage, (windowWidth/2)-(drawnImage.getWidth()/2), (windowHeight/2)-(drawnImage.getHeight()/2), null);
+        }
 
         if (player.GetWeapon() != null) {
             drawnImage = imageLoader.GetImage(player.GetWeapon().GetName() + " Icon");

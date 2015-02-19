@@ -12,6 +12,7 @@ import fi.nano.tangential.ui.Window;
 public class Game {
 
     private Level level;
+    private String levelName;
     private Window window;
 
     int turn = 0;
@@ -28,6 +29,7 @@ public class Game {
     public Game(String levelName) {
         System.out.println("\nGenerating game from file...");
 
+        this.levelName = levelName;
         level = new Level(levelName);
 
         /*System.out.println("\nGenerated level:\n----\n");
@@ -37,30 +39,6 @@ public class Game {
          System.out.println("\n----");*/
     }
 
-    /**
-     * Konstruktori luo Level-tyyppisen tason parametrien perusteella.
-     *
-     * @param width Tason leveys
-     * @param height Tason korkeus
-     * @param enemies Vihollisten määrä
-     * @param items Esineiden määrä
-     */
-    /*public Game(int width, int height, int enemies, int items) {
-        System.out.println("\nGenerating game randomly...");
-
-        level = GenerateLevel(width, height, enemies, items);
-
-        /*System.out.println("\nGenerated level:\n----\n");
-
-         System.out.println(level);
-
-         System.out.println("\n----");
-    }
-
-    private Level GenerateLevel(int width, int height, int enemies, int items) {
-        return new Level(width, height, enemies, items);
-    }*/
-
     public Level GetLevel() {
         return level;
     }
@@ -69,60 +47,72 @@ public class Game {
         this.window = window;
     }
 
+    private void RestartGame() {
+        level = new Level(levelName);
+    }
+
     /**
      * Pelaajan liikkuminen inputista.
-     * 
+     *
      * @param dir Suunta johon liikutaan.
      */
     public void MovePlayer(Direction dir) {
-        if (level.GetPlayer().GetStun() == 0) {
-            int x = 0;
-            int y = 0;
+        if (!level.IsGameOver()) {
+            if (level.GetPlayer().GetStun() == 0) {
+                int x = 0;
+                int y = 0;
 
-            boolean canMove = false;
+                boolean canMove = false;
 
-            switch (dir) {
-                case LEFT:
-                    x = -1;
-                    break;
-                case RIGHT:
-                    x = 1;
-                    break;
-                case UP:
-                    y = -1;
-                    break;
-                case DOWN:
-                    y = 1;
-                    break;
+                switch (dir) {
+                    case LEFT:
+                        x = -1;
+                        break;
+                    case RIGHT:
+                        x = 1;
+                        break;
+                    case UP:
+                        y = -1;
+                        break;
+                    case DOWN:
+                        y = 1;
+                        break;
+                }
+
+                level.GetPlayer().Move(x, y);
+            } else {
+                level.GetPlayer().AddStun(-1);
             }
 
-            level.GetPlayer().Move(x, y);
+            PassTurn();
         } else {
-            level.GetPlayer().AddStun(-1);
+            RestartGame();
         }
-
-        PassTurn();
     }
 
     /**
      * Pelaaja yrittää poimia esineen.
      */
-    public void PickItem() {
-        for (Item item : level.GetItems()) {
-            if (item.GetPosition().is(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
-                level.GetPlayer().EquipItem(item);
-                System.out.println("Player picked up item " + item.GetName());
-                PassTurn();
-                break;
+    public void PlayerPickItem() {
+        if (!level.IsGameOver()) {
+            for (Item item : level.GetItems()) {
+                if (item.GetPosition().is(level.GetPlayer().GetPosition()) && !item.IsEquipped()) {
+                    level.GetPlayer().EquipItem(item);
+                    System.out.println("Player picked up item " + item.GetName());
+                    PassTurn();
+                    break;
+                }
             }
-        }
 
-        PassTurn();
+            PassTurn();
+        } else {
+            RestartGame();
+        }
     }
-    
+
     /**
      * Pelaaja kääntää kameraa.
-     * 
+     *
      * @param direction Suunta.
      */
     public void RotateCamera(Direction direction) {
@@ -130,15 +120,19 @@ public class Game {
     }
 
     private void PassTurn() {
-        AIMove();
-        window.Refresh();
-        turn++;
+        if (!level.IsGameOver()) {
+            AIMove();
+            window.Refresh();
+            turn++;
+        }
     }
 
     private void AIMove() {
-        for (Actor enemy : level.GetActors()) {
-            if (enemy.HasAI()) {
-                enemy.GetAI().MakeMove();
+        if (!level.IsGameOver()) {
+            for (Actor enemy : level.GetActors()) {
+                if (enemy.HasAI()) {
+                    enemy.GetAI().MakeMove();
+                }
             }
         }
     }

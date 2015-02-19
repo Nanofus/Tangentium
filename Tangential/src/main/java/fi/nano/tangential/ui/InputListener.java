@@ -46,7 +46,7 @@ public class InputListener implements KeyListener {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            game.PickItem();
+            game.PlayerPickItem();
         }
 
     }

@@ -4,10 +4,8 @@ import fi.nano.tangential.gameLogic.AI;
 import fi.nano.tangential.gameLogic.enums.DamageType;
 import fi.nano.tangential.gameLogic.Entity;
 import fi.nano.tangential.gameLogic.Level;
-import fi.nano.tangential.gameLogic.Position;
 import fi.nano.tangential.gameLogic.enums.Stance;
 import fi.nano.tangential.gameLogic.singletons.CombatHandler;
-import java.util.ArrayList;
 
 /**
  * Pelihahmoa hallitseva luokka. Voi olla controlled eli pelaajahahmo tai
@@ -70,7 +68,8 @@ public class Actor extends Entity {
     }
 
     /**
-     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen sijaintiin.
+     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen
+     * sijaintiin.
      *
      * @param item Käyttöön otettava esine
      */
@@ -112,12 +111,16 @@ public class Actor extends Entity {
     }
 
     private void LowerStun() {
-        stun = stun - 1;
+        if (stun > 0) {
+            stun = stun - 1;
+        }
         LowerWeaponDelay();
     }
 
     private void LowerWeaponDelay() {
-        weaponDelay = weaponDelay - 1;
+        if (weaponDelay > 0) {
+            weaponDelay = weaponDelay - 1;
+        }
     }
 
     public int GetHealth() {
@@ -151,7 +154,8 @@ public class Actor extends Entity {
     /**
      * Vähentää - tai lisää - actorin terveyttä tietyllä määrällä.
      *
-     * @param amount Määrä (positiivinen tekee vahinkoa, negatiivinen parantaa)
+     * @param amount Määrä (positiivinen tekee vahinkoa, negatiivinen
+     * parantaa)
      */
     public void LoseHealth(int amount) {
         hitPoints = hitPoints - amount;
@@ -248,7 +252,7 @@ public class Actor extends Entity {
             smallestInString = smallestInString + ", Arcane";
         }
 
-        smallestInString = smallestInString.substring(2);
+        smallestInString = smallestInString.substring(2); //Poista eka pilkku ja väli
 
         return smallestInString;
     }

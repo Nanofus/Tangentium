@@ -37,6 +37,10 @@ public class ImageLoader {
     private BufferedImage wand;
     
     private BufferedImage weaponbackg;
+    private BufferedImage stunicon;
+    private BufferedImage healthicon;
+    private BufferedImage weaponstunicon;
+    private BufferedImage gameover;
     
     private BufferedImage swordicon;
     private BufferedImage spearicon;
@@ -71,6 +75,10 @@ public class ImageLoader {
             wand = ImageIO.read(new File("graphics/sword2.png"));
             
             weaponbackg = ImageIO.read(new File("graphics/weaponbackg.png"));
+            stunicon = ImageIO.read(new File("graphics/stunicon.png"));
+            healthicon = ImageIO.read(new File("graphics/healthicon.png"));
+            weaponstunicon = ImageIO.read(new File("graphics/weaponstunicon.png"));
+            gameover = ImageIO.read(new File("graphics/gameover.png"));
             
             swordicon = ImageIO.read(new File("graphics/swordicon.png"));
             spearicon = ImageIO.read(new File("graphics/spearicon.png"));
@@ -131,6 +139,14 @@ public class ImageLoader {
                 
             case "Weapon Background":
                 return weaponbackg;
+            case "Stun Icon":
+                return stunicon;
+            case "Health Icon":
+                return healthicon;
+            case "Weapon Delay Icon":
+                return weaponstunicon;
+            case "Game Over":
+                return gameover;
                 
             case "Sword Icon":
                 return swordicon;
