@@ -15,3 +15,8 @@
 * 9.2.  - 4h - Kameran isometrisyys, refaktorointia
 * 10.2. - 3h - Ohjelma lukee itemit ja actorit tiedostosta
 * 11.2. - 30 min - Kameran kääntäminen
+* 12.2. - 3h - Testejä, javadocia
+* 16.2. - 2h - Käyttöliittymää, AI:ta
+* 17.2. - 1h - Lisää käyttöliittymän kuvakkeita
+* 18.2. - 3h - Tekoälyn toiminnallisuuden parantaminen
+* 19.2. - 5h - Testejä, tekoälyn parantaminen, pelin voittaminen
