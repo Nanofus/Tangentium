@@ -5,6 +5,7 @@ import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.DamageType;
 import static fi.nano.tangential.gameLogic.enums.DamageType.*;
+import static fi.nano.tangential.gameLogic.enums.TileAction.*;
 import static fi.nano.tangential.gameLogic.enums.TileType.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,83 +39,6 @@ public class LevelTest {
     public void tearDown() {
     }
 
-    /*@Test
-     public void TestLevelRandomGenerationLevelWidth() {
-     Level level = new Level(100, 200, 20, 20);
-
-     String levelString = level.toString();
-
-     String[] levelRows = levelString.split("\n");
-
-     int levelWidth = levelRows[1].length();
-
-     assertEquals(200, levelWidth);
-     }
-
-     @Test
-     public void TestLevelRandomGenerationLevelHeight() {
-     Level level = new Level(100, 200, 20, 20);
-
-     String levelString = level.toString();
-
-     String[] levelRows = levelString.split("\n");
-
-     int levelHeight = levelRows.length;
-
-     assertEquals(100, levelHeight);
-     }
-
-     @Test
-     public void TestGameRandomGenerationLevelWidthNegativeValue() {
-     Level level = new Level(-100, 200, 20, 20);
-
-     String levelString = level.toString();
-
-     String[] levelRows = levelString.split("\n");
-
-     int levelWidth = levelRows.length;
-
-     assertEquals(1, levelWidth);
-     }
-
-     @Test
-     public void TestGameRandomGenerationLevelWidthZeroValue() {
-     Level level = new Level(0, 200, 20, 20);
-
-     String levelString = level.toString();
-
-     String[] levelRows = levelString.split("\n");
-
-     int levelWidth = levelRows.length;
-
-     assertEquals(1, levelWidth);
-     }
-
-     @Test
-     public void TestGameRandomGenerationLevelHeightZeroValue() {
-     Level level = new Level(100, 0, 20, 20);
-
-     String levelString = level.toString();
-
-     String[] levelRows = levelString.split("\n");
-
-     int levelHeight = levelRows[0].length();
-
-     assertEquals(1, levelHeight);
-     }
-
-     @Test
-     public void TestGameRandomGenerationLevelHeightNegativeValue() {
-     Level level = new Level(100, -200, 20, 20);
-
-     String levelString = level.toString();
-
-     String[] levelRows = levelString.split("\n");
-
-     int levelHeight = levelRows[0].length();
-
-     assertEquals(1, levelHeight);
-     }*/
     @Test
     public void LoadLevelFromFile() {
         Level level = new Level(null, "level1");
@@ -169,4 +93,49 @@ public class LevelTest {
         assertEquals('X', levelAsString.charAt(5));
     }
 
+    @Test
+    public void TestLeverActivation() {
+        Level level = new Level(null, "level1");
+        level.GetTile(20, 20).SetType(LEVER);
+        level.GetTile(20, 20).SetTileAction(Changer);
+        level.GetTile(20, 20).SetTileActionId(1);
+
+        level.GetTile(21, 20).SetType(DOOR_LEFT);
+        level.GetTile(21, 20).SetTileAction(Changing);
+        level.GetTile(21, 20).SetTileActionId(1);
+
+        level.ActivateTile(new Position(20, 20));
+
+        assertEquals(FLOOR, level.GetTile(21, 20).GetType());
+    }
+
+    @Test
+    public void TestGameOverAfterPlayerDying() {
+        Level level = new Level(null, "level1");
+        level.GetPlayer().LoseHealth(20);
+
+        assertEquals(true, level.IsGameOver());
+    }
+
+    @Test
+    public void TestGameOverAfterSettingManually() {
+        Level level = new Level(null, "level1");
+        level.SetGameOver(true);
+
+        assertEquals(true, level.IsGameOver());
+    }
+    
+    @Test
+    public void TestDistanceDirect() {
+        Level level = new Level(null, "level1");
+
+        assertEquals(5,level.GetDistance(new Position(0,0), new Position(0,5)));
+    }
+    
+    @Test
+    public void TestDistanceDiagonal() {
+        Level level = new Level(null, "level1");
+
+        assertEquals(5,level.GetDistance(new Position(0,0), new Position(3,3)));
+    }
 }

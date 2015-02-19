@@ -96,6 +96,45 @@ public class ActorTest {
     }
 
     @Test
+    public void EquipItemInTile() {
+        Level level = new Level(null, "level1");
+
+        Item item = new Item(1, 1, "TestItem", level, 5, Pierce);
+        Actor enemy = new Actor(1, 1, "Skeleton", level, 1, 1, false, 0, 2, -2, -1, 1, -2);
+
+        level.GetEntityManager().AddItem(item);
+
+        enemy.EquipItemInTile();
+
+        assertEquals(true, item.IsEquipped());
+    }
+
+    @Test
+    public void EquipItemFromTileWhileStillHasPreviousItem() {
+        Level level = new Level(null, "level1");
+
+        Item item = new Item(1, 1, "TestItem", level, 5, Pierce);
+        Item item2 = new Item(1, 2, "TestItem2", level, 4, Pierce);
+        Actor enemy = new Actor(1, 1, "Skeleton", level, 1, 1, false, 0, 2, -2, -1, 1, -2);
+
+        level.GetEntityManager().AddItem(item);
+        level.GetEntityManager().AddItem(item2);
+
+        enemy.EquipItemInTile();
+
+        enemy.Move(0, 1);
+
+        enemy.EquipItemInTile();
+
+        boolean correctItem = false;
+        if (!item.IsEquipped() && item2.IsEquipped()) {
+            correctItem = true;
+        }
+
+        assertEquals(true, correctItem);
+    }
+
+    @Test
     public void TestIfHasAITrue() {
         Actor enemy = new Actor(0, 0, "Skeleton", null, 1, 1, false, 0, 2, -2, -1, 1, -2);
 
@@ -153,4 +192,33 @@ public class ActorTest {
 
         assertEquals(true, positionsMatch);
     }
+
+    @Test
+    public void TestResistanceGetters() {
+        Actor enemy = new Actor(4, 4, "Skeleton", null, 1, 1, false, 6, 5, 4, 3, 2, 1);
+
+        assertEquals("Arcane", enemy.GetWeakness());
+    }
+
+    @Test
+    public void TestResistanceStrength() {
+        Actor enemy = new Actor(4, 4, "Skeleton", null, 1, 1, false, 1, 2, 3, 4, 5, 6);
+
+        assertEquals("Arcane", enemy.GetStrength());
+    }
+
+    @Test
+    public void TestAllResistancesSame() {
+        Actor enemy = new Actor(4, 4, "Skeleton", null, 1, 1, false, 1, 1, 1, 1, 1, 1);
+
+        assertEquals("Slash, Pierce, Crush, Burn, Freeze, Arcane", enemy.GetWeakness());
+    }
+    
+    @Test
+    public void TestAllResistancesStrengthSame() {
+        Actor enemy = new Actor(4, 4, "Skeleton", null, 1, 1, false, 1, 1, 1, 1, 1, 1);
+
+        assertEquals("Slash, Pierce, Crush, Burn, Freeze, Arcane", enemy.GetStrength());
+    }
+
 }
