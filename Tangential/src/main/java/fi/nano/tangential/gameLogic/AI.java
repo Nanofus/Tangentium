@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Luokka, joka vastaa tekoälyn ohjaamien vihollishahmojen siirroista.
  *
- * @author Nanofus 
+ * @author Nanofus
  */
 public class AI {
 
@@ -21,7 +21,7 @@ public class AI {
     Actor target;
     Direction targetDirection;
     boolean noticedTarget = false;
-    int noticeDistance = 10;
+    int noticeDistance = 15;
 
     Random random = new Random();
 
@@ -49,8 +49,8 @@ public class AI {
                     MoveRandomly();
                 } else if (stance == Chase) {
                     Chase();
-                //} else if (stance == Flee) {
-                //    Flee();
+                    //} else if (stance == Flee) {
+                    //    Flee();
                 }
                 break;
             case 1: //Skippaa vuoro
@@ -70,7 +70,7 @@ public class AI {
 
             if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
                 stance = Chase;
-            //} else if (health <= (maxHealth / 4)) {
+                //} else if (health <= (maxHealth / 4)) {
                 //stance = Flee;
             } else {
                 stance = Wander;
@@ -88,41 +88,65 @@ public class AI {
     }
 
     private void Chase() {
+        int choice = random.nextInt(7);
         targetDirection = GetTargetDirection();
         switch (targetDirection) {
             case UP:
-                me.Move(0, -1);
+                if (choice == 0) {
+                    me.Move(1, 0);
+                } else if (choice == 1) {
+                    me.Move(-1, 0);
+                } else {
+                    me.Move(0, -1);
+                }
                 break;
             case DOWN:
-                me.Move(0, 1);
+                if (choice == 0) {
+                    me.Move(1, 0);
+                } else if (choice == 1) {
+                    me.Move(-1, 0);
+                } else {
+                    me.Move(0, 1);
+                }
                 break;
             case LEFT:
-                me.Move(-1, 0);
+                if (choice == 0) {
+                    me.Move(0, -1);
+                } else if (choice == 1) {
+                    me.Move(0, 1);
+                } else {
+                    me.Move(-1, 0);
+                }
                 break;
             case RIGHT:
-                me.Move(1, 0);
+                if (choice == 0) {
+                    me.Move(0, 1);
+                } else if (choice == 1) {
+                    me.Move(0, -1);
+                } else {
+                    me.Move(1, 0);
+                }
                 break;
         }
     }
 
     /*private void Flee() {
-        targetDirection = GetTargetDirection();
-        switch (targetDirection) {
-            case UP:
-                me.Move(0, -1);
-                break;
-            case DOWN:
-                me.Move(0, 1);
-                break;
-            case LEFT:
-                me.Move(-1, 0);
-                break;
-            case RIGHT:
-                me.Move(1, 0);
-                break;
-        }
-    }*/
-
+     targetDirection = GetTargetDirection();
+     switch (targetDirection) {
+     case UP:
+     me.Move(0, -1);
+     break;
+     case DOWN:
+     me.Move(0, 1);
+     break;
+     case LEFT:
+     me.Move(-1, 0);
+     break;
+     case RIGHT:
+     me.Move(1, 0);
+     break;
+     }
+     }*/
     private void MoveRandomly() {
         int moveDirection = random.nextInt(4);
         switch (moveDirection) {

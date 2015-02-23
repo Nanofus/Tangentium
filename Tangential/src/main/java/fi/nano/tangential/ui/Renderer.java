@@ -7,9 +7,12 @@ import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  * Piirtää tason, hahmot ja esineet ruudulle.
@@ -26,7 +29,7 @@ public class Renderer extends JPanel {
 
     private Level level;
     private Actor player;
-    
+
     private boolean gameWon = false;
 
     private final ImageLoader imageLoader;
@@ -43,6 +46,8 @@ public class Renderer extends JPanel {
     private Direction cameraDirection = UP;
     private int rotationX = 1;
     private int rotationY = 1;
+    
+    private final int repaintDelay = 1000;
 
     Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
         this.imageLoader = imageLoader;
@@ -58,8 +63,26 @@ public class Renderer extends JPanel {
 
         actorSizeX = imageLoader.GetImage("Player").getWidth();
         actorSizeY = imageLoader.GetImage("Player").getHeight();
+
+        StartTimer();
     }
 
+    private void StartTimer() {
+        ActionListener taskPerformer = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                //System.out.println("asd");
+                repaint();
+            }
+        };
+        new Timer(repaintDelay, taskPerformer).start();
+    }
+
+    /**
+     * Asettaa ikkunalle uuden koon.
+     * @param x Leveys pikseleissä
+     * @param y Korkeus pikseleissä
+     */
     public void SetWindowSize(int x, int y) {
         windowWidth = x;
         windowHeight = y;
@@ -172,14 +195,14 @@ public class Renderer extends JPanel {
                     if (!actorInTile.equals(player)) {
                         guiTexts.add("Health: " + actorInTile.GetHealth() + "/" + actorInTile.GetMaxHealth());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY);
+                        guiPosY.add(isoPos.y + offsetY - 16);
                         guiTexts.add("Weak: " + actorInTile.GetWeakness());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 12);
+                        guiPosY.add(isoPos.y + offsetY - 16 + 12);
                         guiTexts.add("Strong: " + actorInTile.GetStrength());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 24);
-                        guiTexts.add("Stance: " + actorInTile.GetStance());
+                        guiPosY.add(isoPos.y + offsetY - 16 + 24);
+                        /*guiTexts.add("Stance: " + actorInTile.GetStance());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY + 36);
                         guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
@@ -190,7 +213,7 @@ public class Renderer extends JPanel {
                         guiPosY.add(isoPos.y + offsetY + 60);
                         guiTexts.add("WDel: " + actorInTile.GetWeaponDelay());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 72);
+                        guiPosY.add(isoPos.y + offsetY + 72);*/
                     }
                 }
             }
@@ -220,12 +243,12 @@ public class Renderer extends JPanel {
 
         if (level.IsGameOver() && !gameWon) {
             drawnImage = imageLoader.GetImage("Game Over");
-            g.drawImage(drawnImage, (windowWidth/2)-(drawnImage.getWidth()/2), (windowHeight/2)-(drawnImage.getHeight()/2), null);
+            g.drawImage(drawnImage, (windowWidth / 2) - (drawnImage.getWidth() / 2), (windowHeight / 2) - (drawnImage.getHeight() / 2), null);
         }
-        
+
         if (gameWon) {
             drawnImage = imageLoader.GetImage("Victory");
-            g.drawImage(drawnImage, (windowWidth/2)-(drawnImage.getWidth()/2), (windowHeight/2)-(drawnImage.getHeight()/2), null);
+            g.drawImage(drawnImage, (windowWidth / 2) - (drawnImage.getWidth() / 2), (windowHeight / 2) - (drawnImage.getHeight() / 2), null);
         }
 
         if (player.GetWeapon() != null) {
@@ -249,12 +272,20 @@ public class Renderer extends JPanel {
         pos.y = (position.x + position.y) * (tileSizeY / 2);
         return pos;
     }
-    
+
+    /**
+     * Päivittää tiedot jos peli käynnistyy alusta
+     * @param level Uusi taso
+     * @param player Uusi pelaaja
+     */
     public void RestartLevel(Level level, Actor player) {
         this.level = level;
         this.player = player;
     }
-    
+
+    /**
+     * Antaa tiedon että peli on voitettu
+     */
     public void GameWon() {
         gameWon = true;
     }
