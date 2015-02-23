@@ -4,6 +4,8 @@ import fi.nano.tangential.Game;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import java.awt.Dimension;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -37,9 +39,10 @@ public class Window implements Runnable {
         frame = new JFrame("Tangential");
         frame.setResizable(false);
         frame.setVisible(true);
+        frame.setIconImage(imageLoader.GetImage("Icon"));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
-
+        
         frame.addKeyListener(inputListener);
 
         renderer = new Renderer(imageLoader, game.GetLevel(), game.GetLevel().GetPlayer(), windowWidth, windowHeight);

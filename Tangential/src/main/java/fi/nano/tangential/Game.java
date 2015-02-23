@@ -2,7 +2,6 @@ package fi.nano.tangential;
 
 import fi.nano.tangential.gameLogic.*;
 import fi.nano.tangential.gameLogic.entities.Actor;
-import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import fi.nano.tangential.ui.Window;
 import java.util.ArrayList;
@@ -86,8 +85,6 @@ public class Game {
                 int x = 0;
                 int y = 0;
 
-                boolean canMove = false;
-
                 switch (dir) {
                     case LEFT:
                         x = -1;
@@ -104,11 +101,14 @@ public class Game {
                 }
 
                 level.GetPlayer().Move(x, y);
+                PassTurn();
             } else {
-                level.GetPlayer().AddStun(-1);
+                if (level.GetPlayer().GetStun() > 0) {
+                    level.GetPlayer().AddStun(-1);
+                    PassTurn();
+                }
             }
 
-            PassTurn();
         } else {
             RestartGame();
         }
