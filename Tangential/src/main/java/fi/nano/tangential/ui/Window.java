@@ -16,7 +16,7 @@ public class Window implements Runnable {
 
     private int windowWidth = 1280;
     private int windowHeight = 720;
-    
+
     private final Game game;
 
     private JFrame frame;
@@ -38,20 +38,20 @@ public class Window implements Runnable {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(new Dimension(windowWidth+frame.getInsets().left+frame.getInsets().right, windowHeight+frame.getInsets().top+frame.getInsets().bottom));
+        frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
 
         frame.addKeyListener(inputListener);
 
-        renderer = new Renderer(imageLoader,game.GetLevel(),game.GetLevel().GetPlayer(),windowWidth,windowHeight);
+        renderer = new Renderer(imageLoader, game.GetLevel(), game.GetLevel().GetPlayer(), windowWidth, windowHeight);
 
         frame.add(renderer);
     }
-    
+
     public void RestartLevel(Level level) {
         renderer.RestartLevel(level, level.GetPlayer());
         Refresh();
     }
-    
+
     public void Refresh() {
         frame.repaint();
     }

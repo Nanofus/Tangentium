@@ -38,12 +38,12 @@ public class InputListener implements KeyListener {
             game.MovePlayer(DOWN);
         }
         
-        if (e.getKeyCode() == KeyEvent.VK_Q) {
+        /*if (e.getKeyCode() == KeyEvent.VK_Q) {
             game.RotateCamera(LEFT);
         }
         if (e.getKeyCode() == KeyEvent.VK_E) {
             game.RotateCamera(RIGHT);
-        }
+        }*/
 
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             game.PlayerUse();

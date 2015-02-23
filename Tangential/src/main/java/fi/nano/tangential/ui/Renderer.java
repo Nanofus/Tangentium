@@ -109,6 +109,22 @@ public class Renderer extends JPanel {
         offsetX = (windowWidth / 2) - isoCamPosition.x;
         offsetY = (windowHeight / 2) - isoCamPosition.y;
 
+        guiTexts.add("Controls");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160);
+        guiTexts.add("Arrows to move");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160 + 12);
+        guiTexts.add("Space to pick up a weapon / use a lever");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160 + 24);
+        guiTexts.add("Bump into enemies to attack them");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160 + 36);
+        guiTexts.add("But beware - they strike back!");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160 + 48);
+
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
                 BufferedImage drawnImage;
@@ -273,6 +289,10 @@ public class Renderer extends JPanel {
 
                 case "Lever":
                     g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+
+                case "Controls":
+                    g.setFont(new Font("default", Font.BOLD, 12));
                     break;
 
                 default:
