@@ -7,6 +7,7 @@ import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
 import fi.nano.tangential.gameLogic.enums.TileType;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -44,6 +45,7 @@ public class Renderer extends JPanel {
     private ArrayList<String> guiTexts;
     private ArrayList<Integer> guiPosX;
     private ArrayList<Integer> guiPosY;
+    private ArrayList<Boolean> isWhite;
 
     private Direction cameraDirection = UP;
     private int rotationX = 1;
@@ -52,6 +54,11 @@ public class Renderer extends JPanel {
     private final int repaintDelay = 1000;
 
     Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
+        
+        setOpaque(true);
+        setBackground(Color.BLACK); 
+        
+        
         this.imageLoader = imageLoader;
 
         this.level = level;
@@ -98,6 +105,7 @@ public class Renderer extends JPanel {
         guiTexts = new ArrayList();
         guiPosX = new ArrayList();
         guiPosY = new ArrayList();
+        isWhite = new ArrayList();
 
         PaintLevel(g);
         PaintGUI(g);
@@ -111,29 +119,50 @@ public class Renderer extends JPanel {
 
         guiTexts.add("Controls");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180);
+        guiPosY.add(offsetY - 180 - 48);
+        isWhite.add(true);
         guiTexts.add("Arrows or WASD to move");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 12);
+        guiPosY.add(offsetY - 180 - 36);
+        isWhite.add(true);
         guiTexts.add("Space to pick up a weapon / use a lever / use a goal circle");
         guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 180 - 24);
+        isWhite.add(true);
+        
+        guiTexts.add("User interface");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 180);
+        isWhite.add(true);
+        guiTexts.add("Bottom right: equipped weapon");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 180 + 12);
+        isWhite.add(true);
+        guiTexts.add("Bottom left: health");
+        guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 180 + 24);
+        isWhite.add(true);
         
         guiTexts.add("Tactics");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 180 + 48);
+        isWhite.add(true);
         guiTexts.add("If you have a weapon, bump into enemies to attack them");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 180 + 60);
+        isWhite.add(true);
         guiTexts.add("But beware - they strike back if you stay too close!");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 180 + 72);
+        isWhite.add(true);
         guiTexts.add("Your weapon has to be the right type, too. Pick a weapon that is a type");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 180 + 84);
+        isWhite.add(true);
         guiTexts.add("the enemy is weak to - or at least not resistant!");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 180 + 96);
+        isWhite.add(true);
 
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
@@ -203,9 +232,11 @@ public class Renderer extends JPanel {
                     guiTexts.add("Lever");
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY);
+                    isWhite.add(false);
                     guiTexts.add("Use to open a door");
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY + 12);
+                    isWhite.add(false);
                 }
 
                 Item itemInTile = level.GetItemInTile(i, j);
@@ -217,12 +248,15 @@ public class Renderer extends JPanel {
                     guiTexts.add(itemInTile.GetName());
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY);
+                    isWhite.add(false);
                     guiTexts.add("Type: " + itemInTile.GetDamageType().toString());
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY + 12);
+                    isWhite.add(false);
                     guiTexts.add("Power: " + itemInTile.GetPower());
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY + 24);
+                    isWhite.add(false);
                 }
 
                 Actor actorInTile = level.GetActorInTile(i, j);
@@ -235,15 +269,19 @@ public class Renderer extends JPanel {
                         guiTexts.add(actorInTile.GetName());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16 - 12);
+                        isWhite.add(false);
                         guiTexts.add("Health: " + actorInTile.GetHealth() + "/" + actorInTile.GetMaxHealth());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16);
+                        isWhite.add(false);
                         guiTexts.add("Weak: " + actorInTile.GetWeakness());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16 + 12);
-                        guiTexts.add("Strong: " + actorInTile.GetStrength());
+                        isWhite.add(false);
+                        guiTexts.add("Resistant: " + actorInTile.GetStrength());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16 + 24);
+                        isWhite.add(false);
                         /*guiTexts.add("Stance: " + actorInTile.GetStance());
                          guiPosX.add(isoPos.x + tileSizeX + offsetX);
                          guiPosY.add(isoPos.y + offsetY + 36);
@@ -264,6 +302,12 @@ public class Renderer extends JPanel {
 
     private void PaintGUI(Graphics g) {
         for (int i = 0; i < guiTexts.size(); i++) {
+            if (isWhite.get(i) == true) {
+                g.setColor(Color.WHITE);
+            } else {
+                g.setColor(Color.DARK_GRAY);
+            }
+            
             switch (guiTexts.get(i)) {
                 case "Sword":
                     g.setFont(new Font("default", Font.BOLD, 11));
@@ -302,6 +346,9 @@ public class Renderer extends JPanel {
                     break;
 
                 case "Controls":
+                    g.setFont(new Font("default", Font.BOLD, 12));
+                    break;
+                case "User interface":
                     g.setFont(new Font("default", Font.BOLD, 12));
                     break;
                 case "Tactics":
