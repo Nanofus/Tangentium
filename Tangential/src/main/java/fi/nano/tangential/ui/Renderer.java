@@ -111,25 +111,29 @@ public class Renderer extends JPanel {
 
         guiTexts.add("Controls");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160);
+        guiPosY.add(offsetY - 180);
         guiTexts.add("Arrows or WASD to move");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160 + 12);
+        guiPosY.add(offsetY - 180 + 12);
         guiTexts.add("Space to pick up a weapon / use a lever / use a goal circle");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160 + 24);
+        guiPosY.add(offsetY - 180 + 24);
+        
+        guiTexts.add("Tactics");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 180 + 48);
         guiTexts.add("If you have a weapon, bump into enemies to attack them");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160 + 36);
-        guiTexts.add("But beware - they strike back!");
+        guiPosY.add(offsetY - 180 + 60);
+        guiTexts.add("But beware - they strike back if you stay too close!");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160 + 48);
-        guiTexts.add("Your weapon has to be the right type, too. Pick a weapon to which");
+        guiPosY.add(offsetY - 180 + 72);
+        guiTexts.add("Your weapon has to be the right type, too. Pick a weapon that is a type");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160 + 60);
+        guiPosY.add(offsetY - 180 + 84);
         guiTexts.add("the enemy is weak to - or at least not resistant!");
         guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 160 + 72);
+        guiPosY.add(offsetY - 180 + 96);
 
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
@@ -298,6 +302,9 @@ public class Renderer extends JPanel {
                     break;
 
                 case "Controls":
+                    g.setFont(new Font("default", Font.BOLD, 12));
+                    break;
+                case "Tactics":
                     g.setFont(new Font("default", Font.BOLD, 12));
                     break;
 
