@@ -121,7 +121,7 @@ public class Game {
         if (!level.IsGameOver()) {
             level.GetPlayer().EquipItemInTile();
             level.GetPlayer().UseActionTile();
-            PassTurn();
+            //PassTurn();                           //Tasapainosyistä vuoroa ei skipata aseen poiminnassa, koska muuten voi vain odottaa viereen tulevia vihuja
         } else {
             RestartGame();
         }

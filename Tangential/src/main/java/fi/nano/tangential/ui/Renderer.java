@@ -6,6 +6,8 @@ import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.entities.Item;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import static fi.nano.tangential.gameLogic.enums.Direction.*;
+import fi.nano.tangential.gameLogic.enums.TileType;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +48,7 @@ public class Renderer extends JPanel {
     private Direction cameraDirection = UP;
     private int rotationX = 1;
     private int rotationY = 1;
-    
+
     private final int repaintDelay = 1000;
 
     Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
@@ -80,6 +82,7 @@ public class Renderer extends JPanel {
 
     /**
      * Asettaa ikkunalle uuden koon.
+     *
      * @param x Leveys pikseleissä
      * @param y Korkeus pikseleissä
      */
@@ -169,13 +172,23 @@ public class Renderer extends JPanel {
                 }
                 g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - tileOffset + offsetY, null);
 
+                TileType tileType = level.GetTile(i, j).GetType();
+                if (tileType.is(TileType.LEVER)) {
+                    guiTexts.add("Lever");
+                    guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                    guiPosY.add(isoPos.y + offsetY);
+                    guiTexts.add("Use to open a door");
+                    guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                    guiPosY.add(isoPos.y + offsetY + 12);
+                }
+
                 Item itemInTile = level.GetItemInTile(i, j);
                 if (itemInTile != null) {
                     drawnImage = imageLoader.GetImage(itemInTile.GetName());
                     isoPos = TwoDToIso(new Position(i, j));
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y + offsetY, null);
 
-                    guiTexts.add("Name: " + itemInTile.GetName());
+                    guiTexts.add(itemInTile.GetName());
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY);
                     guiTexts.add("Type: " + itemInTile.GetDamageType().toString());
@@ -193,6 +206,9 @@ public class Renderer extends JPanel {
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 64 + offsetY, null);
 
                     if (!actorInTile.equals(player)) {
+                        guiTexts.add(actorInTile.GetName());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY - 16 - 12);
                         guiTexts.add("Health: " + actorInTile.GetHealth() + "/" + actorInTile.GetMaxHealth());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16);
@@ -203,17 +219,17 @@ public class Renderer extends JPanel {
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16 + 24);
                         /*guiTexts.add("Stance: " + actorInTile.GetStance());
-                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 36);
-                        guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
-                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 48);
-                        guiTexts.add("Stun: " + actorInTile.GetStun());
-                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 60);
-                        guiTexts.add("WDel: " + actorInTile.GetWeaponDelay());
-                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                        guiPosY.add(isoPos.y + offsetY + 72);*/
+                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                         guiPosY.add(isoPos.y + offsetY + 36);
+                         guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
+                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                         guiPosY.add(isoPos.y + offsetY + 48);
+                         guiTexts.add("Stun: " + actorInTile.GetStun());
+                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                         guiPosY.add(isoPos.y + offsetY + 60);
+                         guiTexts.add("WDel: " + actorInTile.GetWeaponDelay());
+                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                         guiPosY.add(isoPos.y + offsetY + 72);*/
                     }
                 }
             }
@@ -222,6 +238,47 @@ public class Renderer extends JPanel {
 
     private void PaintGUI(Graphics g) {
         for (int i = 0; i < guiTexts.size(); i++) {
+            switch (guiTexts.get(i)) {
+                case "Sword":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Spear":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Mace":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Pyrospell":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Ice Staff":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Wand":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+
+                case "Skeleton":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Troll":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Lizard Man":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                case "Dragon":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+
+                case "Lever":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+
+                default:
+                    g.setFont(new Font("default", Font.PLAIN, 11));
+                    break;
+            }
             g.drawString(guiTexts.get(i), guiPosX.get(i), guiPosY.get(i));
         }
 
@@ -275,6 +332,7 @@ public class Renderer extends JPanel {
 
     /**
      * Päivittää tiedot jos peli käynnistyy alusta
+     *
      * @param level Uusi taso
      * @param player Uusi pelaaja
      */
