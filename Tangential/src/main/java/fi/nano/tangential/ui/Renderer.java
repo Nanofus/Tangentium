@@ -112,18 +112,24 @@ public class Renderer extends JPanel {
         guiTexts.add("Controls");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 160);
-        guiTexts.add("Arrows to move");
+        guiTexts.add("Arrows or WASD to move");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 160 + 12);
-        guiTexts.add("Space to pick up a weapon / use a lever");
+        guiTexts.add("Space to pick up a weapon / use a lever / use a goal circle");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 160 + 24);
-        guiTexts.add("Bump into enemies to attack them");
+        guiTexts.add("If you have a weapon, bump into enemies to attack them");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 160 + 36);
         guiTexts.add("But beware - they strike back!");
         guiPosX.add(offsetX - 120);
         guiPosY.add(offsetY - 160 + 48);
+        guiTexts.add("Your weapon has to be the right type, too. Pick a weapon to which");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160 + 60);
+        guiTexts.add("the enemy is weak to - or at least not resistant!");
+        guiPosX.add(offsetX - 120);
+        guiPosY.add(offsetY - 160 + 72);
 
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
