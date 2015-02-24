@@ -46,7 +46,7 @@ public class Level {
      * Konstruktori lataa tason tekstitiedostosta.
      *
      * @param game Peli-instanssi joka loi tason
-     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
+     * @param levelName Ladattavan tasokansion nimi
      * (.txt)
      *
      */

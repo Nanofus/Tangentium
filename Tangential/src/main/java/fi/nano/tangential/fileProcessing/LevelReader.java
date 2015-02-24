@@ -20,7 +20,7 @@ public class LevelReader {
     /**
      * Konstruktori lataa tason tekstitiedostosta.
      *
-     * @param   levelName   Ladattavan tekstitiedoston nimi ilman tiedostopäätettä (.txt)
+     * @param   levelName   Ladattavan tasokansion nimi
      */
     public LevelReader(String levelName) {
         Scanner in = null;
