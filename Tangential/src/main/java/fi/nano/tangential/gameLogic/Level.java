@@ -382,6 +382,14 @@ public class Level {
         return combatHandler;
     }
 
+    /**
+     * Rendererin UI-piirtoa varten - tutoriaali vain ekassa tasossa
+     * @return Peli
+     */
+    public Game GetGame() {
+        return game;
+    }
+    
     private void SpawnPlayer(int x, int y) {
         player = new Actor(x, y, "Player", this, 5, 5, true, 0, 0, 0, 0, 0, 0);
     }

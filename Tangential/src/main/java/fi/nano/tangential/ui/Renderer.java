@@ -54,11 +54,10 @@ public class Renderer extends JPanel {
     private final int repaintDelay = 1000;
 
     Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
-        
+
         setOpaque(true);
-        setBackground(Color.BLACK); 
-        
-        
+        setBackground(Color.BLACK);
+
         this.imageLoader = imageLoader;
 
         this.level = level;
@@ -117,56 +116,70 @@ public class Renderer extends JPanel {
         offsetX = (windowWidth / 2) - isoCamPosition.x;
         offsetY = (windowHeight / 2) - isoCamPosition.y;
 
-        guiTexts.add("Controls");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 - 48);
-        isWhite.add(true);
-        guiTexts.add("Arrows or WASD to move");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 - 36);
-        isWhite.add(true);
-        guiTexts.add("Space to pick up a weapon / use a lever / use a goal circle");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 - 24);
-        isWhite.add(true);
-        
-        guiTexts.add("User interface");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180);
-        isWhite.add(true);
-        guiTexts.add("Bottom right: equipped weapon");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 12);
-        isWhite.add(true);
-        guiTexts.add("Bottom left: health");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 24);
-        isWhite.add(true);
-        
-        guiTexts.add("Tactics");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 48);
-        isWhite.add(true);
-        guiTexts.add("If you have a weapon, bump into enemies to attack them");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 60);
-        isWhite.add(true);
-        guiTexts.add("But beware - they strike back if you stay too close!");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 72);
-        isWhite.add(true);
-        guiTexts.add("Your weapon has to be the right type, too. Pick a weapon that is a type");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 84);
-        isWhite.add(true);
-        guiTexts.add("the enemy is weak to - or at least not resistant!");
-        guiPosX.add(offsetX - 120);
-        guiPosY.add(offsetY - 180 + 96);
-        isWhite.add(true);
+        BufferedImage drawnImage;
+
+        if (level.GetGame().GetLevelID() == 0) {
+            drawnImage = imageLoader.GetImage("Logo");
+            g.drawImage(drawnImage, offsetX - 360, offsetY - 300, null);
+
+            int guiX = 280;
+            int guiY = 180;
+            int lineHeight = 12;
+
+            guiTexts.add("Controls");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY);
+            isWhite.add(true);
+            guiTexts.add("Arrows or WASD to move");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight);
+            isWhite.add(true);
+            guiTexts.add("Space to pick up a weapon / use a lever / use a goal circle");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 2);
+            isWhite.add(true);
+
+            guiTexts.add("User interface");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 4);
+            isWhite.add(true);
+            guiTexts.add("Bottom right: equipped weapon");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 5);
+            isWhite.add(true);
+            guiTexts.add("Bottom left: health");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 6);
+            isWhite.add(true);
+
+            guiTexts.add("Tactics");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 8);
+            isWhite.add(true);
+            guiTexts.add("If you have a weapon, bump into enemies to attack them");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 9);
+            isWhite.add(true);
+            guiTexts.add("But beware - they strike back if you stay too close!");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 10);
+            isWhite.add(true);
+            guiTexts.add("Your weapon has to be the right type, too. Pick a weapon");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 11);
+            isWhite.add(true);
+            guiTexts.add("that is a type the enemy is weak to.");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 12);
+            isWhite.add(true);
+            guiTexts.add("Or at least not resistant!");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 13);
+            isWhite.add(true);
+        }
 
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
-                BufferedImage drawnImage;
                 BufferedImage drawnImageBottom = null;
                 switch (level.GetTile(i, j).GetType()) {
                     case WALL:
@@ -307,7 +320,7 @@ public class Renderer extends JPanel {
             } else {
                 g.setColor(Color.DARK_GRAY);
             }
-            
+
             switch (guiTexts.get(i)) {
                 case "Sword":
                     g.setFont(new Font("default", Font.BOLD, 11));

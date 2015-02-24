@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 public class ImageLoader {
     
     private BufferedImage icon;
+    private BufferedImage logo;
 
     private BufferedImage floor;
     private BufferedImage wall;
@@ -58,6 +59,8 @@ public class ImageLoader {
 
     public ImageLoader() {
         try {
+            
+            logo = ImageIO.read(new File("graphics/logo.png"));
             icon = ImageIO.read(new File("graphics/icon.png"));
             
             floor = ImageIO.read(new File("graphics/tiles/floor.png"));
@@ -111,6 +114,8 @@ public class ImageLoader {
         switch(name) {
             case "Icon":
                 return icon;
+            case "Logo":
+                return logo;
             
             case "Wall":
                 return wall;

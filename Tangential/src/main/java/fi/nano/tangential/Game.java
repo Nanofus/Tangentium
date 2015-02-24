@@ -45,6 +45,10 @@ public class Game {
         return level;
     }
 
+    public int GetLevelID() {
+        return currentLevel;
+    }
+    
     public void SetWindow(Window window) {
         this.window = window;
     }
