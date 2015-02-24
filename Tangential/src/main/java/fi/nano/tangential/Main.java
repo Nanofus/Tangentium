@@ -1,5 +1,6 @@
 package fi.nano.tangential;
 
+import fi.nano.tangential.fileProcessing.LevelListReader;
 import fi.nano.tangential.ui.Window;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
@@ -12,10 +13,9 @@ import javax.swing.SwingUtilities;
 public class Main {
 
     public static void main(String[] args) {
-
-        ArrayList<String> levels = new ArrayList<>();
-        levels.add("level1");
-        levels.add("level1");
+        LevelListReader levelListReader = new LevelListReader();
+        
+        ArrayList<String> levels = levelListReader.ReadLevelList();
         
         Game game = new Game(levels);
 
