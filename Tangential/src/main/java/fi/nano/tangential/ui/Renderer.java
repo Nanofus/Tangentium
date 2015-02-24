@@ -232,6 +232,10 @@ public class Renderer extends JPanel {
                         drawnImage = imageLoader.GetImage("Door Left");
                         drawnImageBottom = imageLoader.GetImage("Floor");
                         break;
+                    case DOOR_RIGHT:
+                        drawnImage = imageLoader.GetImage("Door Right");
+                        drawnImageBottom = imageLoader.GetImage("Floor");
+                        break;
                     case LEVER_ON_FLOOR:
                         drawnImage = imageLoader.GetImage("Lever");
                         drawnImageBottom = imageLoader.GetImage("Floor");
