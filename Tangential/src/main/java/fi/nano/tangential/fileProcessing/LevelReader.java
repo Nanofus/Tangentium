@@ -33,7 +33,7 @@ public class LevelReader {
         System.out.println("Reading level...");
         
         try {
-            in = new Scanner(new File("levels/" + levelName + "/" + levelName + ".txt"),"UTF-8");
+            in = new Scanner(new File("levels/" + levelName + "/level.txt"),"UTF-8");
         } catch (FileNotFoundException ex) {
             System.out.println("Level file not found! Exiting...");
             System.exit(1);
@@ -46,7 +46,7 @@ public class LevelReader {
         System.out.println("Reading actors...");
         
         try {
-            in = new Scanner(new File("levels/" + levelName + "/" + levelName + "_actors.txt"),"UTF-8");
+            in = new Scanner(new File("levels/" + levelName + "/actors.txt"),"UTF-8");
         } catch (FileNotFoundException ex) {
             System.out.println("Actors file not found! Exiting...");
             System.exit(1);
@@ -59,7 +59,7 @@ public class LevelReader {
         System.out.println("Reading items...");
         
         try {
-            in = new Scanner(new File("levels/" + levelName + "/" + levelName + "_items.txt"),"UTF-8");
+            in = new Scanner(new File("levels/" + levelName + "/items.txt"),"UTF-8");
         } catch (FileNotFoundException ex) {
             System.out.println("Items file not found! Exiting...");
             System.exit(1);
@@ -72,7 +72,7 @@ public class LevelReader {
         System.out.println("Reading tile action ID:s...");
         
         try {
-            in = new Scanner(new File("levels/" + levelName + "/" + levelName + "_actionids.txt"),"UTF-8");
+            in = new Scanner(new File("levels/" + levelName + "/actionids.txt"),"UTF-8");
         } catch (FileNotFoundException ex) {
             System.out.println("Tile actions file not found! Exiting...");
             System.exit(1);
