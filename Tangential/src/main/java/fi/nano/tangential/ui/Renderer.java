@@ -116,6 +116,11 @@ public class Renderer extends JPanel {
         offsetX = (windowWidth / 2) - isoCamPosition.x;
         offsetY = (windowHeight / 2) - isoCamPosition.y;
 
+        DrawGuide(g);
+        DrawTileContents(g);
+    }
+
+    private void DrawGuide(Graphics g) {
         BufferedImage drawnImage;
 
         if (level.GetGame().GetLevelID() == 0) {
@@ -197,6 +202,10 @@ public class Renderer extends JPanel {
             guiPosY.add(offsetY - guiY + lineHeight * 18);
             isWhite.add(true);
         }
+    }
+
+    private void DrawTileContents(Graphics g) {
+        BufferedImage drawnImage;
 
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
@@ -291,7 +300,7 @@ public class Renderer extends JPanel {
                     guiPosY.add(isoPos.y + offsetY + 24);
                     isWhite.add(false);
                 }
-                
+
                 Actor actorInTile = level.GetActorInTile(i, j);
                 if (actorInTile != null) {
                     drawnImage = imageLoader.GetImage(actorInTile.GetName());
@@ -299,17 +308,27 @@ public class Renderer extends JPanel {
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 64 + offsetY, null);
 
                     drawnImage = imageLoader.GetImage("Stun Icon");
-                    if (actorInTile.GetStun()>0) {
-                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX/2 - drawnImage.getWidth()/2 - 6, isoPos.y - 68 + offsetY, null);
+                    if (actorInTile.GetStun() > 0) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2 - 6, isoPos.y - 68 + offsetY, null);
                     }
-                    if (actorInTile.GetStun()>1) {
-                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX/2 - drawnImage.getWidth()/2, isoPos.y - 74 + offsetY, null);
+                    if (actorInTile.GetStun() > 1) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2, isoPos.y - 74 + offsetY, null);
                     }
-                    if (actorInTile.GetStun()>2) {
-                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX/2 - drawnImage.getWidth()/2 + 6, isoPos.y - 68 + offsetY, null);
+                    if (actorInTile.GetStun() > 2) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2 + 6, isoPos.y - 68 + offsetY, null);
                     }
                     
-                    
+                    drawnImage = imageLoader.GetImage("Weapon Delay Icon");
+                    if (actorInTile.GetWeaponDelay() > 0) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2 - 10, isoPos.y - 58 + offsetY, null);
+                    }
+                    if (actorInTile.GetWeaponDelay() > 1) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2, isoPos.y - 58 + offsetY, null);
+                    }
+                    if (actorInTile.GetWeaponDelay() > 2) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2 + 10, isoPos.y - 58 + offsetY, null);
+                    }
+
                     if (!actorInTile.equals(player)) {
                         guiTexts.add(actorInTile.GetName());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
@@ -411,17 +430,17 @@ public class Renderer extends JPanel {
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
 
         /*drawnImage = imageLoader.GetImage("Stun Icon");
-        for (int i = 0; i < player.GetStun(); i++) {
-            g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 80, null);
-        }*/
+         for (int i = 0; i < player.GetStun(); i++) {
+         g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 80, null);
+         }*/
         drawnImage = imageLoader.GetImage("Health Icon");
         for (int i = 0; i < player.GetHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
         }
         /*drawnImage = imageLoader.GetImage("Weapon Delay Icon");
-        for (int i = 0; i < player.GetWeaponDelay(); i++) {
-            g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 150, null);
-        }*/
+         for (int i = 0; i < player.GetWeaponDelay(); i++) {
+         g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 150, null);
+         }*/
 
         if (level.IsGameOver() && !gameWon) {
             drawnImage = imageLoader.GetImage("Game Over");

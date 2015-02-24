@@ -12,7 +12,7 @@ import fi.nano.tangential.gameLogic.entities.Actor;
 public class CombatHandler {
 
     private final EntityManager entityManager;
-    
+
     private int defaultStun = 3;
     private int defaultWeaponDelay = 4;
 
@@ -27,7 +27,7 @@ public class CombatHandler {
      * @param target Kohde
      */
     public void Hit(Actor attacker, Actor target) {
-        if (attacker.GetWeapon() != null) {
+        if (attacker.GetWeapon() != null && target.GetStun() < 1) {
             int targetResistance = target.GetResistance(attacker.GetWeapon().GetDamageType());
 
             int damage = attacker.GetWeapon().GetPower() - targetResistance;
