@@ -108,6 +108,10 @@ public class Level {
                         tiles[i][j].SetType(DOOR_LEFT);
                         tiles[i][j].SetTileAction(TileAction.Changing);
                         break;
+                    case 'b':
+                        tiles[i][j].SetType(DOOR_RIGHT);
+                        tiles[i][j].SetTileAction(TileAction.Changing);
+                        break;
                     case 'l':
                         tiles[i][j].SetType(LEVER_ON_FLOOR);
                         tiles[i][j].SetTileAction(TileAction.Changer);

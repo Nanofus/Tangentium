@@ -18,6 +18,7 @@ public enum TileType {
                 PILLAR_WITH_GRASS(PILLAR),
             DOOR(IMPASSABLE),
                 DOOR_LEFT(DOOR),
+                DOOR_RIGHT(DOOR),
             TREE(IMPASSABLE),
         PASSABLE(TILE),
             FLOOR(PASSABLE),

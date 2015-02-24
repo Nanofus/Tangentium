@@ -74,6 +74,8 @@ public class Tile {
                 symbol = 'l';
             case DOOR_LEFT:
                 symbol = 'd';
+            case DOOR_RIGHT:
+                symbol = 'b';
             case GRASS:
                 symbol = ',';
             case PATH:

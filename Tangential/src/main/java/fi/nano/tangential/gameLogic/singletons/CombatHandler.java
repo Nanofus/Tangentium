@@ -13,7 +13,7 @@ public class CombatHandler {
 
     private final EntityManager entityManager;
     
-    private int defaultStun = 2;
+    private int defaultStun = 3;
     private int defaultWeaponDelay = 4;
 
     public CombatHandler(EntityManager entityManager) {

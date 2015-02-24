@@ -4,6 +4,7 @@ import fi.nano.tangential.Game;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -42,6 +43,8 @@ public class Window implements Runnable {
         frame.setIconImage(imageLoader.GetImage("Icon"));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
+
+        centerWindow();
         
         frame.addKeyListener(inputListener);
 
@@ -70,6 +73,13 @@ public class Window implements Runnable {
     public void WinGame() {
         renderer.GameWon();
         Refresh();
+    }
+
+    private void centerWindow() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 3);
+        frame.setLocation(x, y);
     }
 
 }

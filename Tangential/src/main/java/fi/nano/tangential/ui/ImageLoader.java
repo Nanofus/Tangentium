@@ -26,6 +26,7 @@ public class ImageLoader {
     private BufferedImage pillar;
     
     private BufferedImage door_left;
+    private BufferedImage door_right;
     private BufferedImage lever;
     private BufferedImage wincircle;
 
@@ -65,7 +66,7 @@ public class ImageLoader {
             
             floor = ImageIO.read(new File("graphics/tiles/floor.png"));
             wall = ImageIO.read(new File("graphics/tiles/wall.png"));
-            chasm = ImageIO.read(new File("graphics/tiles/floor.png"));
+            chasm = ImageIO.read(new File("graphics/tiles/tiletemplate.png"));
             water = ImageIO.read(new File("graphics/tiles/water.png"));
             grass = ImageIO.read(new File("graphics/tiles/grass.png"));
             tree = ImageIO.read(new File("graphics/tiles/tree.png"));
@@ -73,6 +74,7 @@ public class ImageLoader {
             pillar = ImageIO.read(new File("graphics/tiles/pillar.png"));
             
             door_left = ImageIO.read(new File("graphics/tiles/door_left.png"));
+            door_right = ImageIO.read(new File("graphics/tiles/door_right.png"));
             lever = ImageIO.read(new File("graphics/tiles/lever.png"));
             wincircle = ImageIO.read(new File("graphics/tiles/wincircle.png"));
 
@@ -91,9 +93,9 @@ public class ImageLoader {
             wand = ImageIO.read(new File("graphics/weapons/wand.png"));
             
             weaponbackg = ImageIO.read(new File("graphics/icons/weaponbackg.png"));
-            stunicon = ImageIO.read(new File("graphics/icons/stunicon.png"));
+            stunicon = ImageIO.read(new File("graphics/icons/stunstar.png"));
             healthicon = ImageIO.read(new File("graphics/icons/healthicon.png"));
-            weaponstunicon = ImageIO.read(new File("graphics/icons/weaponstunicon.png"));
+            weaponstunicon = ImageIO.read(new File("graphics/icons/weapondelaybar.png"));
             gameover = ImageIO.read(new File("graphics/gameover.png"));
             victory = ImageIO.read(new File("graphics/victory.png"));
             
@@ -136,6 +138,8 @@ public class ImageLoader {
             
             case "Door Left":
                 return door_left;
+            case "Door Right":
+                return door_right;
             case "Lever":
                 return lever;
             case "Win Circle":

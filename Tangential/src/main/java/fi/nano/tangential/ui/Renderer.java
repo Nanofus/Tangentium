@@ -122,7 +122,7 @@ public class Renderer extends JPanel {
             drawnImage = imageLoader.GetImage("Logo");
             g.drawImage(drawnImage, offsetX - 360, offsetY - 300, null);
 
-            int guiX = 280;
+            int guiX = 340;
             int guiY = 180;
             int lineHeight = 12;
 
@@ -143,38 +143,58 @@ public class Renderer extends JPanel {
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight * 4);
             isWhite.add(true);
-            guiTexts.add("Bottom right: equipped weapon");
+            guiTexts.add("Brown square: equipped weapon");
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight * 5);
             isWhite.add(true);
-            guiTexts.add("Bottom left: health");
+            guiTexts.add("Hearts: health");
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight * 6);
+            isWhite.add(true);
+            guiTexts.add("Yellow stars: character's remaining stun (can't move while active) in turns");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 7);
+            isWhite.add(true);
+            guiTexts.add("Green bars: character's remaining attack cooldown (can't attack while active)");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 8);
             isWhite.add(true);
 
             guiTexts.add("Tactics");
             guiPosX.add(offsetX - guiX);
-            guiPosY.add(offsetY - guiY + lineHeight * 8);
+            guiPosY.add(offsetY - guiY + lineHeight * 10);
             isWhite.add(true);
             guiTexts.add("If you have a weapon, bump into enemies to attack them");
             guiPosX.add(offsetX - guiX);
-            guiPosY.add(offsetY - guiY + lineHeight * 9);
+            guiPosY.add(offsetY - guiY + lineHeight * 11);
             isWhite.add(true);
             guiTexts.add("But beware - they strike back if you stay too close!");
             guiPosX.add(offsetX - guiX);
-            guiPosY.add(offsetY - guiY + lineHeight * 10);
+            guiPosY.add(offsetY - guiY + lineHeight * 12);
             isWhite.add(true);
             guiTexts.add("Your weapon has to be the right type, too. Pick a weapon");
             guiPosX.add(offsetX - guiX);
-            guiPosY.add(offsetY - guiY + lineHeight * 11);
+            guiPosY.add(offsetY - guiY + lineHeight * 13);
             isWhite.add(true);
             guiTexts.add("that is a type the enemy is weak to.");
             guiPosX.add(offsetX - guiX);
-            guiPosY.add(offsetY - guiY + lineHeight * 12);
+            guiPosY.add(offsetY - guiY + lineHeight * 14);
             isWhite.add(true);
             guiTexts.add("Or at least not resistant!");
             guiPosX.add(offsetX - guiX);
-            guiPosY.add(offsetY - guiY + lineHeight * 13);
+            guiPosY.add(offsetY - guiY + lineHeight * 15);
+            isWhite.add(true);
+            guiTexts.add("Taking damage stuns for three turns");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 16);
+            isWhite.add(true);
+            guiTexts.add("but the attacker has to wait four turns");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 17);
+            isWhite.add(true);
+            guiTexts.add("until they can attack again.");
+            guiPosX.add(offsetX - guiX);
+            guiPosY.add(offsetY - guiY + lineHeight * 18);
             isWhite.add(true);
         }
 
@@ -271,13 +291,25 @@ public class Renderer extends JPanel {
                     guiPosY.add(isoPos.y + offsetY + 24);
                     isWhite.add(false);
                 }
-
+                
                 Actor actorInTile = level.GetActorInTile(i, j);
                 if (actorInTile != null) {
                     drawnImage = imageLoader.GetImage(actorInTile.GetName());
                     isoPos = TwoDToIso(new Position(i, j));
                     g.drawImage(drawnImage, isoPos.x + offsetX, isoPos.y - 64 + offsetY, null);
 
+                    drawnImage = imageLoader.GetImage("Stun Icon");
+                    if (actorInTile.GetStun()>0) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX/2 - drawnImage.getWidth()/2 - 6, isoPos.y - 68 + offsetY, null);
+                    }
+                    if (actorInTile.GetStun()>1) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX/2 - drawnImage.getWidth()/2, isoPos.y - 74 + offsetY, null);
+                    }
+                    if (actorInTile.GetStun()>2) {
+                        g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX/2 - drawnImage.getWidth()/2 + 6, isoPos.y - 68 + offsetY, null);
+                    }
+                    
+                    
                     if (!actorInTile.equals(player)) {
                         guiTexts.add(actorInTile.GetName());
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
@@ -378,18 +410,18 @@ public class Renderer extends JPanel {
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
 
-        drawnImage = imageLoader.GetImage("Stun Icon");
+        /*drawnImage = imageLoader.GetImage("Stun Icon");
         for (int i = 0; i < player.GetStun(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 80, null);
-        }
+        }*/
         drawnImage = imageLoader.GetImage("Health Icon");
         for (int i = 0; i < player.GetHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
         }
-        drawnImage = imageLoader.GetImage("Weapon Delay Icon");
+        /*drawnImage = imageLoader.GetImage("Weapon Delay Icon");
         for (int i = 0; i < player.GetWeaponDelay(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 150, null);
-        }
+        }*/
 
         if (level.IsGameOver() && !gameWon) {
             drawnImage = imageLoader.GetImage("Game Over");
