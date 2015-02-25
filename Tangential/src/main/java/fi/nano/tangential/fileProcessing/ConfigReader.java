@@ -31,11 +31,11 @@ public class ConfigReader {
     public ArrayList<String> GetConfig() {
         return config;
     }
-    
+
     public int GetWindowWidth() {
         return Integer.parseInt(config.get(0));
     }
-    
+
     public int GetWindowHeight() {
         return Integer.parseInt(config.get(1));
     }

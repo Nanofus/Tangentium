@@ -15,13 +15,13 @@ public class Main {
 
     public static void main(String[] args) {
         ConfigReader config = new ConfigReader();
-        
+
         LevelListReader levelListReader = new LevelListReader();
         ArrayList<String> levels = levelListReader.ReadLevelList();
-        
+
         Game game = new Game(levels);
 
-        Window window = new Window(game,config.GetWindowWidth(),config.GetWindowHeight());
+        Window window = new Window(game, config.GetWindowWidth(), config.GetWindowHeight());
         SwingUtilities.invokeLater(window);
 
         game.SetWindow(window);
