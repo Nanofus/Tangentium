@@ -42,9 +42,10 @@ public class Window implements Runnable {
         frame.setVisible(true);
         frame.setIconImage(imageLoader.GetImage("Icon"));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
-
-        centerWindow();
+        //frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
+        frame.setSize(new Dimension(windowWidth+15,windowHeight+35));
+        
+        //centerWindow();
         
         frame.addKeyListener(inputListener);
 
@@ -75,6 +76,7 @@ public class Window implements Runnable {
         Refresh();
     }
 
+    //Ei toimi Linuxilla!
     private void centerWindow() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
