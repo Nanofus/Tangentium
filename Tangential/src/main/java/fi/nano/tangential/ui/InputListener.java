@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  */
 public class InputListener implements KeyListener {
 
-    private Game game;
+    private final Game game;
 
     public InputListener(Game game) {
         this.game = game;

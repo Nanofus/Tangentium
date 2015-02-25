@@ -28,8 +28,11 @@ public class Window implements Runnable {
     private Renderer renderer;
     private final ImageLoader imageLoader;
 
-    public Window(Game game) {
+    public Window(Game game, int windowWidth, int windowHeight) {
         this.game = game;
+        
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
 
         imageLoader = new ImageLoader();
         inputListener = new InputListener(game);
@@ -42,8 +45,8 @@ public class Window implements Runnable {
         frame.setVisible(true);
         frame.setIconImage(imageLoader.GetImage("Icon"));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
-        frame.setSize(new Dimension(windowWidth+15,windowHeight+35));
+        frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
+        //frame.setSize(new Dimension(windowWidth+15,windowHeight+35));
         
         //centerWindow();
         
