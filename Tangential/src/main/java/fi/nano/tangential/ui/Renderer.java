@@ -139,7 +139,7 @@ public class Renderer extends JPanel {
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight);
             isWhite.add(true);
-            guiTexts.add("Space to pick up a weapon / use a lever / use a goal circle");
+            guiTexts.add("Space to pick up a weapon / use item / use a lever / use a goal circle");
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight * 2);
             isWhite.add(true);
@@ -163,6 +163,43 @@ public class Renderer extends JPanel {
             guiTexts.add("Green bars: character's remaining attack cooldown (can't attack while active)");
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight * 8);
+            isWhite.add(true);
+            
+            guiTexts.add("Items");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 4);
+            isWhite.add(true);
+            guiTexts.add("Sword - Slash-type weapon");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 5);
+            isWhite.add(true);
+            guiTexts.add("Spear - Pierce-type weapon");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 6);
+            isWhite.add(true);
+            guiTexts.add("Mace - Crush-type weapon");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 7);
+            isWhite.add(true);
+            guiTexts.add("Pyrospell - Burn-type weapon");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 8);
+            isWhite.add(true);
+            guiTexts.add("Ice Staff - Freeze-type weapon");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 9);
+            isWhite.add(true);
+            guiTexts.add("Wand - Arcane-type weapon");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 10);
+            isWhite.add(true);
+            guiTexts.add("Health Potion - Hearts restored by power value");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 11);
+            isWhite.add(true);
+            guiTexts.add("Buff Potion - Equipped item's power is permanently increased by power value");
+            guiPosX.add(offsetX - guiX + 500);
+            guiPosY.add(offsetY - guiY + lineHeight * 12);
             isWhite.add(true);
 
             guiTexts.add("Tactics");
@@ -403,6 +440,9 @@ public class Renderer extends JPanel {
                 case "Health Potion":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;
+                case "Buff Potion":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
                     
                 case "Skeleton":
                     g.setFont(new Font("default", Font.BOLD, 11));
@@ -428,6 +468,9 @@ public class Renderer extends JPanel {
                     g.setFont(new Font("default", Font.BOLD, 12));
                     break;
                 case "Tactics":
+                    g.setFont(new Font("default", Font.BOLD, 12));
+                    break;
+                case "Items":
                     g.setFont(new Font("default", Font.BOLD, 12));
                     break;
 

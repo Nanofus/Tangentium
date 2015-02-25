@@ -71,6 +71,9 @@ public class Entity {
             case "Health Potion":
                 symbol = 'h';
                 break;
+            case "Buff Potion":
+                symbol = 'n';
+                break;
         }
 
     }

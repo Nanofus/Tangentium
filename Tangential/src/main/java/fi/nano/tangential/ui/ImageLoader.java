@@ -45,6 +45,7 @@ public class ImageLoader {
     private BufferedImage wand;
     
     private BufferedImage healthPotion;
+    private BufferedImage buffPotion;
     
     private BufferedImage weaponbackg;
     private BufferedImage stunicon;
@@ -95,6 +96,7 @@ public class ImageLoader {
             wand = ImageIO.read(new File("graphics/weapons/wand.png"));
             
             healthPotion = ImageIO.read(new File("graphics/weapons/healthPotion.png"));
+            buffPotion = ImageIO.read(new File("graphics/weapons/buffPotion.png"));
             
             weaponbackg = ImageIO.read(new File("graphics/icons/weaponbackg.png"));
             stunicon = ImageIO.read(new File("graphics/icons/stunstar.png"));
@@ -176,6 +178,8 @@ public class ImageLoader {
                 
             case "Health Potion":
                 return healthPotion;
+            case "Buff Potion":
+                return buffPotion;
                 
             case "Weapon Background":
                 return weaponbackg;

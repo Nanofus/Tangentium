@@ -77,9 +77,14 @@ public class Actor extends Entity {
     public void EquipItem(Item item) {
 
         if (stun < 1) {
-            if ("Health Potion".equals(item.GetName())) {
+            if (item.GetName().equals("Health Potion")) {
                 if (GetHealth() != GetMaxHealth()) {
                     LoseHealth(-item.GetPower());
+                    GetLevel().GetEntityManager().DestroyItem(item);
+                }
+            } else if (item.GetName().equals("Buff Potion")) {
+                if (GetWeapon() != null) {
+                    GetWeapon().AddPower(item.GetPower());
                     GetLevel().GetEntityManager().DestroyItem(item);
                 }
             } else if (!item.IsEquipped()) {

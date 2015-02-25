@@ -179,6 +179,9 @@ public class Level {
                     case 'h':
                         SpawnItem(i, j, "Health Potion", 5);
                         break;
+                    case 'n':
+                        SpawnItem(i, j, "Buff Potion", 1);
+                        break;
                 }
             }
         }
@@ -432,9 +435,12 @@ public class Level {
             case "Health Potion":
                 type = DamageType.None;
                 break;
+            case "Buff Potion":
+                type = DamageType.None;
+                break;
 
             default:
-                type = DamageType.Slash;
+                type = DamageType.None;
                 break;
         }
 

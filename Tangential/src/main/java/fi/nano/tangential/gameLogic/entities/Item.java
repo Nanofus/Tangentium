@@ -33,6 +33,14 @@ public class Item extends Entity {
     public int GetPower() {
         return power;
     }
+    
+    /**
+     * Lisää (tai negatiivisilla arvoilla vähentää) aseen voimaa pysyvästi
+     * @param p Määrä
+     */
+    public void AddPower(int p) {
+        power = power + p;
+    }
 
     /**
      * Merkitsee, onko esine käytössä. Tosi piilottaa esineen kentältä, epätosi näyttää sen taas.
