@@ -75,14 +75,22 @@ public class Actor extends Entity {
      * @param item Käyttöön otettava esine
      */
     public void EquipItem(Item item) {
-        if (stun < 1 && !item.IsEquipped()) {
-            DropItem();
-            wieldedItem = item;
-            item.SetEquipped(true);
-            System.out.println("'" + GetName() + "' picked up item " + item.GetName());
-            LowerWeaponDelay();
-        } else {
-            LowerStun();
+
+        if (stun < 1) {
+            if ("Health Potion".equals(item.GetName())) {
+                if (GetHealth() != GetMaxHealth()) {
+                    LoseHealth(-item.GetPower());
+                    GetLevel().GetEntityManager().DestroyItem(item);
+                }
+            } else if (!item.IsEquipped()) {
+                DropItem();
+                wieldedItem = item;
+                item.SetEquipped(true);
+                System.out.println("'" + GetName() + "' picked up item " + item.GetName());
+                LowerWeaponDelay();
+            } else {
+                LowerStun();
+            }
         }
     }
 

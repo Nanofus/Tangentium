@@ -47,4 +47,17 @@ public class EntityManager {
             }
         }
     }
+    
+    /**
+     * Poistaa esineen pelikentältä
+     * 
+     * @param item Kohde-item
+     */
+    public void DestroyItem(Item item) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) == item) {
+                items.remove(i);
+            }
+        }
+    }
 }

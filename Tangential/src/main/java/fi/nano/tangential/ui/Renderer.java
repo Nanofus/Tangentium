@@ -399,7 +399,11 @@ public class Renderer extends JPanel {
                 case "Wand":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;
-
+                    
+                case "Health Potion":
+                    g.setFont(new Font("default", Font.BOLD, 11));
+                    break;
+                    
                 case "Skeleton":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;

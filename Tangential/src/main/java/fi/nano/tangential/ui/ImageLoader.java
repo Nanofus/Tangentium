@@ -44,6 +44,8 @@ public class ImageLoader {
     private BufferedImage icestaff;
     private BufferedImage wand;
     
+    private BufferedImage healthPotion;
+    
     private BufferedImage weaponbackg;
     private BufferedImage stunicon;
     private BufferedImage healthicon;
@@ -91,6 +93,8 @@ public class ImageLoader {
             pyrospell = ImageIO.read(new File("graphics/weapons/pyrospell.png"));
             icestaff = ImageIO.read(new File("graphics/weapons/icestaff.png"));
             wand = ImageIO.read(new File("graphics/weapons/wand.png"));
+            
+            healthPotion = ImageIO.read(new File("graphics/weapons/healthPotion.png"));
             
             weaponbackg = ImageIO.read(new File("graphics/icons/weaponbackg.png"));
             stunicon = ImageIO.read(new File("graphics/icons/stunstar.png"));
@@ -169,6 +173,9 @@ public class ImageLoader {
                 return icestaff;
             case "Wand":
                 return wand;
+                
+            case "Health Potion":
+                return healthPotion;
                 
             case "Weapon Background":
                 return weaponbackg;

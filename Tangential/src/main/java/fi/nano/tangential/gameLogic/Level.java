@@ -175,6 +175,10 @@ public class Level {
                     case 'w':
                         SpawnItem(i, j, "Wand", 1);
                         break;
+                        
+                    case 'h':
+                        SpawnItem(i, j, "Health Potion", 5);
+                        break;
                 }
             }
         }
@@ -423,6 +427,10 @@ public class Level {
                 break;
             case "Wand":
                 type = DamageType.Arcane;
+                break;
+                
+            case "Health Potion":
+                type = DamageType.None;
                 break;
 
             default:

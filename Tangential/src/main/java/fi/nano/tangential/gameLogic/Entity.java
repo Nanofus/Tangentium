@@ -66,6 +66,11 @@ public class Entity {
             case "Dragonfire":
                 symbol = 'd';
                 break;
+                
+            //Usable items
+            case "Health Potion":
+                symbol = 'h';
+                break;
         }
 
     }
