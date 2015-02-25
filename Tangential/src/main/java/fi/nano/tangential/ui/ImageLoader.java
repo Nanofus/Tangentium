@@ -50,6 +50,7 @@ public class ImageLoader {
     private BufferedImage weaponbackg;
     private BufferedImage stunicon;
     private BufferedImage healthicon;
+    private BufferedImage healthiconbackg;
     private BufferedImage weaponstunicon;
     private BufferedImage gameover;
     private BufferedImage victory;
@@ -101,6 +102,7 @@ public class ImageLoader {
             weaponbackg = ImageIO.read(new File("graphics/icons/weaponbackg.png"));
             stunicon = ImageIO.read(new File("graphics/icons/stunstar.png"));
             healthicon = ImageIO.read(new File("graphics/icons/healthicon.png"));
+            healthiconbackg = ImageIO.read(new File("graphics/icons/healthiconbackg.png"));
             weaponstunicon = ImageIO.read(new File("graphics/icons/weapondelaybar.png"));
             gameover = ImageIO.read(new File("graphics/gameover.png"));
             victory = ImageIO.read(new File("graphics/victory.png"));
@@ -187,6 +189,8 @@ public class ImageLoader {
                 return stunicon;
             case "Health Icon":
                 return healthicon;
+            case "Health Icon Background":
+                return healthiconbackg;
             case "Weapon Delay Icon":
                 return weaponstunicon;
             case "Game Over":

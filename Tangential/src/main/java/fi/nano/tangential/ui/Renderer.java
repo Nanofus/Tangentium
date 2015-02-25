@@ -164,7 +164,7 @@ public class Renderer extends JPanel {
             guiPosX.add(offsetX - guiX);
             guiPosY.add(offsetY - guiY + lineHeight * 8);
             isWhite.add(true);
-            
+
             guiTexts.add("Items");
             guiPosX.add(offsetX - guiX + 500);
             guiPosY.add(offsetY - guiY + lineHeight * 4);
@@ -320,7 +320,7 @@ public class Renderer extends JPanel {
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY + 12);
                     isWhite.add(false);
-                    guiTexts.add("Active: "+level.GetTile(i, j).GetActionActive());
+                    guiTexts.add("Active: " + level.GetTile(i, j).GetActionActive());
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY + 24);
                     isWhite.add(false);
@@ -362,7 +362,7 @@ public class Renderer extends JPanel {
                     if (actorInTile.GetStun() > 2) {
                         g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2 + 6, isoPos.y - 68 + offsetY, null);
                     }
-                    
+
                     drawnImage = imageLoader.GetImage("Weapon Delay Icon");
                     if (actorInTile.GetWeaponDelay() > 0) {
                         g.drawImage(drawnImage, isoPos.x + offsetX + tileSizeX / 2 - drawnImage.getWidth() / 2 - 10, isoPos.y - 58 + offsetY, null);
@@ -436,14 +436,14 @@ public class Renderer extends JPanel {
                 case "Wand":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;
-                    
+
                 case "Health Potion":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;
                 case "Buff Potion":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;
-                    
+
                 case "Skeleton":
                     g.setFont(new Font("default", Font.BOLD, 11));
                     break;
@@ -488,6 +488,11 @@ public class Renderer extends JPanel {
          for (int i = 0; i < player.GetStun(); i++) {
          g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 80, null);
          }*/
+        drawnImage = imageLoader.GetImage("Health Icon Background");
+        for (int i = 0; i < player.GetMaxHealth(); i++) {
+            g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
+        }
+        
         drawnImage = imageLoader.GetImage("Health Icon");
         for (int i = 0; i < player.GetHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
@@ -507,9 +512,17 @@ public class Renderer extends JPanel {
             g.drawImage(drawnImage, (windowWidth / 2) - (drawnImage.getWidth() / 2), (windowHeight / 2) - (drawnImage.getHeight() / 2), null);
         }
 
+        //Varsinaisen UI:n tekstit:
+        
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("default", Font.BOLD, 12));
+        
+        g.drawString("Health: " + player.GetHealth() + "/" + player.GetMaxHealth(), 30, windowHeight - 75);
+
         if (player.GetWeapon() != null) {
             drawnImage = imageLoader.GetImage(player.GetWeapon().GetName() + " Icon");
             g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
+            g.drawString("Weapon power: " + player.GetWeapon().GetPower(), windowWidth - drawnImage.getWidth() - 110, windowHeight - 10);
         }
     }
 
