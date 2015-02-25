@@ -20,3 +20,7 @@
 * 17.2. - 1h - Lisää käyttöliittymän kuvakkeita
 * 18.2. - 3h - Tekoälyn toiminnallisuuden parantaminen
 * 19.2. - 7h - Testejä, tekoälyn parantaminen, pelin voittaminen, uudet grafiikat
+* 20.2. - 1h - Uudet grafiikat
+* 23.2. - 1h - Tutoriaaliteksti
+* 24.2. - 2h - UI:ta pääasiassa
+* 25.2. - 4h - UI:ta, potionit, refaktorointia, javadocit
