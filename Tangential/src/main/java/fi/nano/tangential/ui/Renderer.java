@@ -283,6 +283,10 @@ public class Renderer extends JPanel {
                     guiPosX.add(isoPos.x + tileSizeX + offsetX);
                     guiPosY.add(isoPos.y + offsetY + 12);
                     isWhite.add(false);
+                    guiTexts.add("Active: "+level.GetTile(i, j).GetActionActive());
+                    guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                    guiPosY.add(isoPos.y + offsetY + 24);
+                    isWhite.add(false);
                 }
 
                 Item itemInTile = level.GetItemInTile(i, j);

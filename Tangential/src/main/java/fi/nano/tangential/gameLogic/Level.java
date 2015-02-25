@@ -291,8 +291,13 @@ public class Level {
                             if (tile.GetActionId() == tileInPos.GetActionId()) {
                                 TileType type = tile.GetType();
                                 if (type.is(DOOR)) {
+                                    tile.SetOriginalActionChangeType(type);
+                                    tileInPos.SetActionActive(true);
                                     tile.SetType(tile.GetActionChangeType());
                                     System.out.println("'" + type + "' opened to '" + tile.GetActionChangeType() + "'!");
+                                } else if (type.is(PASSABLE)) {
+                                    tileInPos.SetActionActive(false);
+                                    tile.SetType(tile.GetOriginalActionChangeType());
                                 }
                             }
                         }

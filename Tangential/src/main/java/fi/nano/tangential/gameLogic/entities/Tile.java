@@ -1,4 +1,3 @@
-
 package fi.nano.tangential.gameLogic.entities;
 
 import fi.nano.tangential.gameLogic.enums.TileAction;
@@ -6,51 +5,67 @@ import fi.nano.tangential.gameLogic.enums.TileType;
 
 /**
  * Pelimaailman ruutu. On tiettyä tyyppiä (TileType).
- * 
+ *
  * @author Nanofus
  */
 public class Tile {
+
     private TileType tile;
     private TileAction action;
-    
+
     private int actionId = 0;
+    private boolean actionActive = false;
+    private TileType originalActionChangeType;
     private TileType actionChangeType = TileType.FLOOR;
-    
+
     private Character symbol = 'Ö';
-    
+
     public Tile() {
-        
+
     }
-    
+
     public TileType GetType() {
         return tile;
     }
-    
+
     public Character GetSymbol() {
         return symbol;
     }
-    
+
     public TileAction GetAction() {
         return action;
     }
-    
+
     public int GetActionId() {
         return actionId;
     }
-    
+
+    public boolean GetActionActive() {
+        return actionActive;
+    }
+
     public TileType GetActionChangeType() {
         return actionChangeType;
     }
-    
+
+    public void SetOriginalActionChangeType(TileType type) {
+        originalActionChangeType = type;
+    }
+
+    public TileType GetOriginalActionChangeType() {
+        return originalActionChangeType;
+    }
+
     /**
-     * Asettaa tilen tietyn tyyppiseksi. Voidaan käyttää tason luonnissa tai sen muokkaamisessa dynaamisesti.
-     * 
+     * Asettaa tilen tietyn tyyppiseksi. Voidaan käyttää tason luonnissa tai sen
+     * muokkaamisessa dynaamisesti.
+     *
      * @param type Tilen tyyppi
      */
     public void SetType(TileType type) {
         tile = type;
-        
-        switch(tile) {
+
+        switch (tile) {
             case WALL:
                 symbol = 'X';
                 break;
@@ -84,29 +99,37 @@ public class Tile {
                 symbol = 'T';
         }
     }
-    
+
     /**
      * Määrittelee tilen erikoislaatuisen luonteen
-     * 
+     *
      * @param action Erikoistoiminto
      * @param id ID esimerkiksi vipuja varten
      */
     public void SetTileAction(TileAction action) {
         this.action = action;
     }
-    
+
     /**
      * Määrittelee tilen erikoistoiminnon ID:n
-     * 
+     *
      * @param id ID-numero
      */
     public void SetTileActionId(int id) {
         this.actionId = id;
     }
-    
+
+    /**
+     * Asettaa totuusarvon: onko tile aktivoitu? (esimerkiksi vipu)
+     * @param b Totuusarvo
+     */
+    public void SetActionActive(boolean b) {
+        actionActive = b;
+    }
+
     @Override
     public String toString() {
-        return "Tile symbol: "+symbol;
+        return "Tile symbol: " + symbol;
     }
-    
+
 }
