@@ -17,7 +17,6 @@ public class Main {
         ConfigReader config = new ConfigReader();
         
         LevelListReader levelListReader = new LevelListReader();
-        
         ArrayList<String> levels = levelListReader.ReadLevelList();
         
         Game game = new Game(levels);

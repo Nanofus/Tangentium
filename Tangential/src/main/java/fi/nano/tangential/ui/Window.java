@@ -48,7 +48,7 @@ public class Window implements Runnable {
         frame.setSize(new Dimension(windowWidth + frame.getInsets().left + frame.getInsets().right, windowHeight + frame.getInsets().top + frame.getInsets().bottom));
         //frame.setSize(new Dimension(windowWidth+15,windowHeight+35));
         
-        //centerWindow();
+        //CenterWindow();
         
         frame.addKeyListener(inputListener);
 
@@ -66,7 +66,7 @@ public class Window implements Runnable {
         frame.repaint();
     }
 
-    public JFrame getFrame() {
+    public JFrame GetFrame() {
         return frame;
     }
 
@@ -80,7 +80,7 @@ public class Window implements Runnable {
     }
 
     //Ei toimi Linuxilla!
-    private void centerWindow() {
+    private void CenterWindow() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 3);
