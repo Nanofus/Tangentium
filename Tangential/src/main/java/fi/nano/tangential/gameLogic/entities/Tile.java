@@ -104,7 +104,6 @@ public class Tile {
      * Määrittelee tilen erikoislaatuisen luonteen
      *
      * @param action Erikoistoiminto
-     * @param id ID esimerkiksi vipuja varten
      */
     public void SetTileAction(TileAction action) {
         this.action = action;

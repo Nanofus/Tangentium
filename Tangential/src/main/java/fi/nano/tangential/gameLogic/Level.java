@@ -219,8 +219,8 @@ public class Level {
     /**
      * Hakee Actorin tietystä tilestä.
      *
-     * @param x
-     * @param y
+     * @param x X-koordinaatti
+     * @param y Y-koordinaatti
      * @return Tilessä seisova actor
      */
     public Actor GetActorInTile(int x, int y) {
@@ -252,8 +252,8 @@ public class Level {
     /**
      * Hakee esineen tietystä tilestä.
      *
-     * @param x
-     * @param y
+     * @param x X-koordinaatti
+     * @param y Y-koordinaatti
      * @return Tilessä oleva esine
      */
     public Item GetItemInTile(int x, int y) {
@@ -274,7 +274,7 @@ public class Level {
      * Hakee Itemin tietystä tilestä.
      *
      * @param pos Sijainti kentällä
-     * @return
+     * @return Esine
      */
     public Item GetItemInTile(Position pos) {
         return GetItemInTile(pos.x, pos.y);
@@ -283,7 +283,7 @@ public class Level {
     /**
      * Aktivoi toiminnon tietyssä tilessä.
      *
-     * @param pos
+     * @param pos Tilen sijainti
      */
     public void ActivateTile(Position pos) {
         Tile tileInPos = GetTile(pos.x, pos.y);
