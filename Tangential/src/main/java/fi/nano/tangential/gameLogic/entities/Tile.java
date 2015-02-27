@@ -48,6 +48,10 @@ public class Tile {
         return actionChangeType;
     }
 
+    /**
+     * Asetetaan tyyppi joksi tile palaa sen jälkeen kun se on aktivoitu muuttumaan toiseksi tileksi.
+     * @param type Vanha tilen tyyppi
+     */
     public void SetOriginalActionChangeType(TileType type) {
         originalActionChangeType = type;
     }

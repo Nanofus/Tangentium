@@ -35,6 +35,11 @@ public enum TileType {
         this.parent = parent;
     }
 
+    /**
+     * Vertaa kahta eri tile-tyyppiä ja tarkistaa hierarkiasta onko tiletyyppi toisen alatyyppi
+     * @param other Toinen tiletyyppi
+     * @return Onko toisen alatyyppi
+     */
     public boolean is(TileType other) {
 
         for (TileType t = this; t != null; t = t.parent) {

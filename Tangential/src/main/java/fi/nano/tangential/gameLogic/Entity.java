@@ -17,6 +17,13 @@ public class Entity {
 
     private Position position;
 
+    /**
+     * Luo entiteetin halutuilla parametreillä
+     * @param x X-koordinaatti
+     * @param y Y-koordinaatti
+     * @param name Nimi
+     * @param level Taso
+     */
     public Entity(int x, int y, String name, Level level) {
         position = new Position(x, y);
 

@@ -5,8 +5,6 @@ import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.enums.Direction;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -28,6 +26,12 @@ public class Window implements Runnable {
     private Renderer renderer;
     private final ImageLoader imageLoader;
 
+    /**
+     * Luo uuden ikkunan
+     * @param game Peli-instanssi
+     * @param windowWidth Ikkunan leveys
+     * @param windowHeight Ikkunan korkeus
+     */
     public Window(Game game, int windowWidth, int windowHeight) {
         this.game = game;
         
@@ -57,6 +61,10 @@ public class Window implements Runnable {
         frame.add(renderer);
     }
 
+    /**
+     * Välittää luokalle tiedon, kun peli alkaa alusta
+     * @param level Uusi taso
+     */
     public void RestartLevel(Level level) {
         renderer.RestartLevel(level, level.GetPlayer());
         Refresh();

@@ -27,10 +27,18 @@ public class EntityManager {
         return enemies;
     }
 
+    /**
+     * Lisää vihollisen listaan tason vihollisista
+     * @param enemy Lisättävä vihollinen
+     */
     public void AddEnemy(Actor enemy) {
         enemies.add(enemy);
     }
 
+    /**
+     * Lisää esineen listaan tason esineistä
+     * @param item Lisättävä esine
+     */
     public void AddItem(Item item) {
         items.add(item);
     }

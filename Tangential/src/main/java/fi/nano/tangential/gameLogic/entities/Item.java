@@ -3,7 +3,6 @@ package fi.nano.tangential.gameLogic.entities;
 import fi.nano.tangential.gameLogic.Entity;
 import fi.nano.tangential.gameLogic.Level;
 import fi.nano.tangential.gameLogic.enums.DamageType;
-import fi.nano.tangential.gameLogic.Position;
 
 /**
  * Pelimaailman esine. Hahmo voi poimia esineen käyttöönsä.
@@ -17,6 +16,15 @@ public class Item extends Entity {
 
     private boolean equipped = false;
 
+    /**
+     * Luo esineen annetuilla parametreillä
+     * @param x X-sijainti
+     * @param y Y-sijainti
+     * @param name Esineen nimi - potion-nimet luovat potion-esineen
+     * @param level Pelin taso
+     * @param power Esineen voima/teho
+     * @param type Esineen vahinkotyyppi
+     */
     public Item(int x, int y, String name, Level level, int power, DamageType type) {
         super(x, y, name, level);
 
@@ -53,6 +61,10 @@ public class Item extends Entity {
         equipped = b;
     }
 
+    /**
+     * Palauttaa tiedon onko esine käytössä.
+     * @return Onko käytössä
+     */
     public boolean IsEquipped() {
         return equipped;
     }

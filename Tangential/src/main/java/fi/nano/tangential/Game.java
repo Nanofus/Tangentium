@@ -24,11 +24,10 @@ public class Game {
     /**
      * Konstruktori lataa Level-tyyppisen tason tekstitiedostosta.
      *
-     * @param levelName Ladattavan tekstitiedoston nimi ilman tiedostopäätettä
-     * (.txt)
+     * @param levelNames Lista tasoista
      */
-    public Game(ArrayList<String> levelName) {
-        levels = levelName;
+    public Game(ArrayList<String> levelNames) {
+        levels = levelNames;
 
         System.out.println("\nGenerating game from file...");
 

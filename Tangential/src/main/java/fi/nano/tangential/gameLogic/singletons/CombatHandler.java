@@ -16,6 +16,10 @@ public class CombatHandler {
     private int defaultStun = 3;
     private int defaultWeaponDelay = 4;
 
+    /**
+     * Luo uuden CombatHandlerin - tarvitsee EntityManagerin listaksi entiteeteistä tasossa
+     * @param entityManager EntityManager-instanssi
+     */
     public CombatHandler(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

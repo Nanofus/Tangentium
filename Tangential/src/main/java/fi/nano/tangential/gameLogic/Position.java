@@ -8,9 +8,20 @@ package fi.nano.tangential.gameLogic;
  */
 public class Position {
 
+    /**
+     * X-koordinaatti
+     */
     public int x;
+    /**
+     * Y-koordinaatti
+     */
     public int y;
 
+    /**
+     * Luo sijainnin annetuilla koordinaateilla
+     * @param x X-koordinaatti
+     * @param y Y-koordinaatti
+     */
     public Position(int x, int y) {
         this.x = x;
         this.y = y;

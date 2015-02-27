@@ -37,6 +37,22 @@ public class Actor extends Entity {
 
     private AI ai;
 
+    /**
+     * Konstruktori luo uuden hahmon
+     * @param x X-sijainti
+     * @param y Y-sijainti
+     * @param name Nimi
+     * @param level Pelin taso
+     * @param hp Terveysmäärä alussa
+     * @param maxhp Maksimiterveys
+     * @param controlled Onko pelaajan kontrollissa
+     * @param slashResistance Vastustuskyky Slash-vahinkoa vastaan
+     * @param pierceResistance Vastustuskyky Pierce-vahinkoa vastaan
+     * @param crushResistance Vastustuskyky Crush-vahinkoa vastaan
+     * @param burnResistance Vastustuskyky Burn-vahinkoa vastaan
+     * @param freezeResistance Vastustuskyky Freeze-vahinkoa vastaan
+     * @param arcaneResistance  Vastustuskyky Arcane-vahinkoa vastaan
+     */
     public Actor(int x, int y, String name, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
         super(x, y, name, level);
 
@@ -70,7 +86,7 @@ public class Actor extends Entity {
     }
 
     /**
-     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen sijaintiin.
+     * Antaa esineen actorin käyttöön ja pudottaa vanhan nykyiseen sijaintiin. Jos esine on taikajuoma, se käytetään.
      *
      * @param item Käyttöön otettava esine
      */
@@ -146,6 +162,9 @@ public class Actor extends Entity {
         }
     }
 
+    /**
+     * Jos hahmo ei käytä vuoroaan se voi levätä, jolloin stun-mittari ja weapon delay -mittari pienenevät.
+     */
     public void Rest() {
         LowerStun();
     }
@@ -179,6 +198,10 @@ public class Actor extends Entity {
         return ai;
     }
 
+    /**
+     * Hakee Actorin stancen. Vain AI:n kontrollissa olevilla hahmoilla on stance.
+     * @return Stance, jos ei ole palautetaan Stance None.
+     */
     public Stance GetStance() {
         if (HasAI()) {
             return ai.GetStance();
@@ -233,6 +256,11 @@ public class Actor extends Entity {
         return weaponDelay;
     }
 
+    /**
+     * Vastustuskyky tiettyä vahinkotyyppiä vastaan
+     * @param damageType Vahinkotyyppi
+     * @return Vastustuksen määrä
+     */
     public int GetResistance(DamageType damageType) {
         switch (damageType) {
             case Slash:
@@ -251,6 +279,10 @@ public class Actor extends Entity {
         return 0;
     }
 
+    /**
+     * Hakee UI:hin piirtämistä varten listan heikkouksista vahinkovastustuksissa.
+     * @return Heikkoudet muotoiltuna merkkijonoksi
+     */
     public String GetWeakness() {
         int smallestValue;
         String smallestInString = "";
@@ -296,6 +328,10 @@ public class Actor extends Entity {
         return smallestInString;
     }
 
+    /**
+     * Hakee UI:hin piirtämistä varten listan vahvuuksista vahinkovastustuksissa.
+     * @return Vahvuudet muotoiltuna merkkijonoksi
+     */
     public String GetStrength() {
         int biggestValue;
         String biggestInString = "";

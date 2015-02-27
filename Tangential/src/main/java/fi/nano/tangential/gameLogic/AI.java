@@ -13,18 +13,23 @@ import java.util.Random;
  */
 public class AI {
 
-    Level level;
-    Actor me;
+    private final Level level;
+    private Actor me;
 
-    Stance stance = Wander;
+    private Stance stance = Wander;
 
-    Actor target;
-    Direction targetDirection;
-    boolean noticedTarget = false;
-    int noticeDistance = 15;
+    private Actor target;
+    private Direction targetDirection;
+    private boolean noticedTarget = false;
+    private int noticeDistance = 15;
 
-    Random random = new Random();
+    private Random random = new Random();
 
+    /**
+     * Konstruktori luo uuden AI-instanssin
+     * @param me Actor jolle AI kuuluu
+     * @param level Taso
+     */
     public AI(Actor me, Level level) {
         if (level != null) {
             target = level.GetPlayer();

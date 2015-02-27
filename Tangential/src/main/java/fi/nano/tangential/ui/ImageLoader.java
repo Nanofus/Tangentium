@@ -120,6 +120,11 @@ public class ImageLoader {
         }
     }
 
+    /**
+     * Palauttaa halutun kuvan nimen perusteella
+     * @param name Kuvan nimi
+     * @return Kuva
+     */
     public BufferedImage GetImage(String name) {
         switch(name) {
             case "Icon":

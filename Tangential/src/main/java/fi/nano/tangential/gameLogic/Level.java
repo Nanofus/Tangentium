@@ -37,6 +37,7 @@ public class Level {
     private int items;
 
     private Actor player;
+    private Actor[] enemyActors;
 
     Random random = new Random();
 
@@ -370,6 +371,10 @@ public class Level {
         return gameOver;
     }
 
+    /**
+     * Asettaa pelin olemaan joko ohi tai ei ohi
+     * @param value Onko peli ohi
+     */
     public void SetGameOver(boolean value) {
         gameOver = value;
     }

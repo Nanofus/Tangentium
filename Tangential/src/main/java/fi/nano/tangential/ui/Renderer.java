@@ -53,7 +53,15 @@ public class Renderer extends JPanel {
 
     private final int repaintDelay = 1000;
 
-    Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
+    /**
+     * Luo uuden piirtäjän
+     * @param imageLoader Kuvanlataaja
+     * @param level Pelin taso
+     * @param player Pelaajahahmo
+     * @param windowWidth Ikkunan leveys
+     * @param windowHeight Ikkunan korkeus
+     */
+    public Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
 
         setOpaque(true);
         setBackground(Color.BLACK);
