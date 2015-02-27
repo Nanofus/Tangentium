@@ -56,7 +56,7 @@ public class Level {
 
         Init();
 
-        LevelReader levelReader = new LevelReader(levelName);
+        LevelReader levelReader = new LevelReader(game.GetErrorDialog(),levelName);
         ArrayList<String> levelArray = levelReader.GetLevel();
 
         height = levelArray.size();

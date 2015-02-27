@@ -1,5 +1,6 @@
 package fi.nano.tangential.fileProcessing;
 
+import fi.nano.tangential.ui.ErrorDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -20,9 +21,10 @@ public class LevelReader {
     /**
      * Konstruktori lataa tason tekstitiedostosta.
      *
+     * @param errorDialog Virhedialogi
      * @param levelName Ladattavan tasokansion nimi
      */
-    public LevelReader(String levelName) {
+    public LevelReader(ErrorDialog errorDialog, String levelName) {
         Scanner in = null;
 
         level = new ArrayList();
@@ -35,7 +37,7 @@ public class LevelReader {
         try {
             in = new Scanner(new File("levels/" + levelName + "/level.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
-            System.out.println("Level file not found! Exiting...");
+            errorDialog.ShowError("Level file for '"+levelName+"' not found! Exiting...");
             System.exit(1);
         }
 
@@ -48,7 +50,7 @@ public class LevelReader {
         try {
             in = new Scanner(new File("levels/" + levelName + "/actors.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
-            System.out.println("Actors file not found! Exiting...");
+            errorDialog.ShowError("Actors file for '"+levelName+"' not found! Exiting...");
             System.exit(1);
         }
 
@@ -61,7 +63,7 @@ public class LevelReader {
         try {
             in = new Scanner(new File("levels/" + levelName + "/items.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
-            System.out.println("Items file not found! Exiting...");
+            errorDialog.ShowError("Items file for '"+levelName+"' not found! Exiting...");
             System.exit(1);
         }
 
@@ -72,19 +74,16 @@ public class LevelReader {
         System.out.println("Reading tile action ID:s...");
 
         try {
-            in = new Scanner(new File("levels/" + levelName + "/actionids.txt"), "UTF-8");
+            in = new Scanner(new File("levels/" + levelName + "/actionisds.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
-            System.out.println("Tile actions file not found! Exiting...");
+            errorDialog.ShowError("Tile actions file for '"+levelName+"' not found! Exiting...");
             System.exit(1);
         }
 
         while (in.hasNext()) {
             actionIds.add(in.nextLine());
         }
-
-        /*System.out.println(level);
-         System.out.println(actors);
-         System.out.println(items);*/
+        
         //Fix sille että tiedostojen alkuun tulee ylimääräinen kysymysmerkki jostain merkistöenkoodauksen mysteerisyystä
         level.set(0, level.get(0).substring(1));
         actors.set(0, actors.get(0).substring(1));

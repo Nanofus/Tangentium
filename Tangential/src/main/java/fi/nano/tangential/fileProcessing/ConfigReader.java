@@ -1,5 +1,6 @@
 package fi.nano.tangential.fileProcessing;
 
+import fi.nano.tangential.ui.ErrorDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,13 +17,13 @@ public class ConfigReader {
     /**
      * Konstruktori lukee config-tekstitiedoston (config.txt)
      */
-    public ConfigReader() {
+    public ConfigReader(ErrorDialog errorDialog) {
         Scanner in = null;
 
         try {
             in = new Scanner(new File("config.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
-            System.out.println("Level file not found! Exiting...");
+            errorDialog.ShowError("Config file not found! Exiting...");
             System.exit(1);
         }
 

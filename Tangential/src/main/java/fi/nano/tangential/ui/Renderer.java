@@ -131,6 +131,8 @@ public class Renderer extends JPanel {
     private void DrawGuide(Graphics g) {
         BufferedImage drawnImage;
 
+        // Tutoriaalitekstit
+        
         if (level.GetGame().GetLevelID() == 0) {
             drawnImage = imageLoader.GetImage("Logo");
             g.drawImage(drawnImage, offsetX - 360, offsetY - 300, null);
@@ -252,6 +254,8 @@ public class Renderer extends JPanel {
     private void DrawTileContents(Graphics g) {
         BufferedImage drawnImage;
 
+        // Tilet sisältöineen
+        
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
                 BufferedImage drawnImageBottom = null;
@@ -418,6 +422,9 @@ public class Renderer extends JPanel {
     }
 
     private void PaintGUI(Graphics g) {
+        
+        //UI-tekstit
+        
         for (int i = 0; i < guiTexts.size(); i++) {
             if (isWhite.get(i) == true) {
                 g.setColor(Color.WHITE);
@@ -489,13 +496,11 @@ public class Renderer extends JPanel {
             g.drawString(guiTexts.get(i), guiPosX.get(i), guiPosY.get(i));
         }
 
+        // UI:n kuvakkeet
+        
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
 
-        /*drawnImage = imageLoader.GetImage("Stun Icon");
-         for (int i = 0; i < player.GetStun(); i++) {
-         g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 80, null);
-         }*/
         drawnImage = imageLoader.GetImage("Health Icon Background");
         for (int i = 0; i < player.GetMaxHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
@@ -505,10 +510,8 @@ public class Renderer extends JPanel {
         for (int i = 0; i < player.GetHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
         }
-        /*drawnImage = imageLoader.GetImage("Weapon Delay Icon");
-         for (int i = 0; i < player.GetWeaponDelay(); i++) {
-         g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 150, null);
-         }*/
+        
+        // Voitto- ja häviötekstis
 
         if (level.IsGameOver() && !gameWon) {
             drawnImage = imageLoader.GetImage("Game Over");

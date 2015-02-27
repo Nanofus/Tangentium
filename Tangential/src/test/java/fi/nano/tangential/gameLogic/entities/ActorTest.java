@@ -108,6 +108,48 @@ public class ActorTest {
 
         assertEquals(true, correctItem);
     }
+    
+    @Test
+    public void UsePotionWhileNotFullHealth() {
+        Level level = new Level(null, "level1");
+        
+        Item item = new Item(0, 0, "Health Potion", null, 5, Pierce);
+        Actor enemy = new Actor(0, 0, "Skeleton", level, 1, 10, false, 0, 2, -2, -1, 1, -2);
+        
+        level.GetEntityManager().AddItem(item);
+        
+        enemy.EquipItem(item);
+        
+        assertEquals(6, enemy.GetHealth());
+    }
+    
+    @Test
+    public void UsePotionWhileFullHealth() {
+        Level level = new Level(null, "level1");
+        
+        Item item = new Item(0, 0, "Health Potion", null, 5, Pierce);
+        Actor enemy = new Actor(0, 0, "Skeleton", level, 5, 5, false, 0, 2, -2, -1, 1, -2);
+        
+        level.GetEntityManager().AddItem(item);
+        
+        enemy.EquipItem(item);
+        
+        assertEquals(5, enemy.GetHealth());
+    }
+    
+    @Test
+    public void UsePotionWhileAlmostFullHealth() {
+        Level level = new Level(null, "level1");
+        
+        Item item = new Item(0, 0, "Health Potion", null, 5, Pierce);
+        Actor enemy = new Actor(0, 0, "Skeleton", level, 5, 5, false, 0, 2, -2, -1, 1, -2);
+        
+        level.GetEntityManager().AddItem(item);
+        
+        enemy.EquipItem(item);
+        
+        assertEquals(5, enemy.GetHealth());
+    }
 
     @Test
     public void EquipItemInTile() {

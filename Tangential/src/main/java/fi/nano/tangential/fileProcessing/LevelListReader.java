@@ -1,5 +1,6 @@
 package fi.nano.tangential.fileProcessing;
 
+import fi.nano.tangential.ui.ErrorDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,28 +13,35 @@ import java.util.Scanner;
  */
 public class LevelListReader {
 
-    public LevelListReader() {
-    }
+    ArrayList<String> levelList;
 
     /**
-     * Lukee tiedoston, joka lisältää listan pelin tasoista
-     * @return Lista pelin tasoista
+     * 
+     * @param errorDialog Virhedialogi virheilmoituksia varten
      */
-    public ArrayList<String> ReadLevelList() {
+    public LevelListReader(ErrorDialog errorDialog) {
         Scanner in = null;
-        ArrayList<String> levels = new ArrayList<>();
+        levelList = new ArrayList<>();
 
         try {
             in = new Scanner(new File("levels/level_list.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
-            System.out.println("Level list file not found! Exiting...");
+            errorDialog.ShowError("Level list file not found! Exiting...");
             System.exit(1);
         }
 
         while (in.hasNext()) {
-            levels.add(in.nextLine());
+            levelList.add(in.nextLine());
         }
 
-        return levels;
+    }
+
+    /**
+     * Lukee tiedoston, joka lisältää listan pelin tasoista
+     *
+     * @return Lista pelin tasoista
+     */
+    public ArrayList<String> GetLevelList() {
+        return levelList;
     }
 }

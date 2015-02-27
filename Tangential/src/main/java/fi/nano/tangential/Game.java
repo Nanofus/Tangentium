@@ -3,6 +3,7 @@ package fi.nano.tangential;
 import fi.nano.tangential.gameLogic.*;
 import fi.nano.tangential.gameLogic.entities.Actor;
 import fi.nano.tangential.gameLogic.enums.Direction;
+import fi.nano.tangential.ui.ErrorDialog;
 import fi.nano.tangential.ui.Window;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private ErrorDialog errorDialog;
     private Level level;
     private Window window;
 
@@ -24,20 +26,16 @@ public class Game {
     /**
      * Konstruktori lataa Level-tyyppisen tason tekstitiedostosta.
      *
+     * @param errorDialog Virhedialogi virheilmoituksia varten
      * @param levelNames Lista tasoista
      */
-    public Game(ArrayList<String> levelNames) {
+    public Game(ErrorDialog errorDialog, ArrayList<String> levelNames) {
+        this.errorDialog = errorDialog;
         levels = levelNames;
 
         System.out.println("\nGenerating game from file...");
 
         level = new Level(this, levels.get(currentLevel));
-
-        /*System.out.println("\nGenerated level:\n----\n");
-
-         System.out.println(level);
-
-         System.out.println("\n----");*/
     }
 
     public Level GetLevel() {
@@ -46,6 +44,10 @@ public class Game {
 
     public int GetLevelID() {
         return currentLevel;
+    }
+    
+    public ErrorDialog GetErrorDialog() {
+        return errorDialog;
     }
     
     public void SetWindow(Window window) {
