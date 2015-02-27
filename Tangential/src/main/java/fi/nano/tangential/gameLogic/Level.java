@@ -47,8 +47,7 @@ public class Level {
      * Konstruktori lataa tason tekstitiedostosta.
      *
      * @param game Peli-instanssi joka loi tason
-     * @param levelName Ladattavan tasokansion nimi
-     * (.txt)
+     * @param levelName Ladattavan tasokansion nimi (.txt)
      *
      */
     public Level(Game game, String levelName) {
@@ -56,7 +55,13 @@ public class Level {
 
         Init();
 
-        LevelReader levelReader = new LevelReader(game.GetErrorDialog(),levelName);
+        LevelReader levelReader;
+        if (game != null) {
+            levelReader = new LevelReader(game.GetErrorDialog(), levelName);
+        } else {
+            levelReader = new LevelReader(null, levelName);
+        }
+
         ArrayList<String> levelArray = levelReader.GetLevel();
 
         height = levelArray.size();
@@ -176,7 +181,7 @@ public class Level {
                     case 'w':
                         SpawnItem(i, j, "Wand", 1);
                         break;
-                        
+
                     case 'h':
                         SpawnItem(i, j, "Health Potion", 5);
                         break;
@@ -373,6 +378,7 @@ public class Level {
 
     /**
      * Asettaa pelin olemaan joko ohi tai ei ohi
+     *
      * @param value Onko peli ohi
      */
     public void SetGameOver(boolean value) {
@@ -405,12 +411,13 @@ public class Level {
 
     /**
      * Rendererin UI-piirtoa varten - tutoriaali vain ekassa tasossa
+     *
      * @return Peli
      */
     public Game GetGame() {
         return game;
     }
-    
+
     private void SpawnPlayer(int x, int y) {
         player = new Actor(x, y, "Player", this, 5, 5, true, 0, 0, 0, 0, 0, 0);
     }
@@ -436,7 +443,7 @@ public class Level {
             case "Wand":
                 type = DamageType.Arcane;
                 break;
-                
+
             case "Health Potion":
                 type = DamageType.None;
                 break;

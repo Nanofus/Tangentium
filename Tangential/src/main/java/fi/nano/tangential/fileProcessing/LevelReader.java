@@ -74,7 +74,7 @@ public class LevelReader {
         System.out.println("Reading tile action ID:s...");
 
         try {
-            in = new Scanner(new File("levels/" + levelName + "/actionisds.txt"), "UTF-8");
+            in = new Scanner(new File("levels/" + levelName + "/actionids.txt"), "UTF-8");
         } catch (FileNotFoundException ex) {
             errorDialog.ShowError("Tile actions file for '"+levelName+"' not found! Exiting...");
             System.exit(1);

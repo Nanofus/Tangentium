@@ -76,6 +76,8 @@ public class Game {
             level.SetGameOver(true);
             gameWon = true;
             window.WinGame();
+            errorDialog.ShowError("You won the game!\n\nThe game will now close. Thanks for playing!");
+            System.exit(1);
         }
     }
 

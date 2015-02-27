@@ -39,7 +39,7 @@ public class LevelReaderTest {
 
     @Test
     public void TestLevelReading() {
-        LevelReader levelReader = new LevelReader("testlevel");
+        LevelReader levelReader = new LevelReader(null,"testlevel");
         ArrayList<String> level = levelReader.GetLevel();
         
         assertEquals("~~~~~~~~",level.get(5));

@@ -25,4 +25,4 @@
 * 24.2. - 2h - UI:ta pääasiassa
 * 25.2. - 4h - UI:ta, potionit, refaktorointia, javadocit
 * 26.2. - 1h - Refaktorointia
-* 27.2. - 3h - Refaktorointia, javadocia, luokkakaavion ja muun dokumentaation päivittämistä
+* 27.2. - 3h - Refaktorointia, javadocia, luokkakaavion ja muun dokumentaation päivittämistä, käyttäjäystävälliset virheilmoitukset, uusi taso

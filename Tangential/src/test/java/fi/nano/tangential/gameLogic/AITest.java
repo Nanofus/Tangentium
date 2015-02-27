@@ -47,7 +47,7 @@ public class AITest {
     public void TestStanceChangeFromWanderToChase() {
         ArrayList<String> levels = new ArrayList<String>();
         levels.add("level1");
-        Game game = new Game(levels);
+        Game game = new Game(null,levels);
         
         Actor enemy = new Actor(3, 3, "Skeleton", game.GetLevel(), 1, 1, false, 0, 2, -2, -1, 1, -2);
         
@@ -62,7 +62,7 @@ public class AITest {
     public void TestStanceChangeFromChaseToWander() {
         ArrayList<String> levels = new ArrayList<String>();
         levels.add("level1");
-        Game game = new Game(levels);
+        Game game = new Game(null,levels);
         
         Actor enemy = new Actor(5, 5, "Skeleton", game.GetLevel(), 1, 1, false, 0, 2, -2, -1, 1, -2);
         
@@ -81,7 +81,7 @@ public class AITest {
     public void MoveAIRandomly() {
         ArrayList<String> levels = new ArrayList<String>();
         levels.add("level1");
-        Game game = new Game(levels);
+        Game game = new Game(null,levels);
         
         Actor enemy = new Actor(3, 3, "Skeleton", game.GetLevel(), 1, 1, false, 0, 2, -2, -1, 1, -2);
         enemy.GetAI().MakeMove();
