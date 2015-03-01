@@ -9,7 +9,7 @@ import fi.nano.tangentium.gameLogic.singletons.CombatHandler;
 
 /**
  * Characters in the game world.
- * 
+ *
  * @author Nanofus
  */
 public class Actor extends Entity {
@@ -38,6 +38,7 @@ public class Actor extends Entity {
 
     /**
      * Creates a new Actor.
+     *
      * @param x X-coordinate
      * @param y Y-coordinate
      * @param name Name
@@ -50,7 +51,7 @@ public class Actor extends Entity {
      * @param crushResistance Crush damage resistance
      * @param burnResistance Burn damage resistance
      * @param freezeResistance Freeze damage resistance
-     * @param arcaneResistance  Arcane damage resistance
+     * @param arcaneResistance Arcane damage resistance
      */
     public Actor(int x, int y, String name, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
         super(x, y, name, level);
@@ -85,7 +86,8 @@ public class Actor extends Entity {
     }
 
     /**
-     * Actor uses an item. If it's a weapon, it's equipped. If it's a potion, it's used.
+     * Actor uses an item. If it's a weapon, it's equipped. If it's a potion,
+     * it's used.
      *
      * @param item Item in tile
      */
@@ -146,7 +148,8 @@ public class Actor extends Entity {
     }
 
     @Override
-    public void Move(int x, int y) {
+    public boolean Move(int x, int y) {
+        boolean actionDone = false;
         if (stun < 1) {
             Actor targetInTile = GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y);
             if (targetInTile != null && weaponDelay < 1) {
@@ -154,11 +157,17 @@ public class Actor extends Entity {
                     combatHandler.Hit(this, GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y));
                 }
             }
-            super.Move(x, y);
-            LowerWeaponDelay();
+            actionDone = super.Move(x, y);
+            if (actionDone) {
+                LowerWeaponDelay();
+                LowerStun();
+            }
         } else {
+            actionDone = true;
+            LowerWeaponDelay();
             LowerStun();
         }
+        return actionDone;
     }
 
     /**
@@ -166,13 +175,13 @@ public class Actor extends Entity {
      */
     public void Rest() {
         LowerStun();
+        LowerWeaponDelay();
     }
 
     private void LowerStun() {
         if (stun > 0) {
             stun = stun - 1;
         }
-        LowerWeaponDelay();
     }
 
     private void LowerWeaponDelay() {
@@ -199,7 +208,9 @@ public class Actor extends Entity {
 
     /**
      * Gets the Actor's stance. Only AI controlled Actors have stances.
-     * @return Stance of the Actor, if not AI controlled Stance.None is returned.
+     *
+     * @return Stance of the Actor, if not AI controlled Stance.None is
+     * returned.
      */
     public Stance GetStance() {
         if (HasAI()) {
@@ -275,6 +286,7 @@ public class Actor extends Entity {
 
     /**
      * Gets the list of weaknesses for UI use.
+     *
      * @return Weaknesses as a string
      */
     public String GetWeakness() {
@@ -324,6 +336,7 @@ public class Actor extends Entity {
 
     /**
      * Gets the list of strengths for UI use.
+     *
      * @return Strengths as a string
      */
     public String GetStrength() {

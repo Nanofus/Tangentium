@@ -88,12 +88,16 @@ public class Entity {
      * 
      * @param x Movement on x-axis
      * @param y Movement on y-axis
+     * @return Was Entity able to move?
      */
-    public void Move(int x, int y) {
+    public boolean Move(int x, int y) {
+        boolean canMove = false;
         if (level.GetTile(position.x + x, position.y + y).GetType().is(PASSABLE) && level.GetActorInTile(position.x + x, position.y + y) == null) {
             position.x = position.x + x;
             position.y = position.y + y;
+            canMove = true;
         }
+        return canMove;
     }
 
     public Character GetSymbol() {

@@ -65,54 +65,54 @@ public class ImageLoader {
     public ImageLoader() {
         try {
             
-            logo = ImageIO.read(new File("graphics/logo.png"));
-            icon = ImageIO.read(new File("graphics/icon.png"));
+            logo = ImageIO.read(new File("data/graphics/logo.png"));
+            icon = ImageIO.read(new File("data/graphics/icon.png"));
             
-            floor = ImageIO.read(new File("graphics/tiles/floor.png"));
-            wall = ImageIO.read(new File("graphics/tiles/wall.png"));
-            chasm = ImageIO.read(new File("graphics/tiles/tiletemplate.png"));
-            water = ImageIO.read(new File("graphics/tiles/water.png"));
-            grass = ImageIO.read(new File("graphics/tiles/grass.png"));
-            tree = ImageIO.read(new File("graphics/tiles/tree.png"));
-            path = ImageIO.read(new File("graphics/tiles/path.png"));
-            pillar = ImageIO.read(new File("graphics/tiles/pillar.png"));
+            floor = ImageIO.read(new File("data/graphics/tiles/floor.png"));
+            wall = ImageIO.read(new File("data/graphics/tiles/wall.png"));
+            chasm = ImageIO.read(new File("data/graphics/tiles/tiletemplate.png"));
+            water = ImageIO.read(new File("data/graphics/tiles/water.png"));
+            grass = ImageIO.read(new File("data/graphics/tiles/grass.png"));
+            tree = ImageIO.read(new File("data/graphics/tiles/tree.png"));
+            path = ImageIO.read(new File("data/graphics/tiles/path.png"));
+            pillar = ImageIO.read(new File("data/graphics/tiles/pillar.png"));
             
-            door_left = ImageIO.read(new File("graphics/tiles/door_left.png"));
-            door_right = ImageIO.read(new File("graphics/tiles/door_right.png"));
-            lever = ImageIO.read(new File("graphics/tiles/lever.png"));
-            wincircle = ImageIO.read(new File("graphics/tiles/wincircle.png"));
+            door_left = ImageIO.read(new File("data/graphics/tiles/door_left.png"));
+            door_right = ImageIO.read(new File("data/graphics/tiles/door_right.png"));
+            lever = ImageIO.read(new File("data/graphics/tiles/lever.png"));
+            wincircle = ImageIO.read(new File("data/graphics/tiles/wincircle.png"));
 
-            skeleton = ImageIO.read(new File("graphics/actors/skeleton.png"));
-            lizardMan = ImageIO.read(new File("graphics/actors/lizardman.png"));
-            troll = ImageIO.read(new File("graphics/actors/troll.png"));
-            dragon = ImageIO.read(new File("graphics/actors/dragon.png"));
+            skeleton = ImageIO.read(new File("data/graphics/actors/skeleton.png"));
+            lizardMan = ImageIO.read(new File("data/graphics/actors/lizardman.png"));
+            troll = ImageIO.read(new File("data/graphics/actors/troll.png"));
+            dragon = ImageIO.read(new File("data/graphics/actors/dragon.png"));
 
-            player = ImageIO.read(new File("graphics/actors/player.png"));
+            player = ImageIO.read(new File("data/graphics/actors/player.png"));
 
-            sword = ImageIO.read(new File("graphics/weapons/sword.png"));
-            spear = ImageIO.read(new File("graphics/weapons/spear.png"));
-            mace = ImageIO.read(new File("graphics/weapons/mace.png"));
-            pyrospell = ImageIO.read(new File("graphics/weapons/pyrospell.png"));
-            icestaff = ImageIO.read(new File("graphics/weapons/icestaff.png"));
-            wand = ImageIO.read(new File("graphics/weapons/wand.png"));
+            sword = ImageIO.read(new File("data/graphics/weapons/sword.png"));
+            spear = ImageIO.read(new File("data/graphics/weapons/spear.png"));
+            mace = ImageIO.read(new File("data/graphics/weapons/mace.png"));
+            pyrospell = ImageIO.read(new File("data/graphics/weapons/pyrospell.png"));
+            icestaff = ImageIO.read(new File("data/graphics/weapons/icestaff.png"));
+            wand = ImageIO.read(new File("data/graphics/weapons/wand.png"));
             
-            healthPotion = ImageIO.read(new File("graphics/weapons/healthPotion.png"));
-            buffPotion = ImageIO.read(new File("graphics/weapons/buffPotion.png"));
+            healthPotion = ImageIO.read(new File("data/graphics/weapons/healthPotion.png"));
+            buffPotion = ImageIO.read(new File("data/graphics/weapons/buffPotion.png"));
             
-            weaponbackg = ImageIO.read(new File("graphics/icons/weaponbackg.png"));
-            stunicon = ImageIO.read(new File("graphics/icons/stunstar.png"));
-            healthicon = ImageIO.read(new File("graphics/icons/healthicon.png"));
-            healthiconbackg = ImageIO.read(new File("graphics/icons/healthiconbackg.png"));
-            weaponstunicon = ImageIO.read(new File("graphics/icons/weapondelaybar.png"));
-            gameover = ImageIO.read(new File("graphics/gameover.png"));
-            victory = ImageIO.read(new File("graphics/victory.png"));
+            weaponbackg = ImageIO.read(new File("data/graphics/icons/weaponbackg.png"));
+            stunicon = ImageIO.read(new File("data/graphics/icons/stunstar.png"));
+            healthicon = ImageIO.read(new File("data/graphics/icons/healthicon.png"));
+            healthiconbackg = ImageIO.read(new File("data/graphics/icons/healthiconbackg.png"));
+            weaponstunicon = ImageIO.read(new File("data/graphics/icons/weapondelaybar.png"));
+            gameover = ImageIO.read(new File("data/graphics/gameover.png"));
+            victory = ImageIO.read(new File("data/graphics/victory.png"));
             
-            swordicon = ImageIO.read(new File("graphics/icons/swordicon.png"));
-            spearicon = ImageIO.read(new File("graphics/icons/spearicon.png"));
-            maceicon = ImageIO.read(new File("graphics/icons/maceicon.png"));
-            pyrospellicon = ImageIO.read(new File("graphics/icons/pyrospellicon.png"));
-            icestafficon = ImageIO.read(new File("graphics/icons/icestafficon.png"));
-            wandicon = ImageIO.read(new File("graphics/icons/wandicon.png"));
+            swordicon = ImageIO.read(new File("data/graphics/icons/swordicon.png"));
+            spearicon = ImageIO.read(new File("data/graphics/icons/spearicon.png"));
+            maceicon = ImageIO.read(new File("data/graphics/icons/maceicon.png"));
+            pyrospellicon = ImageIO.read(new File("data/graphics/icons/pyrospellicon.png"));
+            icestafficon = ImageIO.read(new File("data/graphics/icons/icestafficon.png"));
+            wandicon = ImageIO.read(new File("data/graphics/icons/wandicon.png"));
             
         } catch (IOException ex) {
             System.out.println("Graphics file not found! Exiting...");

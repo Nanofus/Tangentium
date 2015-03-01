@@ -42,7 +42,7 @@ public class Game {
     public int GetLevelID() {
         return currentLevel;
     }
-    
+
     public void SetWindow(Window window) {
         this.window = window;
     }
@@ -55,7 +55,8 @@ public class Game {
     }
 
     /**
-     * Makes the player advance to the next level - or win the game, if in the last level
+     * Makes the player advance to the next level - or win the game, if in the
+     * last level
      */
     public void AdvanceLevel() {
         currentLevel++;
@@ -80,34 +81,28 @@ public class Game {
      */
     public void MovePlayer(Direction dir) {
         if (!level.IsGameOver()) {
-            if (level.GetPlayer().GetStun() == 0) {
-                int x = 0;
-                int y = 0;
+            int x = 0;
+            int y = 0;
 
-                switch (dir) {
-                    case LEFT:
-                        x = -1;
-                        break;
-                    case RIGHT:
-                        x = 1;
-                        break;
-                    case UP:
-                        y = -1;
-                        break;
-                    case DOWN:
-                        y = 1;
-                        break;
-                }
-
-                level.GetPlayer().Move(x, y);
-                PassTurn();
-            } else {
-                if (level.GetPlayer().GetStun() > 0) {
-                    level.GetPlayer().AddStun(-1);
-                    PassTurn();
-                }
+            switch (dir) {
+                case LEFT:
+                    x = -1;
+                    break;
+                case RIGHT:
+                    x = 1;
+                    break;
+                case UP:
+                    y = -1;
+                    break;
+                case DOWN:
+                    y = 1;
+                    break;
             }
 
+            boolean actionDone = level.GetPlayer().Move(x, y);
+            if (actionDone) {
+                PassTurn();
+            }
         } else {
             RestartGame();
         }
