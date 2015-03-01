@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.nano.tangentium.fileProcessing;
 
 import fi.nano.tangentium.ui.ErrorDialog;
@@ -12,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Class that reads text files into ArrayLists.
+ * 
  * @author Nanofus
  */
 public class FileReader {

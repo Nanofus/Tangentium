@@ -13,7 +13,6 @@ public class ErrorDialog {
     JFrame frame = new JFrame();
 
     public ErrorDialog() {
-
     }
 
     public void ShowError(String message) {

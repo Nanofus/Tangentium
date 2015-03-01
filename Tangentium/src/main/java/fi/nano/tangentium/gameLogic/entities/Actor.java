@@ -219,7 +219,7 @@ public class Actor extends Entity {
      * @param amount Amount (negative does damage, positive heals)
      */
     public void ChangeHealth(int amount) {
-        hitPoints = hitPoints - amount;
+        hitPoints = hitPoints + amount;
 
         if (hitPoints < 0) {
             hitPoints = 0;
