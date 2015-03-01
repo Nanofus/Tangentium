@@ -1,8 +1,5 @@
 package fi.nano.tangentium.fileProcessing;
 
-import fi.nano.tangentium.ui.ErrorDialog;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,24 +9,16 @@ import java.util.Scanner;
  */
 public class ConfigReader {
 
-    ArrayList<String> config = new ArrayList();
-
+    private ArrayList<String> config = new ArrayList();
+    
     /**
-     * Konstruktori reads the config file (config.txt)
+     * Constructor reads the config file (config.txt)
      */
-    public ConfigReader(ErrorDialog errorDialog) {
+    public ConfigReader() {
+        FileReader fileReader = new FileReader();
         Scanner in = null;
 
-        try {
-            in = new Scanner(new File("config.txt"), "UTF-8");
-        } catch (FileNotFoundException ex) {
-            errorDialog.ShowError("Config file not found! Exiting...");
-            System.exit(1);
-        }
-
-        while (in.hasNext()) {
-            config.add(in.nextLine());
-        }
+        config = fileReader.ReadFile("data/config.txt");
     }
 
     public ArrayList<String> GetConfig() {

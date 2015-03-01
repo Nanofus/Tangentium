@@ -12,12 +12,11 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    private ErrorDialog errorDialog;
     private Level level;
     private Window window;
 
     private int currentLevel = 0;
-    private ArrayList<String> levels;
+    private final ArrayList<String> levels;
 
     private boolean gameWon = false;
 
@@ -26,11 +25,9 @@ public class Game {
     /**
      * Loads a Level from a file
      *
-     * @param errorDialog Dialog for error messages
      * @param levelNames List of levels
      */
-    public Game(ErrorDialog errorDialog, ArrayList<String> levelNames) {
-        this.errorDialog = errorDialog;
+    public Game(ArrayList<String> levelNames) {
         levels = levelNames;
 
         System.out.println("\nGenerating game from file...");
@@ -44,10 +41,6 @@ public class Game {
 
     public int GetLevelID() {
         return currentLevel;
-    }
-    
-    public ErrorDialog GetErrorDialog() {
-        return errorDialog;
     }
     
     public void SetWindow(Window window) {
@@ -75,7 +68,7 @@ public class Game {
             level.SetGameOver(true);
             gameWon = true;
             window.WinGame();
-            errorDialog.ShowError("You won the game!\n\nThe game will now close. Thanks for playing!");
+            new ErrorDialog().ShowError("You won the game!\n\nThe game will now close. Thanks for playing!");
             System.exit(1);
         }
     }

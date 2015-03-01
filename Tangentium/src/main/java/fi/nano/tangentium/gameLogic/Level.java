@@ -53,12 +53,7 @@ public class Level {
 
         Init();
 
-        LevelReader levelReader;
-        if (game != null) {
-            levelReader = new LevelReader(game.GetErrorDialog(), levelName);
-        } else {
-            levelReader = new LevelReader(null, levelName);
-        }
+        LevelReader levelReader = new LevelReader(levelName);
 
         ArrayList<String> levelArray = levelReader.GetLevel();
 
