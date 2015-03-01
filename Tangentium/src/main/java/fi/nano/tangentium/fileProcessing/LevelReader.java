@@ -25,13 +25,13 @@ public class LevelReader {
         FileReader fileReader = new FileReader();
 
         System.out.println("Reading level...");
-        level = fileReader.ReadFile("levels/" + levelName + "/level.txt");
+        level = fileReader.ReadFile("data/levels/" + levelName + "/level.txt");
         System.out.println("Reading actors...");
-        actors = fileReader.ReadFile("levels/" + levelName + "/actors.txt");
+        actors = fileReader.ReadFile("data/levels/" + levelName + "/actors.txt");
         System.out.println("Reading items...");
-        items = fileReader.ReadFile("levels/" + levelName + "/items.txt");
+        items = fileReader.ReadFile("data/levels/" + levelName + "/items.txt");
         System.out.println("Reading tile action ID:s...");
-        actionIds = fileReader.ReadFile("levels/"+ levelName + "/actionids.txt");
+        actionIds = fileReader.ReadFile("data/levels/"+ levelName + "/actionids.txt");
                 
         //Fix for the mysterious question mark in the beginning of the level file
         level.set(0, level.get(0).substring(1));
