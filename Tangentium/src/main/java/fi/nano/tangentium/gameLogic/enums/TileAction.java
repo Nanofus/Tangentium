@@ -7,5 +7,5 @@ package fi.nano.tangentium.gameLogic.enums;
  */
 public enum TileAction {
 
-    None, Goal, Activated, Activator
+    None, LevelSwitcher, Teleport, Activated, Activator
 }
