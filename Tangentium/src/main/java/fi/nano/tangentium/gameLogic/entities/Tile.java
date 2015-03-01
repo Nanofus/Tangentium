@@ -16,7 +16,7 @@ public class Tile {
     private int actionId = 0;
     private boolean actionActive = false;
     private TileType originalActionChangeType;
-    private TileType actionChangeType = TileType.FLOOR;
+    private TileType actionChangeType;
 
     private Character symbol = 'Ö';
 
@@ -127,6 +127,14 @@ public class Tile {
      */
     public void SetActionActive(boolean b) {
         actionActive = b;
+    }
+    
+    /**
+     * Sets the tile to which the tile changes when activated.
+     * @param type Tile type
+     */
+    public void SetActionChangeType(TileType type) {
+        actionChangeType = type;
     }
 
     @Override

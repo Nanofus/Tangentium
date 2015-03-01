@@ -106,10 +106,12 @@ public class Level {
                     case 'd':
                         tiles[i][j].SetType(DOOR_LEFT);
                         tiles[i][j].SetTileAction(TileAction.Activated);
+                        tiles[i][j].SetActionChangeType(FLOOR);
                         break;
                     case 'b':
                         tiles[i][j].SetType(DOOR_RIGHT);
                         tiles[i][j].SetTileAction(TileAction.Activated);
+                        tiles[i][j].SetActionChangeType(FLOOR);
                         break;
                     case 'l':
                         tiles[i][j].SetType(LEVER_ON_FLOOR);
@@ -297,8 +299,8 @@ public class Level {
                             if (tile.GetActionId() == tileInPos.GetActionId()) {
                                 TileType type = tile.GetType();
                                 if (type.is(DOOR)) {
-                                    tile.SetOriginalActionChangeType(type);
                                     tileInPos.SetActionActive(true);
+                                    tile.SetOriginalActionChangeType(type);
                                     tile.SetType(tile.GetActionChangeType());
                                     System.out.println("'" + type + "' opened to '" + tile.GetActionChangeType() + "'!");
                                 } else if (type.is(PASSABLE)) {

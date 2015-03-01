@@ -74,8 +74,6 @@ public class Actor extends Entity {
         if (!controlled) {
             ai = new AI(this, level);
             aiEnabled = true;
-        } else {
-            controlled = true;
         }
 
         /*if (controlled) {
@@ -149,7 +147,7 @@ public class Actor extends Entity {
 
     @Override
     public boolean Move(int x, int y) {
-        boolean actionDone = false;
+        boolean actionDone;
         if (stun < 1) {
             Actor targetInTile = GetLevel().GetActorInTile(this.GetPosition().x + x, this.GetPosition().y + y);
             if (targetInTile != null && weaponDelay < 1) {
@@ -159,19 +157,17 @@ public class Actor extends Entity {
             }
             actionDone = super.Move(x, y);
             if (actionDone) {
-                LowerWeaponDelay();
-                LowerStun();
+                Rest();
             }
         } else {
             actionDone = true;
-            LowerWeaponDelay();
-            LowerStun();
+            Rest();
         }
         return actionDone;
     }
 
     /**
-     * If the Actor doesn't use its turn it can rest.
+     * Actor rests at the end of its turn.
      */
     public void Rest() {
         LowerStun();
