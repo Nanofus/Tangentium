@@ -118,7 +118,6 @@ public class Renderer extends JPanel {
         BufferedImage drawnImage;
 
         // Tutoriaalitekstit
-        
         if (level.GetGame().GetLevelID() == 0) {
             drawnImage = imageLoader.GetImage("Logo");
             g.drawImage(drawnImage, offsetX - 360, offsetY - 300, null);
@@ -241,7 +240,6 @@ public class Renderer extends JPanel {
         BufferedImage drawnImage;
 
         // Tilet sisältöineen
-        
         for (int i = 0; i < level.GetWidth(); i++) {
             for (int j = 0; j < level.GetHeight(); j++) {
                 BufferedImage drawnImageBottom = null;
@@ -389,10 +387,11 @@ public class Renderer extends JPanel {
                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
                         guiPosY.add(isoPos.y + offsetY - 16 + 24);
                         isWhite.add(false);
-                        /*guiTexts.add("Stance: " + actorInTile.GetStance());
-                         guiPosX.add(isoPos.x + tileSizeX + offsetX);
-                         guiPosY.add(isoPos.y + offsetY + 36);
-                         guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
+                        guiTexts.add("Stance: " + actorInTile.GetStance());
+                        guiPosX.add(isoPos.x + tileSizeX + offsetX);
+                        guiPosY.add(isoPos.y + offsetY - 16 + 36);
+                        isWhite.add(false);
+                        /* guiTexts.add("Pdir: " + actorInTile.GetAI().GetTargetDirection());
                          guiPosX.add(isoPos.x + tileSizeX + offsetX);
                          guiPosY.add(isoPos.y + offsetY + 48);
                          guiTexts.add("Stun: " + actorInTile.GetStun());
@@ -408,9 +407,8 @@ public class Renderer extends JPanel {
     }
 
     private void PaintGUI(Graphics g) {
-        
+
         //UI texts
-        
         for (int i = 0; i < guiTexts.size(); i++) {
             if (isWhite.get(i) == true) {
                 g.setColor(Color.WHITE);
@@ -483,7 +481,6 @@ public class Renderer extends JPanel {
         }
 
         // UI icons
-        
         BufferedImage drawnImage = imageLoader.GetImage("Weapon Background");
         g.drawImage(drawnImage, windowWidth - drawnImage.getWidth(), windowHeight - drawnImage.getHeight(), null);
 
@@ -491,14 +488,13 @@ public class Renderer extends JPanel {
         for (int i = 0; i < player.GetMaxHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
         }
-        
+
         drawnImage = imageLoader.GetImage("Health Icon");
         for (int i = 0; i < player.GetHealth(); i++) {
             g.drawImage(drawnImage, 30 + (i * 50), windowHeight - drawnImage.getHeight() - 10, null);
         }
-        
-        // Victory and Game Over texts
 
+        // Victory and Game Over texts
         if (level.IsGameOver() && !gameWon) {
             drawnImage = imageLoader.GetImage("Game Over");
             g.drawImage(drawnImage, (windowWidth / 2) - (drawnImage.getWidth() / 2), (windowHeight / 2) - (drawnImage.getHeight() / 2), null);
@@ -510,10 +506,9 @@ public class Renderer extends JPanel {
         }
 
         //Texts in the player's UI:
-        
         g.setColor(Color.WHITE);
         g.setFont(new Font("default", Font.BOLD, 12));
-        
+
         g.drawString("Health: " + player.GetHealth() + "/" + player.GetMaxHealth(), 30, windowHeight - 75);
 
         if (player.GetWeapon() != null) {

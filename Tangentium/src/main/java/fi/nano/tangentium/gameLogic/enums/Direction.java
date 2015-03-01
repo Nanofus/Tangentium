@@ -6,5 +6,6 @@ package fi.nano.tangentium.gameLogic.enums;
  * @author Nanofus
  */
 public enum Direction {
+
     LEFT, RIGHT, UP, DOWN
 }

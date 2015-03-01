@@ -21,21 +21,26 @@ public class AI {
     private Actor target;
     private Direction targetDirection;
     private boolean noticedTarget = false;
+    private int fleeThreshold = 4;
     private int noticeDistance = 15;
 
     private final Random random = new Random();
+
+    private int health;
+    private int maxHealth;
 
     /**
      * @param me The Actor the AI belongs to
      * @param level Level
      */
     public AI(Actor me, Level level) {
-        if (level != null) {
-            target = level.GetPlayer();
-        }
+        target = level.GetPlayer();
 
         this.me = me;
         this.level = level;
+
+        maxHealth = me.GetMaxHealth();
+        fleeThreshold = (int) Math.ceil(maxHealth / 4);
     }
 
     /**
@@ -43,7 +48,6 @@ public class AI {
      */
     public void MakeMove() {
         int action = random.nextInt(2);
-        //int action = 0;
 
         UpdateStance();
 
@@ -53,8 +57,8 @@ public class AI {
                     MoveRandomly();
                 } else if (stance == Chase) {
                     Chase();
-                    //} else if (stance == Flee) {
-                    //    Flee();
+                } else if (stance == Flee) {
+                    Flee();
                 }
                 break;
             case 1: //Skippaa vuoro
@@ -66,20 +70,29 @@ public class AI {
     }
 
     private void UpdateStance() {
-        if (level != null) {
-            target = level.GetPlayer();
+        target = level.GetPlayer();
 
-            float health = me.GetHealth();
-            float maxHealth = me.GetMaxHealth();
+        RefreshStats();
 
-            if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
-                stance = Chase;
-                //} else if (health <= (maxHealth / 4)) {
-                //stance = Flee;
-            } else {
-                stance = Wander;
-            }
+        boolean stanceChosen = false;
+
+        if (level.GetDistance(me.GetPosition(), target.GetPosition()) <= noticeDistance) {
+            stance = Chase;
+            stanceChosen = true;
         }
+        if (health <= fleeThreshold) {
+            stance = Flee;
+            stanceChosen = true;
+        }
+
+        if (!stanceChosen) {
+            stance = Wander;
+        }
+    }
+
+    private void RefreshStats() {
+        health = me.GetHealth();
+        maxHealth = me.GetMaxHealth();
     }
 
     /**
@@ -136,20 +149,55 @@ public class AI {
 
     private void Flee() {
         targetDirection = GetTargetDirection();
-        switch (targetDirection) {
-            case UP:
-                me.Move(0, -1);
-                break;
-            case DOWN:
-                me.Move(0, 1);
-                break;
-            case LEFT:
-                me.Move(-1, 0);
-                break;
-            case RIGHT:
-                me.Move(1, 0);
-                break;
+
+        boolean neighborAttacked = TryAttackAdjacent();
+
+        if (!neighborAttacked) {
+            switch (targetDirection) {
+                case UP:
+                    me.Move(0, 1);
+                    break;
+                case DOWN:
+                    me.Move(0, -1);
+                    break;
+                case LEFT:
+                    me.Move(1, 0);
+                    break;
+                case RIGHT:
+                    me.Move(-1, 0);
+                    break;
+            }
         }
+    }
+
+    private boolean TryAttackAdjacent() {
+        boolean neighborAttacked;
+
+        neighborAttacked = AttackTile(me.GetPosition().x + 1, me.GetPosition().y);
+        if (!neighborAttacked) {
+            neighborAttacked = AttackTile(me.GetPosition().x - 1, me.GetPosition().y);
+        }
+        if (!neighborAttacked) {
+            neighborAttacked = AttackTile(me.GetPosition().x, me.GetPosition().y + 1);
+        }
+        if (!neighborAttacked) {
+            neighborAttacked = AttackTile(me.GetPosition().x, me.GetPosition().y - 1);
+        }
+
+        return neighborAttacked;
+    }
+
+    private boolean AttackTile(int x, int y) {
+        Position checkPos;
+        boolean tileAttacked = false;
+        checkPos = new Position(x, y);
+        if (level.GetActorInTile(checkPos) != null) {
+            if (level.GetActorInTile(checkPos).equals(target)) {
+                me.Move(checkPos.x - me.GetPosition().x, checkPos.y - me.GetPosition().y);
+                tileAttacked = true;
+            }
+        }
+        return tileAttacked;
     }
 
     private void MoveRandomly() {

@@ -450,17 +450,17 @@ public class Level {
 
         switch (name) {
             case "Skeleton":
-                enemy = new Actor(x, y, "Skeleton", this, 2, 2, false, 0, 2, -2, -1, 1, -2);
+                enemy = new Actor(x, y, "Skeleton", this, 2, 2, false, 0, 2, -2, -1, 2, -2);
                 enemyWeapon = new Item(0, 0, "Skeleton Sword", this, 1, Slash);
                 enemy.UseItem(enemyWeapon);
                 break;
             case "Troll":
-                enemy = new Actor(x, y, "Troll", this, 5, 5, false, 2, 0, 1, -2, 0, -1);
+                enemy = new Actor(x, y, "Troll", this, 5, 5, false, 2, 0, 2, -2, 0, -1);
                 enemyWeapon = new Item(0, 0, "Troll's Club", this, 1, Crush);
                 enemy.UseItem(enemyWeapon);
                 break;
             case "Lizard Man":
-                enemy = new Actor(x, y, "Lizard Man", this, 3, 3, false, -2, -2, 0, 1, 2, 1);
+                enemy = new Actor(x, y, "Lizard Man", this, 3, 3, false, -2, -2, 0, 2, 2, 2);
                 enemyWeapon = new Item(0, 0, "Reptilian Blade", this, 1, Slash);
                 enemy.UseItem(enemyWeapon);
                 break;
