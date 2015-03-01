@@ -17,6 +17,8 @@ public class Actor extends Entity {
     private CombatHandler combatHandler;
 
     private Item wieldedItem;
+    
+    private int faction = 0;
 
     private int hitPoints = 1;
     private int maxHitPoints = 1;
@@ -53,13 +55,14 @@ public class Actor extends Entity {
      * @param freezeResistance Freeze damage resistance
      * @param arcaneResistance Arcane damage resistance
      */
-    public Actor(int x, int y, String name, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
+    public Actor(int x, int y, String name, int faction, Level level, int hp, int maxhp, boolean controlled, int slashResistance, int pierceResistance, int crushResistance, int burnResistance, int freezeResistance, int arcaneResistance) {
         super(x, y, name, level);
 
         if (level != null) {
             this.combatHandler = level.GetCombatHandler();
         }
-
+        
+        this.faction = faction;
         this.hitPoints = hp;
         this.maxHitPoints = maxhp;
         this.slashResistance = slashResistance;
@@ -156,13 +159,14 @@ public class Actor extends Entity {
                 }
             }
             actionDone = super.Move(x, y);
-            if (actionDone) {
-                Rest();
-            }
         } else {
             actionDone = true;
+        }
+
+        if (actionDone) {
             Rest();
         }
+
         return actionDone;
     }
 

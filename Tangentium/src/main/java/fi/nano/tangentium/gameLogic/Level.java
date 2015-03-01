@@ -217,6 +217,10 @@ public class Level {
         return tiles[x][y];
     }
 
+    public boolean TileIsPassable(int x, int y) {
+        return !(!tiles[x][y].GetType().is(PASSABLE) || GetActorInTile(x, y) != null);
+    }
+
     /**
      * Gets an actor from a tile.
      *
@@ -403,7 +407,7 @@ public class Level {
     }
 
     private void SpawnPlayer(int x, int y) {
-        player = new Actor(x, y, "Player", this, 5, 5, true, 0, 0, 0, 0, 0, 0);
+        player = new Actor(x, y, "Player", 0, this, 5, 5, true, 0, 0, 0, 0, 0, 0);
     }
 
     private void SpawnItem(int x, int y, String name, int power) {
@@ -450,27 +454,27 @@ public class Level {
 
         switch (name) {
             case "Skeleton":
-                enemy = new Actor(x, y, "Skeleton", this, 2, 2, false, 0, 2, -2, -1, 2, -2);
+                enemy = new Actor(x, y, "Skeleton", 1, this, 2, 2, false, 0, 2, -2, -1, 2, -2);
                 enemyWeapon = new Item(0, 0, "Skeleton Sword", this, 1, Slash);
                 enemy.UseItem(enemyWeapon);
                 break;
             case "Troll":
-                enemy = new Actor(x, y, "Troll", this, 5, 5, false, 2, 0, 2, -2, 0, -1);
+                enemy = new Actor(x, y, "Troll", 1, this, 5, 5, false, 2, 0, 2, -2, 0, -1);
                 enemyWeapon = new Item(0, 0, "Troll's Club", this, 1, Crush);
                 enemy.UseItem(enemyWeapon);
                 break;
             case "Lizard Man":
-                enemy = new Actor(x, y, "Lizard Man", this, 3, 3, false, -2, -2, 0, 2, 2, 2);
+                enemy = new Actor(x, y, "Lizard Man", 1, this, 3, 3, false, -2, -2, 0, 2, 2, 2);
                 enemyWeapon = new Item(0, 0, "Reptilian Blade", this, 1, Slash);
                 enemy.UseItem(enemyWeapon);
                 break;
             case "Dragon":
-                enemy = new Actor(x, y, "Dragon", this, 10, 10, false, 0, 0, 0, 2, 2, 2);
+                enemy = new Actor(x, y, "Dragon", 1, this, 10, 10, false, 0, 0, 0, 2, 2, 2);
                 enemyWeapon = new Item(0, 0, "Breath of Fire", this, 1, Burn);
                 enemy.UseItem(enemyWeapon);
                 break;
             default:
-                enemy = new Actor(x, y, "UNDEFINED", this, 1, 1, false, 0, 0, 0, 0, 0, 0);
+                enemy = new Actor(x, y, "UNDEFINED", 0, this, 1, 1, false, 0, 0, 0, 0, 0, 0);
         }
 
         entityManager.AddEnemy(enemy);
@@ -510,7 +514,6 @@ public class Level {
                 }
                 if (!charChosen) {
                     sb.append(GetTile(i, j).GetSymbol());
-                    charChosen = true;
                 }
             }
             sb.append("\n");

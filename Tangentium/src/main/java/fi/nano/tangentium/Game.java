@@ -100,6 +100,15 @@ public class Game {
             }
 
             boolean actionDone = level.GetPlayer().Move(x, y);
+
+            if (!actionDone
+                    && !level.TileIsPassable(level.GetPlayer().GetPosition().x + 1, level.GetPlayer().GetPosition().y)
+                    && !level.TileIsPassable(level.GetPlayer().GetPosition().x - 1, level.GetPlayer().GetPosition().y)
+                    && !level.TileIsPassable(level.GetPlayer().GetPosition().x, level.GetPlayer().GetPosition().y + 1)
+                    && !level.TileIsPassable(level.GetPlayer().GetPosition().x, level.GetPlayer().GetPosition().y - 1)) {
+                actionDone = true;
+            }
+
             if (actionDone) {
                 PassTurn();
             }

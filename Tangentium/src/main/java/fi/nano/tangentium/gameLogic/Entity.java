@@ -71,7 +71,7 @@ public class Entity {
             case "Dragonfire":
                 symbol = 'd';
                 break;
-                
+
             //Usable items
             case "Health Potion":
                 symbol = 'h';
@@ -85,14 +85,14 @@ public class Entity {
 
     /**
      * Movement method.
-     * 
+     *
      * @param x Movement on x-axis
      * @param y Movement on y-axis
      * @return Was Entity able to move?
      */
     public boolean Move(int x, int y) {
         boolean canMove = false;
-        if (level.GetTile(position.x + x, position.y + y).GetType().is(PASSABLE) && level.GetActorInTile(position.x + x, position.y + y) == null) {
+        if (level.TileIsPassable(position.x + x, position.y + y)) {
             position.x = position.x + x;
             position.y = position.y + y;
             canMove = true;
@@ -111,7 +111,7 @@ public class Entity {
     public Position GetPosition() {
         return position;
     }
-    
+
     public Level GetLevel() {
         return level;
     }
@@ -125,5 +125,5 @@ public class Entity {
     public String toString() {
         return name;
     }
-    
+
 }
