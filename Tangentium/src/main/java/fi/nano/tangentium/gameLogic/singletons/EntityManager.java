@@ -15,8 +15,8 @@ public class EntityManager {
     private ArrayList<Actor> enemies;
 
     public EntityManager() {
-        this.items = new ArrayList<>();
-        this.enemies = new ArrayList<>();
+        this.items = new ArrayList<Item>();
+        this.enemies = new ArrayList<Actor>();
     }
 
     public ArrayList<Item> GetItems() {

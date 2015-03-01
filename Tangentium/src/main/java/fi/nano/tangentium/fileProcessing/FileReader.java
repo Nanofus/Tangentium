@@ -20,7 +20,7 @@ public class FileReader {
     }
 
     public ArrayList<String> ReadFile(String filePath) {
-        ArrayList<String> readStrings = new ArrayList<>();
+        ArrayList<String> readStrings = new ArrayList<String>();
         Scanner in = null;
 
         try {
