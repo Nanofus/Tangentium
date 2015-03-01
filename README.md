@@ -1,11 +1,6 @@
-# Tangential
-Helsingin yliopiston Ohjelmoinnin harjoitustyö -kurssille tehty luolastoseikkailupeli.
+# Tangentium
+Tangentium is a turn-based role playing game originally made as a programming assignment in the University of Helsinki.
 
-## Valmis peli
-* [Tangential 1.0](https://github.com/Nanofus/Tangential/releases/tag/v1.0)
+The original project repository (in Finnish) can be found [here](https://github.com/Nanofus/Tangential).
 
-## Oheiset tiedostot
-* [Aiheen kuvaus ja rakenne](Dokumentaatio/Aiheen kuvaus ja rakenne.md)
-* [Käyttöohjeet](Dokumentaatio/Käyttöohjeet.md)
-* [Rakenteen kuvaus](Dokumentaatio/Rakenteen kuvaus.md)
-* [Testausdokumentaatio](Dokumentaatio/Testausdokumentaatio.md)
+More coming soon...
