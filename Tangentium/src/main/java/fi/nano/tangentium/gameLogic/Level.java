@@ -105,21 +105,21 @@ public class Level {
                         break;
                     case 'd':
                         tiles[i][j].SetType(DOOR_LEFT);
-                        tiles[i][j].SetTileAction(TileAction.Activated);
-                        tiles[i][j].SetActionChangeType(FLOOR);
+                        tiles[i][j].SetAction(TileAction.Activated);
+                        tiles[i][j].SetChangeType(FLOOR);
                         break;
                     case 'b':
                         tiles[i][j].SetType(DOOR_RIGHT);
-                        tiles[i][j].SetTileAction(TileAction.Activated);
-                        tiles[i][j].SetActionChangeType(FLOOR);
+                        tiles[i][j].SetAction(TileAction.Activated);
+                        tiles[i][j].SetChangeType(FLOOR);
                         break;
                     case 'l':
                         tiles[i][j].SetType(LEVER_ON_FLOOR);
-                        tiles[i][j].SetTileAction(TileAction.Activator);
+                        tiles[i][j].SetAction(TileAction.Activator);
                         break;
                     case '!':
                         tiles[i][j].SetType(WINCIRCLE);
-                        tiles[i][j].SetTileAction(TileAction.Activator);
+                        tiles[i][j].SetAction(TileAction.Activator);
                         break;
                     case ',':
                         tiles[i][j].SetType(GRASS);
@@ -136,7 +136,7 @@ public class Level {
                 }
 
                 if (tileActionIdChar != '-') {
-                    tiles[i][j].SetTileActionId(Integer.parseInt(tileActionIdChar.toString()));
+                    tiles[i][j].SetActionId(Integer.parseInt(tileActionIdChar.toString()));
                 }
 
                 switch (actorChar) {
@@ -299,13 +299,13 @@ public class Level {
                             if (tile.GetActionId() == tileInPos.GetActionId()) {
                                 TileType type = tile.GetType();
                                 if (type.is(DOOR)) {
-                                    tileInPos.SetActionActive(true);
-                                    tile.SetOriginalActionChangeType(type);
-                                    tile.SetType(tile.GetActionChangeType());
-                                    System.out.println("'" + type + "' opened to '" + tile.GetActionChangeType() + "'!");
+                                    tileInPos.SetActive(true);
+                                    tile.SetOriginalType(type);
+                                    tile.SetType(tile.GetChangeType());
+                                    System.out.println("'" + type + "' opened to '" + tile.GetChangeType() + "'!");
                                 } else if (type.is(PASSABLE)) {
-                                    tileInPos.SetActionActive(false);
-                                    tile.SetType(tile.GetOriginalActionChangeType());
+                                    tileInPos.SetActive(false);
+                                    tile.SetType(tile.GetOriginalType());
                                 }
                             }
                         }

@@ -12,11 +12,11 @@ public class Tile {
 
     private TileType tile;
     private TileAction action;
+    private TileType changeType;
 
     private int actionId = 0;
-    private boolean actionActive = false;
-    private TileType originalActionChangeType;
-    private TileType actionChangeType;
+    private boolean active = false;
+    private TileType originalType;
 
     private Character symbol = 'Ö';
 
@@ -40,24 +40,24 @@ public class Tile {
         return actionId;
     }
 
-    public boolean GetActionActive() {
-        return actionActive;
+    public boolean IsActive() {
+        return active;
     }
 
-    public TileType GetActionChangeType() {
-        return actionChangeType;
+    public TileType GetChangeType() {
+        return changeType;
     }
 
     /**
-     * Sets the tile type the tile returns to after it's been used and reverted back.
+     * Sets the tile type the tile returns to after it's been activated and deactivated.
      * @param type Old tile type
      */
-    public void SetOriginalActionChangeType(TileType type) {
-        originalActionChangeType = type;
+    public void SetOriginalType(TileType type) {
+        originalType = type;
     }
 
-    public TileType GetOriginalActionChangeType() {
-        return originalActionChangeType;
+    public TileType GetOriginalType() {
+        return originalType;
     }
 
     /**
@@ -108,7 +108,7 @@ public class Tile {
      *
      * @param action Special action
      */
-    public void SetTileAction(TileAction action) {
+    public void SetAction(TileAction action) {
         this.action = action;
     }
 
@@ -117,7 +117,7 @@ public class Tile {
      *
      * @param id ID
      */
-    public void SetTileActionId(int id) {
+    public void SetActionId(int id) {
         this.actionId = id;
     }
 
@@ -125,16 +125,16 @@ public class Tile {
      * Sets the tile activated or not activated.
      * @param b True = activated, false = not activated
      */
-    public void SetActionActive(boolean b) {
-        actionActive = b;
+    public void SetActive(boolean b) {
+        active = b;
     }
     
     /**
      * Sets the tile to which the tile changes when activated.
      * @param type Tile type
      */
-    public void SetActionChangeType(TileType type) {
-        actionChangeType = type;
+    public void SetChangeType(TileType type) {
+        changeType = type;
     }
 
     @Override

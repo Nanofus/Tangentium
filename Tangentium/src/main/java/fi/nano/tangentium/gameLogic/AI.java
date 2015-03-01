@@ -14,7 +14,7 @@ import java.util.Random;
 public class AI {
 
     private final Level level;
-    private Actor me;
+    private final Actor me;
 
     private Stance stance = Wander;
 
@@ -23,7 +23,7 @@ public class AI {
     private boolean noticedTarget = false;
     private int noticeDistance = 15;
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     /**
      * @param me The Actor the AI belongs to
