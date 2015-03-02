@@ -22,7 +22,7 @@ public class OldWindow implements Runnable {
 
     private JFrame frame;
 
-    private final InputListener inputListener;
+    //private final InputListener inputListener;
     private OldRenderer renderer;
     private final ImageLoader imageLoader;
 
@@ -33,7 +33,7 @@ public class OldWindow implements Runnable {
         this.windowHeight = windowHeight;
 
         imageLoader = new ImageLoader();
-        inputListener = new InputListener(game);
+        //inputListener = new InputListener(game);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class OldWindow implements Runnable {
         
         //CenterWindow();
         
-        frame.addKeyListener(inputListener);
+        //frame.addKeyListener(inputListener);
 
         renderer = new OldRenderer(imageLoader, game.GetLevel(), game.GetLevel().GetPlayer(), windowWidth, windowHeight);
 

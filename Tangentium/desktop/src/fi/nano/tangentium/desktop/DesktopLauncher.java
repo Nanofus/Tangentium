@@ -15,6 +15,7 @@ public class DesktopLauncher {
         //config.useGL30 = true;
         config.height = configReader.GetWindowHeight();
         config.width = configReader.GetWindowWidth();
+        config.resizable = false;
 
         config.addIcon("icon.png", Files.FileType.Internal);
 

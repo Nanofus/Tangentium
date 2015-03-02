@@ -15,6 +15,8 @@ public class Window extends ApplicationAdapter {
 
     private GameMaster gameMaster = new GameMaster(this);
 
+    private InputHandler inputHandler = new InputHandler(gameMaster);
+
     private OrthographicCamera cam;
     private SpriteBatch batch;
 
@@ -32,7 +34,7 @@ public class Window extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-        handleInput();
+        inputHandler.HandleInput();
         cam.update();
 
         batch.setProjectionMatrix(cam.combined);
@@ -42,27 +44,6 @@ public class Window extends ApplicationAdapter {
         batch.begin();
         //DRAW
         batch.end();
-	}
-
-    private void handleInput() {
-
-        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            gameMaster.MovePlayer(RIGHT);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            gameMaster.MovePlayer(LEFT);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            gameMaster.MovePlayer(UP);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            gameMaster.MovePlayer(DOWN);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            gameMaster.PlayerUse();
-        }
-
     }
 
     @Override
