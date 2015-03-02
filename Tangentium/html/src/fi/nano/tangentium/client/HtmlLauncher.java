@@ -3,7 +3,7 @@ package fi.nano.tangentium.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import fi.nano.tangentium.Tangentium;
+import fi.nano.tangentium.Window;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener getApplicationListener () {
-                return new Tangentium();
+                return new Window();
         }
 }

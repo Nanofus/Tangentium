@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
  *
  * @author Nanofus
  */
-public class Window implements Runnable {
+public class OldWindow implements Runnable {
 
     private int windowWidth = 1280;
     private int windowHeight = 720;
@@ -23,10 +23,10 @@ public class Window implements Runnable {
     private JFrame frame;
 
     private final InputListener inputListener;
-    private Renderer renderer;
+    private OldRenderer renderer;
     private final ImageLoader imageLoader;
 
-    public Window(Game game, int windowWidth, int windowHeight) {
+    public OldWindow(Game game, int windowWidth, int windowHeight) {
         this.game = game;
         
         this.windowWidth = windowWidth;
@@ -50,7 +50,7 @@ public class Window implements Runnable {
         
         frame.addKeyListener(inputListener);
 
-        renderer = new Renderer(imageLoader, game.GetLevel(), game.GetLevel().GetPlayer(), windowWidth, windowHeight);
+        renderer = new OldRenderer(imageLoader, game.GetLevel(), game.GetLevel().GetPlayer(), windowWidth, windowHeight);
 
         frame.add(renderer);
     }

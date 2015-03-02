@@ -22,7 +22,7 @@ import javax.swing.Timer;
  *
  * @author Nanofus
  */
-public class Renderer extends JPanel {
+public class OldRenderer extends JPanel {
 
     private final int tileSizeX;
     private final int tileSizeY;
@@ -53,7 +53,7 @@ public class Renderer extends JPanel {
 
     private final int repaintDelay = 10;
 
-    public Renderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
+    public OldRenderer(ImageLoader imageLoader, Level level, Actor player, int windowWidth, int windowHeight) {
 
         setOpaque(true);
         setBackground(Color.BLACK);

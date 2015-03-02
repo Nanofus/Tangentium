@@ -4,7 +4,7 @@ import fi.nano.tangentium.gameLogic.Level;
 import fi.nano.tangentium.gameLogic.entities.Actor;
 import fi.nano.tangentium.gameLogic.enums.Direction;
 import fi.nano.tangentium.ui.ErrorDialog;
-import fi.nano.tangentium.ui.Window;
+import fi.nano.tangentium.ui.OldWindow;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Game {
 
     private Level level;
-    private Window window;
+    //private OldWindow window;
 
     private int currentLevel = 0;
     private final ArrayList<String> levels;
@@ -43,14 +43,14 @@ public class Game {
         return currentLevel;
     }
 
-    public void SetWindow(Window window) {
+    /*public void SetWindow(OldWindow window) {
         this.window = window;
-    }
+    }*/
 
     private void RestartGame() {
         if (!gameWon) {
             level = new Level(this, levels.get(currentLevel));
-            window.NewLevel(level);
+            //window.NewLevel(level);
         }
     }
 
@@ -63,12 +63,12 @@ public class Game {
         if (currentLevel < levels.size()) {
             String nextLevel = levels.get(currentLevel);
             level = new Level(this, nextLevel);
-            window.NewLevel(level);
+            //window.NewLevel(level);
         } else {
             System.out.println("GAME WON");
             level.SetGameOver(true);
             gameWon = true;
-            window.WinGame();
+            //window.WinGame();
             new ErrorDialog().ShowError("You won the game!\n\nThe game will now close. Thanks for playing!");
             System.exit(1);
         }
@@ -129,21 +129,21 @@ public class Game {
         }
     }
 
-    /**
+    /*
      * Player rotates the camera
      *
      * @param dir Direction
      */
-    public void RotateCamera(Direction dir) {
+    /*public void RotateCamera(Direction dir) {
         window.RotateCamera(dir);
-    }
+    }*/
 
     private void PassTurn() {
         if (!level.IsGameOver()) {
             AIMove();
-            if (window != null) {
+            /*if (window != null) {
                 window.Refresh();
-            }
+            }*/
             turn++;
         }
     }

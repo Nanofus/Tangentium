@@ -66,7 +66,7 @@ public class ImageLoader {
         try {
             
             logo = ImageIO.read(new File("data/graphics/logo.png"));
-            icon = ImageIO.read(new File("data/graphics/icon.png"));
+            //icon = ImageIO.read(new File("data/graphics/icon.png"));
             
             floor = ImageIO.read(new File("data/graphics/tiles/floor.png"));
             wall = ImageIO.read(new File("data/graphics/tiles/wall.png"));
@@ -122,8 +122,8 @@ public class ImageLoader {
 
     public BufferedImage GetImage(String name) {
         switch(name) {
-            case "Icon":
-                return icon;
+            //case "Icon":
+            //    return icon;
             case "Logo":
                 return logo;
             
