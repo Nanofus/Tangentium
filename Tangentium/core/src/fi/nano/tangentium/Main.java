@@ -12,8 +12,11 @@ import javax.swing.SwingUtilities;
  * @author Nanofus
  */
 public class Main {
+    public Main() {
+        Run();
+    }
 
-    public static void main(String[] args) {
+    public void Run() {
         ArrayList<String> levels = new LevelListReader().GetLevelList();
         
         ConfigReader config = new ConfigReader();
