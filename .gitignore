@@ -1,6 +1,7 @@
 Tangentium/.gradle
 Tangentium/build
 Tangentium/.idea
+Tangentium/out
 
 # Ignore Gradle GUI config
 Tangentium/gradle-app.setting
