@@ -1,4 +1,4 @@
-package fi.nano.tangentium.ui;
+package fi.nano.tangentium.oldUi;
 
 import fi.nano.tangentium.gameLogic.Level;
 import fi.nano.tangentium.gameLogic.Position;

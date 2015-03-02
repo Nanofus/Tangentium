@@ -1,4 +1,4 @@
-package fi.nano.tangentium.ui;
+package fi.nano.tangentium.oldUi;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

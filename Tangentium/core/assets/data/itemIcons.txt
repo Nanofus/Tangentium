@@ -1,0 +1,6 @@
+swordicon
+spearicon
+maceicon
+pyrospellicon
+icestafficon
+wandicon

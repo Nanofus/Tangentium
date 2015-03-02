@@ -1,5 +1,5 @@
 
-package fi.nano.tangentium.ui;
+package fi.nano.tangentium.oldUi;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

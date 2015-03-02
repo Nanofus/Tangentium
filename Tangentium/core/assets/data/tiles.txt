@@ -1,0 +1,11 @@
+floor
+grass
+lever
+path
+pillar
+tree
+wall
+water
+wincircle
+door_left
+door_right

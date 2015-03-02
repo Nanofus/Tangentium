@@ -1,0 +1,8 @@
+sword
+spear
+mace
+pyrospell
+icestaff
+wand
+buffPotion
+healthPotion

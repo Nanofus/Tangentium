@@ -3,8 +3,8 @@ package fi.nano.tangentium;
 import fi.nano.tangentium.gameLogic.Level;
 import fi.nano.tangentium.gameLogic.entities.Actor;
 import fi.nano.tangentium.gameLogic.enums.Direction;
-import fi.nano.tangentium.ui.ErrorDialog;
-import fi.nano.tangentium.ui.OldWindow;
+import fi.nano.tangentium.oldUi.ErrorDialog;
+
 import java.util.ArrayList;
 
 /**

@@ -1,6 +1,6 @@
 package fi.nano.tangentium.fileProcessing;
 
-import fi.nano.tangentium.ui.ErrorDialog;
+import fi.nano.tangentium.oldUi.ErrorDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

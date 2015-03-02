@@ -1,7 +1,8 @@
-package fi.nano.tangentium;
+package fi.nano.tangentium.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import fi.nano.tangentium.GameMaster;
 import fi.nano.tangentium.gameLogic.enums.Direction;
 
 /**
