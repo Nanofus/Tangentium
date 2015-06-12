@@ -3,4 +3,4 @@ Tangentium is a turn-based role playing game originally made as a programming as
 
 The original project repository (in Finnish) can be found [here](https://github.com/Nanofus/Tangential).
 
-More coming soon...
+This is a work in progress libgdx port.
